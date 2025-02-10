@@ -1,0 +1,39 @@
+body {
+    background-color: lightblue;
+}
+.dot1 {
+    height: 100px;
+    width: 100px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10%;
+    margin-top: 50px;
+}
+.dot2 {
+    height: 100px;
+    width: 100px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10%;
+    margin-top: 50px;
+}
+.dot3 {
+    height: 100px;
+    width: 100px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10%;
+    margin-top: 50px;
+}
+.dot4 {
+    height: 100px;
+    width: 100px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10%;
+    margin-top: 50px;
+}
