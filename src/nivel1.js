@@ -60,7 +60,7 @@ class Nivel1 extends Phaser.Scene {
       "Agora coloque um petisco em cima da área vermelha demarcada para seu gato \n                e depois que ele comer clique no botão no canto da tela",
       {
         fontFamily: 'Planes_ValMore', 
-        fontSize: '35px', 
+        fontSize: '32px', 
         fill: "#ffffff",
         backgroundColor : "#2f996e"
       }
@@ -147,6 +147,10 @@ class Nivel1 extends Phaser.Scene {
       if (this.contadorClique === 10) {
         this.pontuacaoMaxima();
       }
+
+      // Posiciona o círculo de recompensa na posição atual da pata
+      this.circuloRecompensa.x = this.pata.x;
+      this.circuloRecompensa.y = this.pata.y;
 
       // Diminui o tamanho da pata
       this.tamanhoPata -= 0.01;
