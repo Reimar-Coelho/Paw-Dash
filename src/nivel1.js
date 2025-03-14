@@ -24,9 +24,9 @@ class Nivel1 extends Phaser.Scene {
     // Carrega a imagem da pata
     this.load.image("pata", "../assets/pata2.png");
     // Carrega a imagem tileable do fundo
-    this.load.image("fundo", "../assets/wood2.png");
+    this.load.image("fundo", "../assets/backgroundJogo.png");
     // Carrega a imagem do botão de continuar
-    this.load.image("continuar", "../assets/Circulo_branco.png");
+    this.load.image("continuar", "../assets/btnSeta.png");
   }
 
   iniciarRotacao() {
@@ -84,7 +84,7 @@ class Nivel1 extends Phaser.Scene {
     this.fundo = this.add
       .tileSprite(0, 0, largura, altura, "fundo")
       .setOrigin(0, 0)
-      .setScale(4);
+      .setScale(2);
 
     // Adiciona o círculo da recompensa que seja transparente
     this.circuloRecompensa = this.physics.add
@@ -101,7 +101,7 @@ class Nivel1 extends Phaser.Scene {
     // Adiciona o botão de continuar
     this.botaoContinuar = this.physics.add
       .staticImage(largura - 100, altura - 100, "continuar")
-      .setScale(0.1)
+      .setScale(0.5)
       .setAlpha(0);
     this.botaoContinuar.setInteractive(); // Torna o botão interativo
 
