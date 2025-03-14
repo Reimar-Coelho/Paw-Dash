@@ -13,6 +13,7 @@ class Nivel2 extends Phaser.Scene {
     this.contadorClique = 0; // Contador de cliques
     this.textoContador; // Objeto de texto para exibir o contador
     this.pataClicavel = true; // Variável para verificar se a pata está clicável
+    this.pataMovendo = true; // Nova variável para controlar se a pata está em movimento
   }
 
   preload() {
@@ -52,10 +53,37 @@ class Nivel2 extends Phaser.Scene {
       .setScale(0.5)
       .setAlpha(0);
     this.botaoContinuar.setInteractive();
+    this.botaoContinuar.disableInteractive(); // Desativa inicialmente
     
     // Evento de clique para o botão continuar
     this.botaoContinuar.on("pointerdown", () => {
-      this.scene.start('SelecaoDeLevel');
+      if (this.contadorClique < 3) {
+        // Volta a movimentar a pata e esconde o círculo/botão
+        this.pataMovendo = true;
+        this.pataClicavel = true;
+        this.pata.setInteractive();
+        this.circuloRecompensa.setAlpha(0);
+        this.botaoContinuar.setAlpha(0);
+        this.botaoContinuar.disableInteractive();
+        
+        // Atualiza o texto tutorial
+        if (this.textoTutorial) {
+          this.textoTutorial.destroy();
+        }
+        this.textoTutorial = this.add.text(
+          largura / 2,
+          altura / 2 - 300,
+          "Nível 2: Tente fazer seu gato clicar na pata em movimento!",
+          {
+            font: "24px Arial",
+            fill: "#ffffff",
+          }
+        );
+        this.textoTutorial.setOrigin(0.5);
+        this.textoTutorial.setDepth(1);
+      } else {
+        this.scene.start('SelecaoDeLevel');
+      }
     });
 
     // Evento de clique para a pata
@@ -66,9 +94,40 @@ class Nivel2 extends Phaser.Scene {
         // Atualiza o texto do contador
         this.textoContador.setText(this.contadorClique + "/3");
 
-        // Chama a função de evento quando chega a 3 cliques
+        // Parar a pata e mostrar recompensa
+        this.pataMovendo = false;
+        this.pataClicavel = false;
+        this.pata.disableInteractive();
+        
+        // Posiciona e mostra o círculo de recompensa
+        this.circuloRecompensa.x = this.pata.x;
+        this.circuloRecompensa.y = this.pata.y;
+        this.circuloRecompensa.setAlpha(0.5);
+        
+        // Mostra o botão de continuar e o habilita
+        this.botaoContinuar.setAlpha(1);
+        this.botaoContinuar.setInteractive();
+        
+        // Atualiza o texto tutorial
+        if (this.textoTutorial) {
+          this.textoTutorial.destroy();
+        }
+        
         if (this.contadorClique === 3) {
+          // Se completou o nível, mostra mensagem final
           this.pontuacaoMaxima();
+        } else {
+          // Se ainda não completou, mostra instrução para recompensar
+          this.textoTutorial = this.add.text(
+            largura / 2, 
+            altura / 2 - 300,
+            "Coloque a recompensa no círculo e depois clique no botão para continuar.",
+            {
+              font: "24px Arial",
+              fill: "#ffffff",
+            }
+          );
+          this.textoTutorial.setOrigin(0.5);
         }
       }
     });
@@ -98,8 +157,8 @@ class Nivel2 extends Phaser.Scene {
     largura = window.innerWidth;
     altura = window.innerHeight;
     
-    // Se o contador atingiu 3, não atualiza mais a posição da pata
-    if (this.contadorClique >= 3) {
+    // Se a pata não deve se mover, sai da função
+    if (!this.pataMovendo) {
       return;
     }
 
@@ -126,38 +185,18 @@ class Nivel2 extends Phaser.Scene {
     
     // Define a área do texto de vitória
     const areaTextoY = altura / 2 - 300;
-    const alturaTexto = 75; // Altura estimada da área de texto com duas linhas
     
     // Exibe a mensagem de conclusão
     this.textoTutorial = this.add.text(
       largura / 2, 
       areaTextoY,
-      "                                        Parabéns! Você completou o nível 2! \n Lembre-se de colocar a recompensa no círculo e depois clicar no botão para continuar.",
+      "Parabéns! Você completou o nível 2!\nColoque a recompensa no círculo e depois clique no botão para continuar.",
       {
         font: "24px Arial",
         fill: "#ffffff",
       }
     );
     this.textoTutorial.setOrigin(0.5);
-    
-    // Verifica se a pata está próxima da área do texto
-    if (Math.abs(this.pata.y - areaTextoY) < alturaTexto) {
-      // Move a pata para um lugar seguro abaixo do texto
-      if (this.pata.y < altura / 2) {
-        // Se estiver na metade superior, move para a metade inferior
-        this.pata.y = altura * 0.75;
-      } else {
-        // Se estiver na metade inferior, move para a metade superior
-        this.pata.y = altura * 0.25;
-      }
-      
-      // Ajusta também a posição X para um lugar visível mas não central
-      if (this.pata.x > largura / 2) {
-        this.pata.x = largura * 0.25;
-      } else {
-        this.pata.x = largura * 0.75;
-      }
-    }
     
     // Posiciona o círculo de recompensa na última posição da pata
     this.circuloRecompensa.x = this.pata.x;
@@ -166,5 +205,6 @@ class Nivel2 extends Phaser.Scene {
     // Mostra o círculo de recompensa e o botão continuar
     this.circuloRecompensa.setAlpha(0.5);
     this.botaoContinuar.setAlpha(1);
+    this.botaoContinuar.setInteractive();
   }
 }
