@@ -25,6 +25,8 @@ class Nivel2 extends Phaser.Scene {
     this.load.image("circuloRecompensa", "../assets/circuloRecompensa2.png");
     // Carrega a imagem do botão de continuar
     this.load.image("continuar", "../assets/btnSeta.png");
+        // Carrega a fonte personalizada
+        this.load.font('Planes_ValMore', '../fonts/Planes_ValMore.ttf', 'truetype');
   }
 
   create() {
@@ -75,8 +77,10 @@ class Nivel2 extends Phaser.Scene {
           altura / 2 - 300,
           "Nível 2: Tente fazer seu gato clicar na pata em movimento!",
           {
-            font: "24px Arial",
+            fontFamily: 'Planes_ValMore', 
+        fontSize: '35px', 
             fill: "#ffffff",
+            backgroundColor : "#2f996e"
           }
         );
         this.textoTutorial.setOrigin(0.5);
@@ -123,8 +127,10 @@ class Nivel2 extends Phaser.Scene {
             altura / 2 - 300,
             "Coloque a recompensa no círculo e depois clique no botão para continuar.",
             {
-              font: "24px Arial",
+              fontFamily: 'Planes_ValMore', 
+        fontSize: '35px', 
               fill: "#ffffff",
+              backgroundColor : "#2f996e"
             }
           );
           this.textoTutorial.setOrigin(0.5);
@@ -134,8 +140,10 @@ class Nivel2 extends Phaser.Scene {
 
     // Adiciona o contador visual no canto superior esquerdo
     this.textoContador = this.add.text(10, 10, this.contadorClique + "/3", {
-      font: "24px Arial",
+      fontFamily: 'Planes_ValMore', 
+        fontSize: '35px', 
       fill: "#ffffff",
+      backgroundColor : "#2f996e"
     });
     
     // Adiciona o texto tutorial inicial
@@ -144,8 +152,10 @@ class Nivel2 extends Phaser.Scene {
       altura / 2 - 300,
       "Nível 2: Tente fazer seu gato clicar na pata em movimento!",
       {
-        font: "24px Arial",
+        fontFamily: 'Planes_ValMore', 
+        fontSize: '35px', 
         fill: "#ffffff",
+        backgroundColor : "#2f996e"
       }
     );
     this.textoTutorial.setOrigin(0.5);
@@ -192,8 +202,10 @@ class Nivel2 extends Phaser.Scene {
       areaTextoY,
       "Parabéns! Você completou o nível 2!\nColoque a recompensa no círculo e depois clique no botão para continuar.",
       {
-        font: "24px Arial",
+        fontFamily: 'Planes_ValMore', 
+        fontSize: '35px', 
         fill: "#ffffff",
+        backgroundColor : "#2f996e"
       }
     );
     this.textoTutorial.setOrigin(0.5);

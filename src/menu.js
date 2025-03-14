@@ -5,19 +5,22 @@ class Menu extends Phaser.Scene {
   }
 
   preload() {
-    //this.load.image('background', '../assets/bg_tileable.png');
+    this.load.image('fundoM', '../assets/backgroundMenu.png');
     this.load.image('btnJogar', '../assets/jogar.png');
     this.load.image('btnCreditos', '../assets/creditos.png');
+    this.load.image('logo', '../assets/logo.png');
+
   }
 
   create() {
     const width = window.innerWidth;
     const height = window.innerHeight;
     
-    // Se tiver um background, descomentar esta linha
-    // this.add.image(width/2, height/2, 'background').setScale(0.1);
+    this.add.image(width/2, height/2-100 , 'fundoM').setScale(.7);
+
+    this.add.image(width/2, height/2-150, 'logo').setScale(1.3);
     
-    const btnJogar = this.add.image(width/2, height/2, 'btnJogar').setScale(0.7);
+    const btnJogar = this.add.image(width/2, height/2+150, 'btnJogar').setScale(0.7);
     const btnCreditos = this.add.image(width-250, height-100, 'btnCreditos').setScale(0.7);
     
     btnJogar.setInteractive();

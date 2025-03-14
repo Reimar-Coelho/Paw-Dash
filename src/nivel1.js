@@ -27,6 +27,8 @@ class Nivel1 extends Phaser.Scene {
     this.load.image("fundo", "../assets/backgroundJogo.png");
     // Carrega a imagem do botão de continuar
     this.load.image("continuar", "../assets/btnSeta.png");
+    // Carrega a fonte personalizada
+    this.load.font('Planes_ValMore', '../fonts/Planes_ValMore.ttf', 'truetype');
   }
 
   iniciarRotacao() {
@@ -42,8 +44,10 @@ class Nivel1 extends Phaser.Scene {
       this.centroY - 300,
       "Mostre a tela para seu gato e tente fazer ele clicar na pata",
       {
-        font: "24px Arial",
+        fontFamily: 'Planes_ValMore', 
+        fontSize: '35px', 
         fill: "#ffffff",
+        backgroundColor : "#2f996e"
       }
     );
     this.textoTutorial.setOrigin(0.5);
@@ -55,8 +59,10 @@ class Nivel1 extends Phaser.Scene {
       this.centroY - 300,
       "Agora coloque um petisco em cima da área vermelha demarcada para seu gato \n                e depois que ele comer clique no botão no canto da tela",
       {
-        font: "24px Arial",
+        fontFamily: 'Planes_ValMore', 
+        fontSize: '35px', 
         fill: "#ffffff",
+        backgroundColor : "#2f996e"
       }
     );
     this.textoTutorial.setOrigin(0.5);
@@ -68,8 +74,10 @@ class Nivel1 extends Phaser.Scene {
       this.centroY - 300,
       "Agora repita o processo até o contador chegar em 10",
       {
-        font: "24px Arial",
+        fontFamily: 'Planes_ValMore', 
+        fontSize: '35px', 
         fill: "#ffffff",
+        backgroundColor : "#2f996e"
       }
     );
     this.textoTutorial.setOrigin(0.5);
@@ -121,8 +129,10 @@ class Nivel1 extends Phaser.Scene {
 
     // Adiciona o contador visual no canto superior esquerdo
     this.textoContador = this.add.text(10, 10, this.contadorClique + "/10", {
-      font: "24px Arial",
+      fontFamily: 'Planes_ValMore', 
+        fontSize: '35px', 
       fill: "#ffffff",
+      backgroundColor : "#2f996e"
     });
 
     // Evento de clique para a pata

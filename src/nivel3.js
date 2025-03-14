@@ -23,6 +23,8 @@ class Nivel3 extends Phaser.Scene {
     this.load.image("circuloRecompensa", "../assets/circuloRecompensa2.png");
     // Carrega a imagem do botão de continuar
     this.load.image("continuar", "../assets/btnSeta.png");
+        // Carrega a fonte personalizada
+        this.load.font('Planes_ValMore', '../fonts/Planes_ValMore.ttf', 'truetype');
   }
 
   create() {
@@ -56,8 +58,10 @@ class Nivel3 extends Phaser.Scene {
 
     // Adiciona o contador visual no canto superior esquerdo
     this.textoContador = this.add.text(10, 10, this.contadorClique + "/3", {
-      font: "24px Arial",
+      fontFamily: 'Planes_ValMore', 
+        fontSize: '35px', 
       fill: "#ffffff",
+      backgroundColor : "#2f996e"
     });
     
     // Adiciona o texto tutorial inicial
@@ -66,8 +70,10 @@ class Nivel3 extends Phaser.Scene {
       altura / 2 - 300,
       "Nível 3: Agora a pata se multiplica!",
       {
-        font: "24px Arial",
+        fontFamily: 'Planes_ValMore', 
+        fontSize: '35px', 
         fill: "#ffffff",
+        backgroundColor : "#2f996e"
       }
     );
     this.textoTutorial.setOrigin(0.5);
@@ -229,10 +235,12 @@ class Nivel3 extends Phaser.Scene {
     this.textoTutorial = this.add.text(
       largura / 2, 
       areaTextoY,
-      "                                        Parabéns! Você completou o nível 3! \n Lembre-se de colocar a recompensa no círculo e depois clicar no botão para continuar.",
+      "Parabéns! Você completou o nível 3! \nColoque a recompensa no círculo e depois clique no botão para continuar.",
       {
-        font: "24px Arial",
+        fontFamily: 'Planes_ValMore', 
+        fontSize: '32px', 
         fill: "#ffffff",
+        backgroundColor : "#2f996e"
       }
     );
     this.textoTutorial.setOrigin(0.5);
