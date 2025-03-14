@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Paw Dash</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.87.0/phaser.js"></script>
+  </head>
+  <body>
+    <script>
+      var largura = window.innerWidth;
+      var altura = window.innerHeight;
+    </script>
+    <script src="src/menu.js"></script>
+    <script src="src/levelBase.js"></script>
+    <script src="src/nivel1.js"></script>
+    <script src="src/nivel2.js"></script>
+    <script src="src/nivel3.js"></script>
+    <script src="src/nivel4.js"></script>
+    <script src="src/nivel5.js"></script>
+    <script src="src/selecaoDeLevel.js"></script>
+    <script>
+      //configurações gerais
+      const config = {
+        type: Phaser.AUTO,
+        scale: {
+          mode: Phaser.Scale.FIT,
+        },
+        autoCenter: Phaser.Scale.CENTER,
+        width: largura, //largura da tela do jogo
+        height: altura, //altura da tela do jogo
+        backgroundColor: "#bfe4ec",
+        physics: {
+          default: "arcade",
+          arcade: {
+            gravity: { y: 10 },
+            debug: false,
+          },
+        },
+        parent: "game",
+        fps: {
+          target: 60,
+          forceSetTimeOut: true,
+        },
+        dom: {
+          createContainer: true,
+        },
+        scene: [Menu, SelecaoDeLevel, Nivel1, Nivel2, Nivel3]
+      };
+      
+      var game = new Phaser.Game(config);
+    </script>
+  </body>
+</html>

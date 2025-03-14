@@ -1,78 +1,109 @@
-var width = window.innerWidth
-var height = window.innerHeight
-
-    var config = {  // Configura as dimensões da tela e o tipo de renderizador, bem como contém "scene"
-
+class LevelBase extends Phaser.Scene{
+    constructor(){
+        super('LevelBase');
+        this.tamanhoPata = 0.0001673 * largura;     // Tamanho da pata baseado na tela
+        console.log(this.tamanhoPata)
+        this.cont = 0;   // Variável para medir a progressão regressiva de tamanho da pata
+        this.vel = 2;    // Velocidade da pata
+        this.largura=largura;
+        this.altura=altura;
+        this.contadorClique = 0; // Contador de cliques
+        this.textoContador;    // Objeto de texto para exibir o contador
+    }
+     preload() {
+        // Carrega a imagem da pata
+        this.load.image('pata', '../assets/pata2.png');
+        // Carrega a imagem tileable do fundo
+        this.load.image('fundo', '../assets/wood2.png');
+    }
     
-        type: Phaser.AUTO,
-        width: width,
-        height: height,
-        backgroundColor: '#bfe4ec',
-
-        scene: {
-            preload: preload, // Carrega os arquivos de imagem e define como serão referenciados
-            create: create, // Configura como e onde um elemento será inserida na tela
-            update: update // Define como as imagens irão se comportar, executando ações em loop
-        }
-    };
-
-    var game = new Phaser.Game(config);
-
-    var pata; // Define uma variável para a pata, para que seja possível acessá-la e modificá-la depois
-    //var sizePata = 0.25; // Define uma variavél para o tamanho da pata e seu valor inicial
-    var sizePata = 0.0001673*width
-    var cont = 0; // Define uma variavél para medir a progressão regressiva de tamanho da pata
-    var vel = 2; // Define uma variavél que determina a velocidade da pata
-
-    function preload() {
-        this.load.image('paw', '../assets/pata2.png'); // Carrega a imagem da pata
-        this.load.image('background', '../assets/teste_bg.jpg'); // Carrega a imagem do background
-    }
-
-    function create() {
-        background = this.add.image(0, 0, 'background').setOrigin(0, 0); // Adiciona o background 
-        pata = this.add.image(100, 300, 'paw').setScale(sizePata); // Adiciona a pata e relaciona ela com a variável
-        pata.vertical = true; // Define como verdadeiro o deslocamento vertical da pata
-        pata.setInteractive(); // Define a pata como objeto interativa
-        pata.on('pointerdown', function(){ // Define a função para a pata diminuir ao clique
-            sizePata -= 0.02;
-            pata.setScale(sizePata);
-            console.log('Clique!', sizePata);
-        })
-        console.log(width, height);
-    }
-
-    function update() { 
-        width = window.innerWidth
-        height = window.innerHeight
-
-        pata.ida = pata.x <= 100 ? true : pata.x >= (width-150) ? false : pata.ida;
-        pata.x += pata.ida ? vel : -vel;
-
-        pata.vertical = pata.y <= 100 ? true : pata.y >= (height-140) ? false : pata.vertical;
-        pata.y += pata.vertical ? vel : -vel;
-        if (sizePata < 0.1 && cont <= 0.5) { // Define o progresso necessário para redefinição das variáveis
-                vel += 0.2; // Aumenta a variável de velocidade
-                cont += 0.02; // Aumenta a variável que determina a diminuição do tamanho da pata
-                xis = pata.x; // Captura a posição no eixo x da para no momento antes dela ser apagada
-                yps = pata.y; // Captura a posição no eixo y da para no momento antes dela ser apagada
-                pata.destroy(); // Tira a imagem de pata atual da tela
-                sizePata = 0.2 * (1 - cont); // Redefine o tamanho da pata
-                pata = this.add.image(xis, yps, 'paw').setScale(sizePata); // Adiciona a nova pata
-                pata.setInteractive(); // Torna a nova para interativa
-                console.log('OMG!');
-                pata.vertical = true; // Ativa a movimentação vertical da nova pata
-                if (xis > 400) { // Determina para qual lado a nova para deve começar a se movimentar
-                    pata.ida = false;
-                } 
-                else {
-                    pata.ida = true;
-                }
-                pata.on('pointerdown', function(){ // Define a função para a pata diminuir ao clique
-                    sizePata -= 0.02;
-                    pata.setScale(sizePata);
-                    console.log('Clique!', sizePata);
-                })
-                console.log(cont);
+     create() {
+        // Cria um tileSprite que cobre toda a tela com a imagem tileable
+        this.fundo = this.add.tileSprite(0, 0, largura, altura, 'fundo').setOrigin(0, 0).setScale(4);
+    
+        // Adiciona a pata e ajusta seu tamanho
+        this.pata= this.add.image(100, 300, 'pata').setScale(this.tamanhoPata);
+        this.pata.vertical = true;
+        this.pata.setInteractive();
+    
+        // Evento de clique para a pata
+        this.pata.on('pointerdown', function () {
+            if (this.contadorClique < 10) {
+                this.contadorClique++;
             }
+            // Atualiza o texto do contador
+            this.textoContador.setText(this.contadorClique + '/10');
+    
+            // Chama a função de evento quando chega a 10 cliques
+            if (this.contadorClique === 10) {
+                pontuacaoMaxima();
+            }
+    
+            // Diminui o tamanho da pata
+            this.tamanhoPata -= 0.02;
+            this.pata.setScale(this.tamanhoPata);
+            console.log('Clique!', this.tamanhoPata);
+        });
+    
+        // Adiciona o contador visual no canto superior esquerdo
+        this.textoContador = this.add.text(10, 10, this.contadorClique + '/10', {
+            font: "24px Arial",
+            fill: "#ffffff"
+        });
+    
     }
+    
+     update() { 
+        // Atualiza as dimensões da tela para responsividade
+        largura = window.innerWidth;
+        altura = window.innerHeight;
+    
+        // Movimentação da pata no eixo X com if ternário
+        this.pata.ida = (this.pata.x <= 100) ? true : (this.pata.x >= (largura - 150)) ? false : this.pata.ida;
+        this.pata.x += this.pata.ida ? this.vel : -this.vel;
+    
+        // Movimentação da pata no eixo Y com if ternário
+        this.pata.vertical = (this.pata.y <= 100) ? true : (this.pata.y >= (altura - 140)) ? false : this.pata.vertical;
+        this.pata.y += this.pata.vertical ? this.vel : -this.vel;
+    
+        // Quando a pata atingir determinado tamanho, ela é recriada
+        if (this.tamanhoPata < 0.1 && this.cont <= 0.5) {
+            this.vel += 0.2;      // Aumenta a velocidade
+            this.cont += 0.02;    // Progride a redução do tamanho da pata
+            var xis = this.pata.x; // Captura a posição X antes de destruir a pata
+            var yps = this.pata.y; // Captura a posição Y antes de destruir a pata
+            this.pata.destroy();  // Remove a pata atual da tela
+    
+            this.tamanhoPata = 0.2 * (1 - this.cont); // Redefine o tamanho da pata
+            this.pata = this.add.image(xis, yps, 'pata').setScale(this.tamanhoPata);
+            this.pata.setInteractive();
+            this.pata.vertical = true;
+            this.pata.ida = (xis > 400) ? false : true;
+    
+            // Reatribui o evento de clique para a nova pata
+            this.pata.on('pointerdown', function () {
+                if (this.contadorClique < 10) {
+                    this.contadorClique++;
+                }
+                this.textoContador.setText(this.contadorClique + '/10');
+                
+                if (this.contadorClique === 10) {
+                    pontuacaoMaxima();
+                }
+                
+                this.tamanhoPata -= 0.02;
+                this.pata.setScale(this.tamanhoPata);
+                console.log('Clique!', this.tamanhoPata);
+            });
+            console.log(this.cont);
+        }
+    }
+    
+    // Função de evento acionada ao atingir 10 cliques (vazia para modificação posterior)
+     pontuacaoMaxima() {
+        // Adicionar aqui o código para quando o contador chegar a 10 cliques.
+    }
+    
+}
+
+
