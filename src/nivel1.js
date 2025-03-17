@@ -2,11 +2,11 @@ class Nivel1 extends Phaser.Scene {
   constructor() {
     super('Nivel1');
     // Variáveis da classe
-    this.tamanhoPata = 0.0001673 * largura - 0.04; // Tamanho da pata baseado na tela
+    this.tamanhoPata = 0.0001673 * largura + 0.1; // Tamanho da pata baseado na tela
     this.vel = 0.015; // Velocidade da pata
     this.centroX = largura / 2; // Centro da tela no eixo X
     this.centroY = altura / 2; // Centro da tela no eixo Y
-    this.raio = 150; // Raio da órbita
+    this.raio = 100; // Raio da órbita
     this.angulo = 0; // Ângulo inicial
     this.circuloRecompensa; // Variável para o círculo da recompensa
     this.botaoContinuar; // Variável para o botão de continuar
