@@ -278,7 +278,7 @@
 6 | Prato de bateria | XXXXXXXXXXXXXX | autoral
 7 | Botão de elevador | Clique dos botões | autoral
 8 | Folhas | Esconderijo da pata | autoral
-9 | "Saquê do Bink" - piano cover | Pata se movimentando | cover influcenciado pela música "Binks no Sake" (One Piece)
+9 | "Bink no Sake" - piano cover | Pata se movimentando | cover influcenciado pela música "Bink no Sake" (One Piece)
 10 | Chocalho | XXXXXXXXXX | autoral
 
 ## 3.4. Inventário e Bestiário (sprint 3)
