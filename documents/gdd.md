@@ -270,10 +270,16 @@
 
 \# | titulo | ocorrência | autoria 
 --- | --- | --- | ---
-1 | Vacation with my cat | Trilha principal | <a href = "https://pixabay.com/music/upbeat-vacation-with-my-cat-248359/"> pixabay (AI generated) </a>
+1 | "Vacation with my cat" | Trilha principal | <a href = "https://pixabay.com/music/upbeat-vacation-with-my-cat-248359/"> pixabay (AI generated) </a>
 2 | Light Switch | Clique dos botões | <a href = "https://freesound.org/people/GOSFX/sounds/324334/"> freesound </a>
-3 | Rat Squeak | Destruição da pata | <a href = "https://freesound.org/people/toefur/sounds/288941/"> freesound </a>
-4 | Rat Walk | Pata se movimentando | <a href = "https://freesound.org/people/Zabuhailo/sounds/143125/"> freesound </a>
+3 | "meow meow give me milk Version 1" | Trilha sonora da seleção de fases | <a href = "https://pixabay.com/pt/music/musicas-felizes-para-criancas-meow-meow-give-me-milk-version-1-317260/"> pixabay </a>
+4 | "me dá me dá" - piano cover | XXXXXXXXXXXX | cover da propaganda do 'danoninho' ("me dá me dá")
+5 | TIN | Clique na pata | autoral
+6 | Prato de bateria | XXXXXXXXXXXXXX | autoral
+7 | Botão de elevador | Clique dos botões | autoral
+8 | Folhas | Esconderijo da pata | autoral
+9 | "Saquê do Bink" - piano cover | Pata se movimentando | cover influcenciado pela música "Binks no Sake" (One Piece)
+10 | Chocalho | XXXXXXXXXX | autoral
 
 ## 3.4. Inventário e Bestiário (sprint 3)
 
