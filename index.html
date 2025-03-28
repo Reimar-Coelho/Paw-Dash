@@ -19,6 +19,8 @@
     <script src="src/nivel4.js"></script>
     <script src="src/nivel5.js"></script>
     <script src="src/selecaoDeLevel.js"></script>
+    <script src="src/creditos.js"></script>
+
     <script>
       //configurações gerais
       const config = {
@@ -29,7 +31,7 @@
         autoCenter: Phaser.Scale.CENTER,
         width: largura, //largura da tela do jogo
         height: altura, //altura da tela do jogo
-        backgroundColor: "#bfe4ec",
+        backgroundColor: "#ff9501",
         physics: {
           default: "arcade",
           arcade: {
@@ -45,7 +47,7 @@
         dom: {
           createContainer: true,
         },
-        scene: [Menu, SelecaoDeLevel, Nivel1, Nivel2, Nivel3]
+        scene: [Menu, SelecaoDeLevel, Nivel1, Nivel2, Nivel3, Nivel4, Nivel5, Creditos],
       };
       
       var game = new Phaser.Game(config);
