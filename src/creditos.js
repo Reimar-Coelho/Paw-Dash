@@ -136,8 +136,19 @@ class Creditos extends Phaser.Scene {
       // cria os sons
       this.botaoSom = this.sound.add("botaoSom", {volume: 3}); 
       this.musicaCreditos = this.sound.add('musicaCreditos', {volume: 0.5}); 
+      
+      // Recupera as configurações de volume do armazenamento local
+      const volumeAtual = localStorage.getItem('volumeAtual') ? parseFloat(localStorage.getItem('volumeAtual')) : 0.5;
+      const mutado = localStorage.getItem('mutado') === 'true';
+      
+      // Aplica as configurações de volume
+      this.musicaCreditos.setVolume(volumeAtual);
+      this.musicaCreditos.setMute(mutado);
+      this.botaoSom.setVolume(volumeAtual);
+      this.botaoSom.setMute(mutado);
+      
       this.musicaCreditos.play(); 
-      console.log('Música de fundo iniciada'); 
+      console.log('Música de fundo iniciada, volume:', volumeAtual, 'mutado:', mutado);
   
       // Recalcula as dimensões responsivas
       this.calcularDimensoes();

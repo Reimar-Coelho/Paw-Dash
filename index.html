@@ -20,6 +20,7 @@
     <script src="src/nivel5.js"></script>
     <script src="src/selecaoDeLevel.js"></script>
     <script src="src/creditos.js"></script>
+    <script src="src/config.js"></script>
 
     <script>
       //configurações gerais
@@ -47,7 +48,7 @@
         dom: {
           createContainer: true,
         },
-        scene: [Menu, SelecaoDeLevel, Nivel1, Nivel2, Nivel3, Nivel4, Nivel5, Creditos],
+        scene: [Menu, Configuracoes, SelecaoDeLevel, Nivel1, Nivel2, Nivel3, Nivel4, Nivel5, Creditos],
       };
       
       var game = new Phaser.Game(config);

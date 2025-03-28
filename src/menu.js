@@ -13,7 +13,7 @@ class Menu extends Phaser.Scene {
     this.orientacaoCorreta = true; // Estado da orientação
     this.botaoSom; // Som do botão
     this.musicaInicio; // Música de fundo 
-       this.bigode = null; // Referência ao bigode
+    this.bigode = null; // Referência ao bigode
     // Referência aos tempos que determinam as equações de deslocamento
     this.tX = 0;
     this.tY = 0;
@@ -23,6 +23,7 @@ class Menu extends Phaser.Scene {
     // Variáveis para controlar o tempo do movimento
     this.inicioMovimento = null; // Tempo quando o movimento começa
     this.tempoTotal = 0; // Tempo total que o bigode leva para se mover
+    this.btnconfigsom;
   }
 
   // Método para calcular dimensões responsivas
@@ -52,6 +53,23 @@ class Menu extends Phaser.Scene {
     this.load.audio('musicaInicio', '../assets/musicavacationwmycat.mp3');
     // Carrega a imagem do bigode
     this.load.image("bigode", "../assets/bigode.png");
+    this.load.image("btnConfig", "../assets/btnMenu.png");
+    
+    // Carrega o novo som para o botão de configurações
+    this.load.audio("botaomenu", "../assets/botaomenu.mp3");
+    
+    // Carrega o novo som para o botão de créditos
+    this.load.audio("botaocreditos", "../assets/plimbigode.mp3");
+    
+    // Tratando o carregamento do som com tratamento de erro
+    this.load.on('loaderror', (fileObj) => {
+        console.error('Erro ao carregar arquivo:', fileObj.key);
+        
+        // Se o erro for com algum dos sons, usaremos o som padrão como fallback
+        if (fileObj.key === 'botaomenu' || fileObj.key === 'botaocreditos') {
+            console.log('Usando som alternativo para o botão:', fileObj.key);
+        }
+    });
   }
 
   // Criar o overlay escuro e mensagem de orientação
@@ -145,7 +163,25 @@ class Menu extends Phaser.Scene {
   create() {
     // cria os sons
     this.botaoSom = this.sound.add("botaoSom", {volume: 3}); 
-    this.musicaInicio = this.sound.add('musicaInicio', {volume: 0.5}); 
+    this.musicaInicio = this.sound.add('musicaInicio', {volume: 0.5});
+    
+    // Adiciona o novo som do botão de menu
+    try {
+        this.botaomenuSom = this.sound.add("botaomenu", {volume: 3});
+    } catch (error) {
+        console.error("Erro ao criar o som botaomenu:", error);
+        this.botaomenuSom = this.botaoSom; // Usa o som padrão como fallback
+    }
+    
+    // Adiciona o novo som do botão de créditos
+    try {
+        this.botaocreditosSom = this.sound.add("botaocreditos", {volume: 3});
+        console.log("Som de créditos criado com sucesso");
+    } catch (error) {
+        console.error("Erro ao criar o som botaocreditos:", error);
+        this.botaocreditosSom = this.botaoSom; // Usa o som padrão como fallback
+    }
+    
     this.musicaInicio.play(); 
     console.log('Música de fundo iniciada'); 
 
@@ -163,9 +199,19 @@ class Menu extends Phaser.Scene {
     const btnJogarY = Math.min(this.centroY + 150, this.altura * 0.7);
     this.btnJogar = this.add.image(this.centroX, btnJogarY, "btnJogar").setScale(this.escalaBotoes);
 
-    // Adiciona o botão de créditos com posicionamento responsivo
+    // Adiciona o botão de configurações acima do botão de créditos
     const btnCreditosX = Math.min(this.largura - 150, this.largura - this.largura * 0.15);
     const btnCreditosY = Math.min(this.altura - 80, this.altura - this.altura * 0.1);
+    
+    // Posiciona o botão de configurações 80 pixels acima do botão de créditos (aumentado de 60 para 80)
+    const btnConfigY = btnCreditosY - 80;
+    
+    // Adiciona o botão de configurações
+    this.btnConfig = this.add.image(btnCreditosX, btnConfigY, "btnConfig")
+        .setScale(this.escalaBotoes * 0.3)
+        .setInteractive();
+
+    // Adiciona o botão de créditos com posicionamento responsivo (já existente)
     this.btnCreditos = this.add.image(btnCreditosX, btnCreditosY, "btnCreditos").setScale(this.escalaBotoes);
 
     // Adiciona o bigode
@@ -174,8 +220,25 @@ class Menu extends Phaser.Scene {
     // Configura a interatividade dos botões
     this.btnJogar.setInteractive();
     this.btnCreditos.setInteractive();
+    
+    // Evento do botão de configurações atualizado com o novo som
+    this.btnConfig.on('pointerdown', () => {
+        if (!this.isPaused) {
+            try {
+                this.botaomenuSom.play();
+            } catch (error) {
+                console.error("Erro ao tocar som:", error);
+                this.botaoSom.play(); // Fallback para o som padrão
+            }
+            
+            // Adiciona um pequeno atraso para permitir que o som seja reproduzido
+            this.time.delayedCall(200, () => {
+                this.musicaInicio.stop();
+                this.scene.start('Configuracoes', { musicaAtual: this.musicaInicio });
+            });
+        }
+    });
 
-    // Configura os eventos de clique
     // Configura os eventos de clique
     this.btnJogar.on('pointerdown', () => {
       this.botaoSom.play();  
@@ -185,22 +248,27 @@ class Menu extends Phaser.Scene {
       }
     });
     this.btnCreditos.on('pointerdown', () => {
-      this.botaoSom.play();  
-      this.musicaInicio.stop();
-      if (!this.isPaused) {
-        console.log('Creditos');
-        this.scene.start('Creditos', { musicaCreditos: this.musicaCreditos });
-      }
+        if (!this.isPaused) {
+            console.log('Creditos - tentando tocar som personalizado');
+            try {
+                // Toca o som específico para o botão de créditos
+                this.botaocreditosSom.play();
+                console.log('Som de créditos reproduzido');
+            } catch (error) {
+                console.error("Erro ao tocar som de créditos:", error);
+                // Se falhar, toca o som padrão
+                this.botaoSom.play(); 
+                console.log('Usando som padrão como fallback');
+            }
+            
+            // Adiciona um pequeno atraso para permitir que o som seja reproduzido
+            this.time.delayedCall(200, () => {
+                this.musicaInicio.stop();
+                this.scene.start('Creditos', { musicaCreditos: this.musicaCreditos });
+            });
+        }
     });
     
-
-    this.btnCreditos.on("pointerdown", () => {
-      if (!this.isPaused) {
-        console.log("Créditos");
-        // Implementação futura para tela de créditos
-        // this.scene.start('Creditos');
-      }
-    });
     // Criar overlay e aviso de orientação
     this.criarOverlayOrientacao();
 
@@ -251,6 +319,25 @@ class Menu extends Phaser.Scene {
       this.caixaTexto.setPosition(this.centroX, this.centroY);
       this.caixaTexto.setSize(textWidth + 40, textHeight);
     }
+
+    // Atualiza posição dos botões
+    const centroX = this.cameras.main.width / 2;
+    const centroY = this.cameras.main.height / 2;
+    
+    // Atualizar botão créditos (existente)
+    const btnCreditosX = Math.min(this.largura - 150, this.largura - this.largura * 0.15);
+    const btnCreditosY = Math.min(this.altura - 80, this.altura - this.altura * 0.1);
+    this.btnCreditos.setPosition(btnCreditosX, btnCreditosY);
+    this.btnCreditos.setScale(this.escalaBotoes);
+    
+    // Atualizar botão configurações
+    const btnConfigY = btnCreditosY - 80; // Atualizado de 60 para 80 pixels
+    this.btnConfig.setPosition(btnCreditosX, btnConfigY);
+    this.btnConfig.setScale(this.escalaBotoes * 0.3);
+    if (this.txtConfig) {
+        this.txtConfig.setPosition(btnCreditosX, btnConfigY);
+        this.txtConfig.setFontSize(Math.floor(16 * this.escalaTexto) + "px");
+    }
   }
 
   // Método para atualizar a cena completamente quando a orientação mudar
@@ -277,6 +364,14 @@ class Menu extends Phaser.Scene {
     const btnCreditosY = Math.min(this.altura - 80, this.altura - this.altura * 0.1);
     this.btnCreditos.setPosition(btnCreditosX, btnCreditosY);
     this.btnCreditos.setScale(this.escalaBotoes);
+    
+    // Atualizar botão configurações
+    const btnConfigY = btnCreditosY - 80; // Atualizado de 60 para 80 pixels
+    this.btnConfig.setPosition(btnCreditosX, btnConfigY);
+    this.btnConfig.setScale(this.escalaBotoes * 0.3);
+    if (this.txtConfig) {
+        this.txtConfig.setPosition(btnCreditosX, btnConfigY);
+    }
   }
 
   update() {
