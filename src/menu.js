@@ -24,6 +24,15 @@ class Menu extends Phaser.Scene {
     this.inicioMovimento = null; // Tempo quando o movimento começa
     this.tempoTotal = 0; // Tempo total que o bigode leva para se mover
     this.btnconfigsom;
+    
+    // Reseta a animação do bigode sempre que a classe é instanciada (página é carregada)
+    this.resetarAnimacaoBigode();
+  }
+
+  // Método para resetar a animação do bigode
+  resetarAnimacaoBigode() {
+    localStorage.removeItem('bigodeAnimado');
+    console.log("Animação do bigode resetada!");
   }
 
   // Método para calcular dimensões responsivas
@@ -51,6 +60,7 @@ class Menu extends Phaser.Scene {
     this.load.audio('botaoSom', '../assets/botaosom.mp3');
     // Carrega a música de fundo
     this.load.audio('musicaInicio', '../assets/musicavacationwmycat.mp3');
+
     // Carrega a imagem do bigode
     this.load.image("bigode", "../assets/bigode.png");
     this.load.image("btnConfig", "../assets/btnMenu.png");
@@ -59,7 +69,7 @@ class Menu extends Phaser.Scene {
     this.load.audio("botaomenu", "../assets/botaomenu.mp3");
     
     // Carrega o novo som para o botão de créditos
-    this.load.audio("botaocreditos", "../assets/plimbigode.mp3");
+    this.load.audio("botaocreditos", "../assets/sombigode.mp3");
     
     // Tratando o carregamento do som com tratamento de erro
     this.load.on('loaderror', (fileObj) => {
@@ -164,6 +174,13 @@ class Menu extends Phaser.Scene {
     // cria os sons
     this.botaoSom = this.sound.add("botaoSom", {volume: 3}); 
     this.musicaInicio = this.sound.add('musicaInicio', {volume: 0.5});
+
+    // define as variáveis de controle para saber se o player passou qual fase
+    // localStorage.setItem('nivel1Completo', 'false');
+    // localStorage.setItem('nivel2Completo', 'false');
+    // localStorage.setItem('nivel3Completo', 'false');
+    // localStorage.setItem('nivel4Completo', 'false');
+    // localStorage.setItem('nivel5Completo', 'false');
     
     // Adiciona o novo som do botão de menu
     try {
@@ -216,6 +233,18 @@ class Menu extends Phaser.Scene {
 
     // Adiciona o bigode
     this.bigode = this.add.image(this.bigodeX, this.bigodeY, "bigode").setScale(0.1 * this.escalaLogo);
+
+    // Verifica se a animação já foi realizada anteriormente
+    const bigodeAnimado = localStorage.getItem('bigodeAnimado') === 'true';
+    if (bigodeAnimado) {
+      // Posiciona o bigode diretamente na posição final
+      this.bigodeXFinal = this.logo.x - 135 * this.escalaLogo;
+      this.bigodeYFinal = this.logo.y + 35 * this.escalaLogo;
+      this.bigode.setPosition(this.bigodeXFinal, this.bigodeYFinal);
+      // Não precisa iniciar a animação
+      this.inicioMovimento = null;
+      this.tFinal = true; // Marca como já finalizado
+    }
 
     // Configura a interatividade dos botões
     this.btnJogar.setInteractive();
@@ -378,6 +407,20 @@ class Menu extends Phaser.Scene {
     // Verifica orientação a cada frame
     this.verificarOrientacao();
 
+    // Verifica se a animação já foi executada anteriormente
+    const bigodeAnimado = localStorage.getItem('bigodeAnimado') === 'true';
+
+    // Se o bigode já foi animado anteriormente, posicione-o diretamente na posição final
+    if (bigodeAnimado) {
+      if (this.bigode) {
+        // Define a posição final do bigode diretamente
+        this.bigodeXFinal = this.logo.x - 135 * this.escalaLogo;
+        this.bigodeYFinal = this.logo.y + 35 * this.escalaLogo;
+        this.bigode.setPosition(this.bigodeXFinal, this.bigodeYFinal);
+      }
+      return; // Sai da função update sem executar a animação
+    }
+
     // Inicia a contagem do tempo se ainda não foi iniciado
     if (!this.inicioMovimento) {
       this.inicioMovimento = this.time.now; // Registra o tempo atual
@@ -421,6 +464,9 @@ class Menu extends Phaser.Scene {
         this.tFinal = this.time.now;
         this.tTotal = (this.tFinal - this.inicioMovimento) / 1000
         console.log("Tempo total: " + this.tTotal);
+        
+        // Marca a animação como concluída no localStorage
+        localStorage.setItem('bigodeAnimado', 'true');
       } 
     }
   }

@@ -164,6 +164,11 @@ class Nivel3 extends Phaser.Scene {
 
   create() {
 
+    // Inicializa variáveis de estado
+    this.contadorClique = 0;
+    this.pataMovendo = true;
+    this.pataClicavel = true;
+
     // Adiciona os sons
     this.tim = this.sound.add("tim");
     this.botaoSom = this.sound.add("botaoSom");
@@ -236,6 +241,7 @@ class Nivel3 extends Phaser.Scene {
         // Remove os event listeners antes de sair da cena
         window.removeEventListener('resize', this.handleResize.bind(this));
         window.removeEventListener('orientationchange', () => {});
+        localStorage.setItem('nivel3Completo', 'true');
         this.scene.start('SelecaoDeLevel');
       }
     });

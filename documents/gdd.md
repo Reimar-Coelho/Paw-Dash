@@ -40,7 +40,6 @@
 # <a name="c1"></a>1. Introdução 
 
 ## 1.1. Plano Estratégico do Projeto
-- *Obs: todas as fontes utilizadas estão na seção 7.*
 
 ### 1.1.1. Contexto da indústria 
 &nbsp;&nbsp;&nbsp;&nbsp;O mercado de comportamento e adestramento animal tem crescido com a alta demanda por métodos positivos. Os principais players incluem influenciadores, como Dr. Pet, Cesar Millan e Ian Dunbar, além de plataformas educacionais e empresas de produtos para pets. Os modelos de negócio variam entre consultorias, cursos online e assinaturas. Já as tendências no setor de cuidado de pets abrem margens para a gamificação e tecnologia. Alexandre Rossi busca inovação e diferenciação da concorrência ao abranger áreas de atuação como a mídia tradicional e as redes sociais, bem como a possível entrada no mercado de jogos digitais para animais domésticos [1], [2].
@@ -58,10 +57,10 @@
 
 ### 1.1.2. Análise SWOT
 
-&nbsp;&nbsp;&nbsp;&nbsp;A análise SWOT é uma ferramenta estratégica que avalia o cenário interno e externo de uma empresa, identificando forças e fraquezas internas, além de oportunidades e ameaças externas. Isso inclui análises de mercado, concorrentes, fornecedores e contextos políticos, econômicos, sociais e culturais. Na figura, apresentamos a análise SWOT centrada na marca Dr Pet [3], [4], [5].
+&nbsp;&nbsp;&nbsp;&nbsp;A análise SWOT é uma ferramenta estratégica que avalia o cenário interno e externo de uma empresa, identificando forças e fraquezas internas, além de oportunidades e ameaças externas. Isso inclui análises de mercado, concorrentes, fornecedores e contextos políticos, econômicos, sociais e culturais. Na figura 1, apresentamos a análise SWOT centrada na marca Dr Pet [3], [4], [5].
 
 <div align="center">
-<sub>Figura X - Análise SWOT</sub>
+<sub>Figura 1 - Análise SWOT</sub>
 <img src="../assets/analiseSwot.png" width="100%">
 <sup>Fonte: Material produzido pelos autores (2025)</sup>
 </div>
@@ -70,9 +69,7 @@
 
 ### 1.1.3. Missão / Visão / Valores 
 
-&nbsp;&nbsp;&nbsp;&nbsp;A análise de Missão, Visão e Valores é uma ferramenta estratégica fundamental para qualquer empresa, pois ajuda a definir sua identidade e propósito. A Missão descreve o que a empresa faz atualmente, para quem ela trabalha e qual é seu objetivo principal. Ela serve como um guia para as operações diárias e define o papel da empresa no mercado. A Visão, por outro lado, estabelece o objetivo futuro, indicando onde a empresa deseja chegar a longo prazo. Ela inspira e motiva os funcionários a trabalhar em direção a um objetivo comum, ajudando a direcionar as estratégias e decisões da empresa [7].
-
-&nbsp;&nbsp;&nbsp;&nbsp;Os Valores representam os princípios éticos e morais que guiam as ações e decisões da empresa. Eles influenciam a cultura organizacional e são essenciais para construir confiança com clientes, funcionários e parceiros. Essa análise é crucial para que as empresas mantenham uma direção clara e coerente, alinhando suas operações com seus objetivos e princípios. Dessa forma, esses fundamentos podem ser descritos para a marca Dr Pet da seguinte forma:
+&nbsp;&nbsp;&nbsp;&nbsp;A análise de Missão, Visão e Valores é uma ferramenta estratégica fundamental para qualquer empresa, pois ajuda a definir sua identidade e propósito. A Missão descreve o que a empresa faz atualmente, para quem ela trabalha e qual é seu objetivo principal. Ela serve como um guia para as operações diárias e define o papel da empresa no mercado. A Visão, por outro lado, estabelece o objetivo futuro, indicando onde a empresa deseja chegar a longo prazo. Ela inspira e motiva os funcionários a trabalhar em direção a um objetivo comum, ajudando a direcionar as estratégias e decisões da empresa. Os Valores representam os princípios éticos e morais que guiam as ações e decisões da empresa [7]. Eles influenciam a cultura organizacional e são essenciais para construir confiança com clientes, funcionários e parceiros. Essa análise é crucial para que as empresas mantenham uma direção clara e coerente, alinhando suas operações com seus objetivos e princípios. Dessa forma, esses fundamentos podem ser descritos para a marca Dr Pet da seguinte forma:
 
 - Missão: democratizar o acesso aos serviços veterinários e de adestramentos para que os pets desfrutem do direito a uma vida tranquila e saudável;
 
@@ -82,7 +79,18 @@
 
 ### 1.1.4. Proposta de Valor 
 
-*Posicione aqui o canvas de proposta de valor. Descreva os aspectos essenciais para a criação de valor da ideia do produto com o objetivo de ajudar a entender melhor a realidade do cliente e entregar uma solução que está alinhado com o que ele espera.*
+&nbsp;&nbsp;&nbsp;&nbsp;O Canvas de Proposta de Valor é uma ferramenta estratégica amplamente utilizada para entender as necessidades do público-alvo e alinhar essas necessidades com a oferta de produtos ou serviços. Sua principal função é mapear as "dores", "ganhos" e "tarefas" dos consumidores, proporcionando uma visão clara sobre como uma solução pode resolver problemas ou atender às expectativas. Ao conectar as necessidades dos clientes às ofertas de valor, o canvas facilita a criação de soluções mais eficazes e personalizadas, sendo essencial para o desenvolvimento de produtos e serviços que realmente atendem às demandas do mercado. Aa figura 2 apresenta a análise Canvas Proposta de Valor centrada na solução proposta.
+
+<div align="center">
+<sub>Figura 2 - Canvas Proposta de Valor</sub>
+<img src="../assets/canvasPropostadeValor.png" width="100%">
+<sup>Fonte: Material produzido pelos autores (2025)</sup>
+</div>
+
+&nbsp;&nbsp;&nbsp;&nbsp;No caso do PawDash, o Canvas de Proposta de Valor é fundamental para identificar as principais "dores" dos tutores de gatos, como a falta de tempo e espaço para interagir com seus pets. O PawDash oferece uma solução interativa que mantém os gatos fisicamente e mentalmente estimulados, evitando problemas como obesidade e estresse, além de fortalecer o vínculo com os tutores, mesmo com rotinas corridas.
+
+&nbsp;&nbsp;&nbsp;&nbsp;Aplicando o Canvas, é possível garantir que o PawDash atenda de forma eficaz às necessidades dos gatos e seus tutores, proporcionando benefícios mútuos: um pet saudável e engajado, e um tutor tranquilo, sabendo que está oferecendo a melhor experiência possível para seu felino.
+
 
 ### 1.1.5. Descrição da Solução Desenvolvida 
 
@@ -95,7 +103,53 @@
 
 ### 1.1.6. Matriz de Riscos
 
-*Registre na matriz os riscos identificados no projeto, visando avaliar situações que possam representar ameaças e oportunidades, bem como os impactos relevantes sobre o projeto. Apresente os riscos, ressaltando, para cada um, impactos e probabilidades com plano de ação e respostas.*
+
+&nbsp;&nbsp;&nbsp;A matriz de riscos é uma ferramenta essencial para a gestão de projetos, pois permite identificar, classificar e avaliar os riscos envolvidos em seu desenvolvimento. Seu principal objetivo é mensurar a probabilidade de ocorrência e o impacto que cada risco pode causar, seja positivo ou negativo. Dessa forma, a matriz auxilia na criação de estratégias eficazes para mitigar ameaças e potencializar oportunidades, garantindo maior controle sobre os desafios enfrentados ao longo do projeto. A figura 3 representa a análise de risco do projeto Paw Dash [8].
+
+<div align="center">
+<sub>Figura 3 - Matriz de Riscos</sub>
+<img src="../assets/matrizderisco.png" width="100%">
+<sup>Fonte: Material produzido pelos autores (2025)</sup>
+</div>
+
+
+&nbsp;&nbsp;&nbsp;No projeto Paw Dash, foram mapeados os principais riscos que podem afetar sua execução. Cada um foi classificado de acordo com sua probabilidade e impacto, e foram traçadas estratégias para lidar com essas situações. A seguir, são apresentados os riscos identificados, juntamente com seus respectivos planos de ação e resposta:
+
+1. Falta de conhecimento para desenvolver funcionalidades do projeto
+- Probabilidade: 70%
+- Impacto: Moderado
+- Plano de Ação e Resposta: Identificar lacunas no conhecimento; Buscar cursos ou tutoriais; Pedir ajuda em comunidades e fóruns especializados.
+  
+2. Não cumprir promessas feitas (exemplo: Arduino)
+- Probabilidade: 50%
+- Impacto: Muito Alto
+- Plano de Ação e Resposta: Priorizar tarefas essenciais; Avaliar a viabilidade antes de comprometer recursos; Dividir funcionalidades em MVPs menores para uma implementação mais realista.
+  
+3. Não conseguir corrigir todos os bugs até o fim da Sprint 5
+- Probabilidade: 30%
+- Impacto: Alto
+- Plano de Ação e Resposta: Implementar testes automatizados e criar um backlog de correção de bugs críticos para priorizar ajustes na Sprint 5.
+  
+4. Os gatos não interagirem com os elementos do jogo
+- Probabilidade: 30%
+- Impacto: Muito Alto
+- Plano de Ação e Resposta: Ajustar cores, movimentos e sons para tornar o jogo mais atraente; Realizar testes com diferentes gatos; Iterar com base no feedback obtido.
+  
+5. Impedimentos com ponderada
+- Probabilidade: 70%
+- Impacto: Alto
+- Plano de Ação e Resposta: Criar um planejamento realista, evitando utilizar os horários de dev para realizar atividades ponderadas e utilizar técnicas de produtividade como Pomodoro para otimizar o tempo disponível.
+  
+6. Queda de internet durante o desenvolvimento
+- Probabilidade: 10%
+- Impacto: Alto
+- Plano de Ação e Resposta:
+Baixar documentação e dependências antecipadamente e configurar um ambiente local que minimize os impactos da desconexão.
+
+&nbsp;&nbsp;&nbsp;A aplicação da matriz de riscos no projeto Paw Dash permite uma abordagem estruturada e proativa na identificação e mitigação de desafios. Com a análise detalhada dos riscos e a implementação de medidas preventivas, é possível aumentar a eficiência do desenvolvimento, reduzir imprevistos e aprimorar a tomada de decisões. Além disso, a matriz também possibilita a identificação de oportunidades, auxiliando no direcionamento estratégico do projeto.
+
+
+
 
 ### 1.1.7. Objetivos, Metas e Indicadores 
 
@@ -349,15 +403,15 @@
 \# | titulo | ocorrência | autoria 
 --- | --- | --- | ---
 1 | "Vacation with my cat" | Trilha principal | <a href = "https://pixabay.com/music/upbeat-vacation-with-my-cat-248359/"> Pixabay (AI generated) </a>
-2 | Light Switch | Clique dos botões | <a href = "https://freesound.org/people/GOSFX/sounds/324334/"> GOSFX </a>
-3 | "meow meow give me milk Version 1" | Trilha sonora da seleção de fases | <a href = "https://pixabay.com/pt/music/musicas-felizes-para-criancas-meow-meow-give-me-milk-version-1-317260/"> Pixabay (AI generated) </a>
-4 | "me dá me dá" - piano cover | XXXXXXXXXXXX | Cover da propaganda do 'danoninho' ("me dá me dá")
+2 | Light Switch | Clique dos botões | <a href = "https://freesound.org/people/GOSFX/sounds/324334/"> freesound </a>
+3 | TIN bigode | Clique do botão dos créditos | Autoral
+4 | "me dá me dá" - piano cover | Trilha sonora das configurações | Cover da propaganda do 'danoninho' ("me dá me dá")
 5 | TIN | Clique na pata | Autoral
-6 | Prato de bateria | XXXXXXXXXXXXXX | Autoral
-7 | Botão de elevador | Clique dos botões | Autoral
-8 | Folhas | Esconderijo da pata | Autoral
-9 | "Bink no Sake" - piano cover | Pata se movimentando | Cover influcenciado pela música "Bink no Sake" (One Piece)
-10 | Chocalho | XXXXXXXXXX | Autoral
+6 | Prato de bateria | Clique dos níveis | Autoral
+7 | Botão do elevador | Clique dos botões | Autoral
+8 | Folhas | Esconderijo da pata na fase 4 | Autoral
+9 | "Bink no Sake" - piano cover | Trilha sonora dos créditos | Cover influcenciado pela música "Bink no Sake" (One Piece)
+10 | Chocalho | Movimento da pata | Autoral
 
 ## 3.4. Inventário e Bestiário 
 
@@ -403,9 +457,112 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 
 &nbsp;&nbsp;&nbsp;&nbsp;As mecânicas de um jogo dizem respeito ao conjunto de interações que possibilitam a realização de ações e a progressão dentro da experiência do jogador. O propósito dessas mecânicas é oferecer desafios, entretenimento e uma experiência imersiva, permitindo que os jogadores explorem o que o jogo oferece, atinjam objetivos e superem obstáculos dentro do contexto definido pelas metas do jogo. Com isso em mente, para garantir uma mecânica intuitiva, de fácil uso para os gatos e que apresentasse uma progressão de dificuldade, as interações do jogo ocorrem por meio do toque, ação mais adequada para os felinos interagirem com a tela, ou seja, o gato interaje com os alvos, elementos principais da jogabilidade, tocando-os. Assim, o desafio ao usuário aumenta a medida que os alvos se movem de forma mais complexa, o que torna mais difícil acertá-los. Ademais, as interações feitas pelo tutor também ocorrem pelo toque, como a seleção de níveis.
 
-## 3.8. Implementação Matemática de Animação/Movimento 
+# 3.8. Implementação Matemática de Animação/Movimento
 
-*Descreva aqui a função que implementa a movimentação/animação de personagens ou elementos gráficos no seu jogo. Sua função deve se basear em alguma formulação matemática (e.g. fórmula de aceleração). A explicação do funcionamento desta função deve conter notação matemática formal de fórmulas/equações. Se necessário, crie subseções para sua descrição.*
+A movimentação dos elementos gráficos no jogo é implementada a partir de uma modelagem matemática que considera o tempo, a aceleração e a velocidade no movimento de um personagem ou objeto. A seguir, detalhamos as funções que descrevem a animação de um elemento gráfico, com base nas equações de **Movimento Uniforme (MU)** e **Movimento Uniformemente Variado (MUV)**.
+
+## 3.8.1. Parâmetros Iniciais
+
+Antes de definir as funções matemáticas para o movimento, definimos alguns parâmetros iniciais que serão usados em todos os cálculos:
+
+- **\( t_{total} \)**: O tempo total da animação. Esse parâmetro define a duração do movimento do elemento gráfico, desde o início até a posição final.
+- **\( (x_i, y_i) \)**: As posições iniciais do elemento gráfico. Este ponto corresponde à posição inicial em que o objeto começa a se mover.
+
+Esses parâmetros são fundamentais para a modelagem do movimento, pois eles determinam o comportamento do objeto ao longo do tempo.
+
+## 3.8.2. Movimento Uniforme (MU)
+
+O **Movimento Uniforme (MU)** ocorre quando a velocidade do objeto é constante ao longo de todo o movimento. A fórmula para calcular a **velocidade no eixo \( y \)** e a **posição no eixo \( y \)**, considerando o movimento uniforme, é descrita abaixo.
+
+### 3.8.2.1. Função de Velocidade no eixo \( y \) (MU)
+
+A velocidade no movimento uniforme é constante, e pode ser calculada como a **diferença das posições iniciais e finais** dividida pelo tempo total \( t_{total} \).
+- v = yi - yf / t
+
+### 3.8.2.2. Função de Posição no eixo \( x \) (MU)
+
+A posição no eixo \( y \) em um determinado instante \( t \) durante o movimento é dada pela equação do movimento uniforme:
+- yf = yi + v * t
+
+## 3.8.3. Movimento Uniformemente Variado (MUV)
+
+O **Movimento Uniformemente Variado (MUV)** ocorre quando a aceleração do objeto é constante ao longo do movimento. A aceleração, neste caso, pode ser positiva ou negativa, resultando em um aumento ou diminuição da velocidade ao longo do tempo. A seguir, apresentamos as fórmulas para calcular a **aceleração**, a **velocidade** e a **posição** no movimento uniformemente variado.
+
+### 3.8.3.1. Função de Aceleração no eixo \( x \) (MUV)
+
+A aceleração no eixo \( x \) pode ser calculada a partir da diferença de velocidades inicial e final dividida pelo tempo total:
+- a = vf - vi / t
+
+### 3.8.3.2. Função de Velocidade no eixo \( x \) (MUV)
+
+A velocidade no eixo \( x \) em um determinado instante \( t \) durante o movimento uniformemente variado é dada pela equação:
+- vf = vi + a * t
+
+### 3.8.3.3. Função de Posição no eixo \( x \) (MUV)
+
+A posição no eixo \( x \) em um determinado instante \( t \) durante o movimento uniformemente variado é dada pela equação:
+- xf = xi + v * t + a * t²
+
+## 3.8.4. Implementação no Jogo
+
+No jogo, a movimentação do bigode até a logo é calculada usando uma combinação de **Movimento Uniformemente Variado (MUV)** para o eixo \( x \) e **Movimento Uniforme (MU)** para o eixo \( y \). A posição e a velocidade no eixo \( x \) do bigode são ajustadas de acordo com a aceleração, enquanto no eixo \( y \), o movimento é feito de maneira uniforme.
+
+As equações de movimento para o bigode, conforme implementadas no código do jogo, são as seguintes:
+
+- A posição no eixo \( x \) é determinada com uma equação de movimento uniformemente variado:
+
+\[
+xf = xi + v * t + a * t²
+\]
+
+- A posição no eixo \( y \) é determinada com uma equação de movimento uniforme:
+
+\[
+yf = yi + v * t
+\]
+
+Essas equações são usadas para calcular as coordenadas \( x(t) \) e \( y(t) \) a cada quadro, atualizando a posição do bigode de acordo com a animação.
+
+## 3.8.5. Implementação no Código
+
+A implementação do movimento descrito nesta seção está contida no arquivo **`menu.js`**. Você pode encontrar o código que executa a animação a partir da linha 266 até a 309.
+
+```javascript
+// Define a posição final do bigode, ajustada conforme o tamanho da tela do dispositivo
+this.bigodeXFinal = this.logo.x - 135 * this.escalaLogo;
+this.bigodeYFinal = this.logo.y + 35 * this.escalaLogo;
+
+// Chama a função de deslocamento acelerado horizontal do bigode até que ele esteja na posição final
+if (this.bigodeX <= this.bigodeXFinal) {
+  // Movimento horizontal progressivo: v * t + a * t²
+  this.bigodeX += 2 * this.t + 0.5 * this.t * this.t; 
+  // Calcula a velocidade a cada frame
+  this.velocidadeX = 0.5 + 0.5 * this.t;
+  // Mostra no console a acelaração, a velocidade em cada frame e a posição no eixo X do bigode
+  console.log("Aceleração: " + 0.5, "| Velocidade: " + this.velocidadeX.toFixed(2), "| Posição: " + this.bigodeX.toFixed(2), "(MUV)");
+}
+
+// Chama a função de deslocamento uniforme vertical do bigode até que ele esteja na posição final
+if (this.bigodeY >= this.bigodeYFinal) {
+  this.bigodeY -= 0.8 * this.t; // Movimento vertical regressivo: -v * t
+  // Mostra no console a velocidade e a posição no eixo Y do bigode
+  console.log("Velocidade: " + -0.75, "| Posição: " + this.bigodeY.toFixed(2), "(MU)");
+}
+
+if (this.bigodeY >= this.bigodeYFinal || this.bigodeX <= this.bigodeXFinal) {
+  // Atualiza a posição do bigode conforme as equações de deslocamento enquanto não está na posição final
+  this.bigode.setPosition(this.bigodeX, this.bigodeY);
+} else {
+  // Registra e mostra no console o tempo total que durou o movimento
+  if (!this.tFinal) {
+    this.tFinal = this.time.now;
+    this.tTotal = (this.tFinal - this.inicioMovimento) / 1000
+    console.log("Tempo total: " + this.tTotal);
+  } 
+}
+```
+
+
 
 # <a name="c4"></a>4. Desenvolvimento do Jogo
 
@@ -415,10 +572,10 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 
 ### **4.1.1. Estética**
 
-&nbsp;&nbsp;&nbsp;&nbsp;Para compor os elementos estéticos iniciais do nosso jogo, desenvolvemos em pixel art a representação de uma pata de gato (figura X), que atua no jogo como alvo tocável para o gato usuário. Ademais, foi selecionado um background que consiste na representação de uma parede de madeira (figura X).
+&nbsp;&nbsp;&nbsp;&nbsp;Para compor os elementos estéticos iniciais do nosso jogo, desenvolvemos em pixel art a representação de uma pata de gato (figura 4), que atua no jogo como alvo tocável para o gato usuário. Ademais, foi selecionado um background que consiste na representação de uma parede de madeira (figura 5).
 
 <div align="center">
-  <sub>Figura X - Pata desenvolvida em pixel art</sub>  
+  <sub>Figura 4 - Pata desenvolvida em pixel art</sub>  
   <br>
   <img src="../assets/pata.png" width="30%">
   <br><br>
@@ -426,7 +583,7 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 </div>
 
 <div align="center">
-  <sub>Figura X - Background de Madeira</sub>  
+  <sub>Figura 5 - Background de Madeira</sub>  
   <br>
   <img src="../assets/wood2.png" width="30%">
   <br><br>
@@ -465,9 +622,9 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 
 ### **4.2.1. Estética**
 
-&nbsp;&nbsp;&nbsp;&nbsp;Para compor a interface incial, a tela de fases e o fundo do tutorial, desenvolvemos em pixel art backgrounds da tela de níveis e do jogo em si para substituir o fundo de madeira(figuras X e X), botões da tela inicial e para cada fase (figuras X). Ademais, foi desenvolvida uma logo para nosso projeto (figura X).
+&nbsp;&nbsp;&nbsp;&nbsp;Para compor a interface incial, a tela de fases e o fundo do tutorial, desenvolvemos em pixel art backgrounds da tela de níveis e do jogo em si para substituir o fundo de madeira(figuras 7 e 8), botões da tela inicial e para cada fase (figura 6). Ademais, foi desenvolvida uma logo para nosso projeto (figura 9).
 <div align="center">
-  <sub>Figura X - Background da Tela de Fases</sub>  
+  <sub>Figura 6 - Background da Tela de Fases</sub>  
   <br>
   <img src="../assets/background.jpg" width="30%">
   <br><br>
@@ -475,7 +632,7 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 </div>
 
 <div align="center">
-  <sub>Figura X - Background do Nível</sub>  
+  <sub>Figura 7 - Background do Nível</sub>  
   <br>
   <img src="../assets/backgroundJogo.jpg" width="30%">
   <br><br>
@@ -483,7 +640,7 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 </div>
 
 <div align="center">
-  <sub>Figura X - Botões</sub>  
+  <sub>Figura 8 - Botões</sub>  
   <br>
   <img src="../assets/botoes.png" width="30%">
   <br><br>
@@ -491,7 +648,7 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 </div>
 
 <div align="center">
-  <sub>Figura X - Logo</sub>  
+  <sub>Figura 9 - Logo</sub>  
   <br>
   <img src="../assets/logo.jpg" width="30%">
   <br><br>
@@ -530,7 +687,7 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 &nbsp;&nbsp;&nbsp;&nbsp;Para compor a interface geral do jogo, foram criados, retrabalhados ou escolhidos backgrounds, sendo alguns definitivos e outros provisórios. As imagens a seguir ilustram os elementos visuais implementados nesta sprint:
 
 <div align="center">
-  <sub>Figura X - Background Retrabalhado</sub>  
+  <sub>Figura 10 - Background Retrabalhado</sub>  
   <br>
   <img src="../assets/backgroundJogo.png" width="30%">
   <br><br>
@@ -538,7 +695,7 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 </div>
 
 <div align="center">
-  <sub>Figura X - Background Provisório da Tela de Níveis</sub>  
+  <sub>Figura 11 - Background Provisório da Tela de Níveis</sub>  
   <br>
   <img src="../assets/backgroundTelaNiveis.png" width="30%">
   <br><br>
@@ -546,7 +703,7 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 </div>
 
 <div align="center">
-  <sub>Figura X - Background Provisório do Menu</sub>  
+  <sub>Figura 12 - Background Provisório do Menu</sub>  
   <br>
   <img src="../assets/backgroundMenu.png" width="30%">
   <br><br>
@@ -561,10 +718,10 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 - Na fase 2, o alvo "rebate" nas bordas e apresenta a mesma dinâmica de recompensa após um toque da primeira fase;
 - Na fase 3, o alvo se divide em dois ao ser acertado uma vez, e suas cópias devem ser atingidas mais duas vezes para a recopensa ser dada, contudo, essa fase está em revisão pois é possível que os gatos se confundam muito com dois alvos simultâneos;
 
-&nbsp;&nbsp;&nbsp;&nbsp;A figura abaixo ilustra como a instrução de recompensa está implementada no jogo:
+&nbsp;&nbsp;&nbsp;&nbsp;A figura 13 ilustra como a instrução de recompensa está implementada no jogo:
 
 <div align="center">
-  <sub>Figura X - Instrução de Recompensa</sub>  
+  <sub>Figura 13 - Instrução de Recompensa</sub>  
   <br>
   <img src="../assets/recompensa.png" width="30%">
   <br><br>
@@ -596,12 +753,12 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 
 ### **4.4.1. Estética**
 
-&nbsp;&nbsp;&nbsp;&nbsp;Para incrementar a experiência do nosso jogo, desenvolvemos efeitos sonoros de modo autoral para uma jogabilidade mais completa (para mais detalhes, veja a [seção 3.3.4](#som)). Além disso, construímos uma animação inicial, conforme a figura X, para nosso jogo, que apresenta o nome da equipe de desenvolvimento.
+&nbsp;&nbsp;&nbsp;&nbsp;Para incrementar a experiência do nosso jogo, desenvolvemos efeitos sonoros de modo autoral para uma jogabilidade mais completa (para mais detalhes, veja a [seção 3.3.4](#som)). Além disso, construímos uma animação inicial, conforme a figura 14, para nosso jogo, que acrescenta um detalhe de bigode a logo do projeto na tela de menu, fazendo referência ao nome da equipe "Bigode's".
 
 <div align="center">
-  <sub>Figura X - Introdução da Equipe</sub>  
+  <sub>Figura 14 - Bigode na logo</sub>  
   <br>
-  <img src="../assets/equipe.png" width="30%">
+  <img src="../assets/bigode.png" width="30%">
   <br><br>
   <sub>Fonte: Material produzido pelos autores (2025)</sub>
 </div>
@@ -618,10 +775,10 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 - O alvo se dividia em dois ao ser acertado uma vez, e suas cópias deviam ser atingidas mais duas vezes para a recopensa ser dada;
 - Na fase 1, o alvo se movia de maneira circular e muito previsível.
 
-&nbsp;&nbsp;&nbsp;&nbsp;As figuras abaixo ilustram a fase 3 (obstáculos) e o aviso para rotacionar a tela:
+&nbsp;&nbsp;&nbsp;&nbsp;As figuras 15 e 16 ilustram a fase 3 (obstáculos) e o aviso para rotacionar a tela:
 
 <div align="center">
-  <sub>Figura X - Fase 3</sub>  
+  <sub>Figura 15 - Fase 3</sub>  
   <br>
   <img src="../assets/fase3.png" width="30%">
   <br><br>
@@ -629,7 +786,7 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 </div>
 
 <div align="center">
-  <sub>Figura X - Aviso de Rotação</sub>  
+  <sub>Figura 16 - Aviso de Rotação</sub>  
   <br>
   <img src="../assets/rotacao.png" width="30%">
   <br><br>
@@ -670,15 +827,18 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 \# | Pré-condição | Descrição do teste | Pós-condição 
 --- | --- | --- | --- 
 1 | O jogo deve estar instalado e aberto na tela inicial | Selecionar uma fase e iniciar o jogo | A fase correspondente deve ser carregada corretamente
-2 | O jogo deve estar em execução | O jogador deve tocar no alvo corretamente | O alvo deve apresentar o mesmo tempo de resposta ao toque (latência inferior a X ms) e suavidade de animação (FPS mínimo de Y) em diferentes dispositivos
+2 | O jogo deve estar em execução | O jogador deve tocar no alvo corretamente | O alvo deve apresentar o mesmo tempo de resposta ao toque e suavidade de animação (FPS mínimo de 60) em diferentes dispositivos
 3 | O jogo deve estar em execução com os gráficos ajustados | Verificar a estética dos elementos gráficos | O contraste e a saturação das cores devem atender ao padrão X para visibilidade felina, garantindo uma experiência visual agradável para o tutor
 4 | O jogo deve estar aberto na tela de início | Apertar o botão "play" | O jogo deve abrir a tela de níveis
-5 | O jogo deve estar aberto na tela de níveis | Apertar o botão de um nível específico (ex.: "nível 1", "nível 2" ou "nível 3") | A aba correspondente ao nível deve ser carregada corretamente
+5 | O jogo deve estar aberto na tela de níveis | Apertar o botão de um nível específico (ex.: "nível 1", "nível 2", "nível 3", "Nível 4", "Nível 5") | A aba correspondente ao nível deve ser carregada corretamente
 6 | O jogo deve estar aberto no nível tutorial | Apertar na pata que gira em torno dela mesma | Um texto explicativo e uma marcação vermelha devem aparecer indicando onde o tutor deve colocar o petisco
 7 | O jogo deve estar aberto no nível 2 | Apertar na pata que se movimenta pelo espaço de forma aleatória 3 vezes | Um texto explicativo e uma marcação vermelha devem aparecer indicando onde o tutor deve colocar o petisco
-8 | O jogo deve estar aberto no nível 3 | Apertar na pata que se move de forma aleatória pelo espaço | Duas novas patas menores devem ser carregadas corretamente para que continuem a se mover de forma aleatória
-9 | As patas devem ter se dividido em duas novas patas menores | Apertar duas vezes em cada pata menor | Um texto explicativo e uma marcação vermelha devem aparecer indicando onde o tutor deve colocar o petisco
-10 | A recompensa deve ter sido dada | Apertar o botão de "voltar" localizado no canto inferior direito da tela | O jogo deve retornar à tela de níveis
+8 | O jogo deve estar aberto no nível 3 | Apertar na pata 5 vezes, a pata se move de forma aleatória pelo espaço | Um texto explicativo e uma marcação vermelhas devem aparecer indicando onde o tutor deve colocar o petisco.
+9 | O jogo deve estar aberto no nível 4 | Apertar na pata 5 vezes, a pata que se movimenta de forma aleatória pelo espaço | Um texto explicativo e uma marcação vermelhas devem aparecer indicando onde o tutor deve colocar o petisco.
+10 | O jogo deve estar aberto no nível 5 | Apertar na pata 5 vezes, a pata que se movimenta de forma aleatória pelo espaço | Um texto explicativo e uma marcação vermelhas devem aparecer indicando onde o tutor deve colocar o petisco.
+11 | As patas devem ter se dividido em duas novas patas menores | Apertar duas vezes em cada pata menor | Um texto explicativo e uma marcação vermelha devem aparecer indicando onde o tutor deve colocar o petisco
+12 | A recompensa deve ter sido dada | Apertar o botão de "voltar" localizado no canto inferior direito da tela | O jogo deve retornar à tela de níveis
+
 
 <div align="center">
 <sup>Fonte: Material produzido pelos autores (2025)</sup>
@@ -698,16 +858,20 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 <sub>Quadro X - Registro de Testes</sub>
 </div>
 
-Nome | João Jonas (use nomes fictícios)
+Nome | Nome fictício
 --- | ---
-Já possuía experiência prévia com games? | sim, é um jogador casual
-Conseguiu iniciar o jogo? | sim
-Entendeu as regras e mecânicas do jogo? | entendeu as regras, mas sobre as mecânicas, apenas as essenciais, não explorou os comandos complexos
-Conseguiu progredir no jogo? | sim, sem dificuldades  
-Apresentou dificuldades? | Não, conseguiu jogar com facilidade e afirmou ser fácil
-Que nota deu ao jogo? | 9.0
-O que gostou no jogo? | Gostou  de como o jogo vai ficando mais difícil ao longo do tempo sem deixar de ser divertido
-O que poderia melhorar no jogo? | A responsividade do personagem aos controles, disse que havia um pouco de atraso desde o momento do comando até a resposta do personagem
+Já possuía experiência prévia com games? | ...
+Conseguiu iniciar o jogo? | ...
+Entendeu as regras e mecânicas de cada fase? | ...
+Entendeu a mecânica de recompensa? | ...
+Gostou dos efeitos sonoros e da trilha sonora? | ...
+Apresentou dificuldades? | ...
+Que nota deu ao jogo? | ...
+O que gostou no jogo? | ...
+O que poderia melhorar no jogo? | ...
+Possui um gato de estimação? | ...
+Se sim, gostaria de jogar o game com seu gato? | ...
+
 
 <div align="center">
 <sup>Fonte: Material produzido pelos autores (2025)</sup>
@@ -740,6 +904,10 @@ O que poderia melhorar no jogo? | A responsividade do personagem aos controles, 
 [6] SALESFORCE. As 5 forças de Porter: o que são e como usá-las? Disponível em: https://www.salesforce.com/br/blog/5-forcas-de-porter/. Acesso em: 25 fev. de 2025.
 
 [7] MEREO. Missão, visão e valores: o que é, como definir e exemplos. Disponível em: https://mereo.com/blog/missao-visao-e-valores/. Acesso em: 25 fev. de 2025.
+
+[8] FERRAMENTAS DE QUALIDADE. Matriz de Riscos (Matriz de Probabilidade e Impacto). Disponível em: https://ferramentasdaqualidade.org/matriz-de-riscos-matriz-de-probabilidade-e-impacto/. Acesso em: 21 mar. de 2025.
+
+[9] TERABLOG. Canvas Proposta de Valor : Para que serve e como preencher. Disponível em: https://blog.somostera.com/product-management/canvas-de-proposta-de-valor. Acesso em: 13 mar. de 2025.
 
 [AA] BRONWENSTUDIO. Fundo de paisagem rural de pixel art. 2024. Disponível em: https://br.freepik.com/vetores-gratis/fundo-de-paisagem-rural-de-pixel-art_49685499.htm. Acesso em: 23 fev. 2025.
 

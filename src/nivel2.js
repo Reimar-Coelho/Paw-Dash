@@ -187,6 +187,12 @@ class Nivel2 extends Phaser.Scene {
       .setAlpha(0);
     this.circuloRecompensa.setDepth(1);
 
+    // Inicializa variáveis de estado
+    this.contadorClique = 0;
+    this.pataMovendo = true;
+    this.pataClicavel = true;
+
+
     // Adiciona a pata com posicionamento responsivo
     const pataX = this.marginX;
     const pataY = this.centroY;
@@ -236,6 +242,7 @@ class Nivel2 extends Phaser.Scene {
         // Remove os event listeners antes de sair da cena
         window.removeEventListener('resize', this.handleResize.bind(this));
         window.removeEventListener('orientationchange', () => {});
+        localStorage.setItem('nivel2Completo', 'true');
         this.scene.start('SelecaoDeLevel');
       }
     });

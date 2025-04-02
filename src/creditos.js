@@ -175,6 +175,7 @@ class Creditos extends Phaser.Scene {
         this.musicaCreditos.stop();
         if (!this.isPaused) {
           console.log('voltar');
+          this.scene.stop('Creditos');
           this.scene.start('Menu');
         }
       });

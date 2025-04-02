@@ -485,6 +485,7 @@ class Nivel1 extends Phaser.Scene {
     // Remove os event listeners antes de sair da cena
     window.removeEventListener('resize', this.handleResize.bind(this));
     window.removeEventListener('orientationchange', () => {});
+    localStorage.setItem('nivel1Completo', 'true');
     // Redirecionar para a cena de seleção de níveis
     this.scene.start('SelecaoDeLevel');
   }

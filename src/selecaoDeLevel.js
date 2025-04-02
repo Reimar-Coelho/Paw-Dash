@@ -38,6 +38,11 @@ class SelecaoDeLevel extends Phaser.Scene {
     this.load.image('nivel3', '../assets/PoteCheio3.png');
     this.load.image('nivel4', '../assets/PoteCheio4.png');
     this.load.image('nivel5', '../assets/PoteCheio5.png');
+    this.load.image('nivel1T', '../assets/PoteCheio1T.png');
+    this.load.image('nivel2T', '../assets/PoteCheio2T.png');
+    this.load.image('nivel3T', '../assets/PoteCheio3T.png');
+    this.load.image('nivel4T', '../assets/PoteCheio4T.png');
+    this.load.image('nivel5T', '../assets/PoteCheio5T.png');
     // Carrega a fonte personalizada
     this.load.font('Planes_ValMore', '../fonts/Planes_ValMore.ttf', 'truetype');
     // Carrega o som do botão 
@@ -149,7 +154,6 @@ class SelecaoDeLevel extends Phaser.Scene {
   }
 
   create() {
-
     // cria os sons 
     this.botaoSom = this.sound.add("botaoSom"); 
     this.nivelSom = this.sound.add("nivelSom");
@@ -163,7 +167,27 @@ class SelecaoDeLevel extends Phaser.Scene {
     
     // Cria os botões dos níveis e os posiciona em uma curva tipo "arco" na base da tela
     const nomeNiveis = ['nivel1', 'nivel2', 'nivel3', 'nivel4', 'nivel5'];
+    // Adiciona os níveis na versão "T" (Trancados para o jogador)
+    const nomeNiveisT = ['nivel1T', 'nivel2T', 'nivel3T', 'nivel4T', 'nivel5T'];
     const cenaDestino = ['Nivel1', 'Nivel2', 'Nivel3', 'Nivel4', 'Nivel5'];
+
+    // Verificar níveis completados no localStorage
+    const niveisCompletados = [
+      localStorage.getItem('nivel1Completo') === 'true',
+      localStorage.getItem('nivel2Completo') === 'true',
+      localStorage.getItem('nivel3Completo') === 'true',
+      localStorage.getItem('nivel4Completo') === 'true',
+      localStorage.getItem('nivel5Completo') === 'true'
+    ];
+
+    // Determinar quais níveis estão desbloqueados
+    const niveisDesbloqueados = [
+      true, // Nível 1 sempre desbloqueado
+      niveisCompletados[0], // Nível 2 desbloqueado se nível 1 completo
+      niveisCompletados[1], // Nível 3 desbloqueado se nível 2 completo
+      niveisCompletados[2], // Nível 4 desbloqueado se nível 3 completo
+      niveisCompletados[3]  // Nível 5 desbloqueado se nível 4 completo
+    ];
     
     // Limpa os botões antigos, se existirem
     if (this.niveis.length > 0) {
@@ -187,25 +211,36 @@ class SelecaoDeLevel extends Phaser.Scene {
       const distanciaDoMeio = Math.abs(i - 2);
       const y = basePosY - (distanciaDoMeio * curvatura);
       
-      const nivel = this.add.image(x, y, nomeNiveis[i])
+      // Decide se usa a imagem normal ou trancada
+      const estaBloqueado = !niveisDesbloqueados[i];
+      const imagemNivel = estaBloqueado ? nomeNiveisT[i] : nomeNiveis[i];
+      
+      const nivel = this.add.image(x, y, imagemNivel)
         .setScale(this.escalaNiveis)
         .setInteractive();
       
       // Adiciona evento de clique
       nivel.on('pointerdown', () => {
-        this.nivelSom.play(); 
-        if (this.musicaInicio && this.musicaInicio.isPlaying) {
-          this.musicaInicio.stop(); // ou fadeOut se quiser
-        }
-        if (!this.isPaused) {
+        if (this.isPaused) return;
+        
+        if (estaBloqueado) {
+          // Nível bloqueado - adicionar apenas console.log e espaço para som futuro
+          console.log(`Nível ${i+1} bloqueado`);
+          // Espaço reservado para som de nível bloqueado
+        } else {
+          // Nível desbloqueado - tocar som e ir para a cena
+          this.nivelSom.play();
+          if (this.musicaInicio && this.musicaInicio.isPlaying) {
+            this.musicaInicio.stop(); // ou fadeOut se quiser
+          }
           console.log(`nivel ${i+1}`);
           this.scene.start(cenaDestino[i]);
         }
       });
       
-      // Adiciona efeito hover
+      // Adiciona efeito hover apenas para níveis desbloqueados
       nivel.on('pointerover', () => {
-        if (!this.isPaused) {
+        if (!this.isPaused && !estaBloqueado) {
           nivel.setScale(this.escalaNiveis * 1.1);
         }
       });
