@@ -19,7 +19,18 @@ class Nivel4 extends Phaser.Scene {
     this.caixaTexto; // Caixa de texto
     this.orientacaoCorreta = true; // Estado da orientação
     this.botaoSom; // Som do botão
-    this.chocalho; // Variável para o barulho da bata se mechendo
+    this.chocalho; // Variável para o barulho da pata se mexendo
+    this.contX = 0; // Contador para movimento em zigue-zague X
+    this.contY = 0; // Contador para movimento em zigue-zague Y
+    this.padraoMovimento = "zigue-zague"; // Padrão de movimento atual
+
+    // Variáveis para BLE
+    this.device = null; // Dispositivo BLE
+    this.server = null; // Servidor GATT
+    this.service = null; // Serviço BLE
+    this.characteristic = null; // Característica BLE para escrita
+    this.isConnected = false; // Estado da conexão BLE
+    this.btStatusText = null; // Texto para status da conexão Bluetooth
   }
 
   // Método para calcular dimensões responsivas
@@ -27,12 +38,17 @@ class Nivel4 extends Phaser.Scene {
     this.largura = window.innerWidth;
     this.altura = window.innerHeight;
     this.tamanhoPata = Math.min(0.0001673 * this.largura + 0.1, 0.25); // Limita o tamanho máximo
-    this.vel = Math.min(15, Math.max(8, this.largura / 200)); // Velocidade aumentada
+    this.vel = Math.min(12, Math.max(7, this.largura / 180)); // Velocidade intermediária
     this.centroX = this.largura / 2; // Centro da tela no eixo X
     this.centroY = this.altura / 2; // Centro da tela no eixo Y
     this.marginX = Math.min(100, this.largura * 0.1); // Margem horizontal para movimento
     this.marginY = Math.min(100, this.altura * 0.1); // Margem vertical para movimento
     this.escalaTexto = Math.min(this.largura / 1280, 1); // Escala para textos
+    // Valores para a função de movimento em zigue-zague
+    this.amplitudeX = Math.min(this.largura * 0.4, 500); // Amplitude X responsiva
+    this.amplitudeY = Math.min(this.altura * 0.3, 300); // Amplitude Y responsiva
+    this.velocidadeMovimento = Math.min(0.025, 0.035 * (768 / this.altura)); // Velocidade de padrão
+    this.raioCirculo = Math.min(this.largura, this.altura) * 0.3; // Raio para movimento circular
   }
 
   preload() {
@@ -172,11 +188,30 @@ class Nivel4 extends Phaser.Scene {
     this.contadorClique = 0;
     this.pataMovendo = true;
     this.pataClicavel = true;
+    this.contX = 0;
+    this.contY = 0;
+
+    // Recupera o estado de mudo do localStorage
+    this.mutado = localStorage.getItem('mutado') === 'true';
+    
+    // Recupera o volume atual do localStorage
+    const volumeAtual = localStorage.getItem('volumeAtual') ? 
+      parseFloat(localStorage.getItem('volumeAtual')) : 0.5;
 
     // Adiciona os sons
     this.tim = this.sound.add("tim");
     this.botaoSom = this.sound.add("botaoSom");
-    this.chocalho = this.sound.add("chocalho", { rate: 1 });
+    this.chocalho = this.sound.add("chocalho", { rate: 1, loop: true });
+    
+    // Aplica as configurações de volume
+    this.tim.setVolume(volumeAtual);
+    this.botaoSom.setVolume(volumeAtual);
+    this.chocalho.setVolume(volumeAtual);
+    
+    // Aplica o estado de mudo
+    this.tim.setMute(this.mutado);
+    this.botaoSom.setMute(this.mutado);
+    this.chocalho.setMute(this.mutado);
 
     // Recalcula as dimensões responsivas
     this.calcularDimensoes();
@@ -194,12 +229,8 @@ class Nivel4 extends Phaser.Scene {
       .setAlpha(0);
     this.circuloRecompensa.setDepth(1);
 
-    // Adiciona a pata com posicionamento responsivo
-    const pataX = this.marginX;
-    const pataY = this.centroY;
-    this.pata = this.add.image(pataX, pataY, "pata").setScale(this.tamanhoPata);
-    this.pata.vertical = true;
-    this.pata.ida = true; // Direção inicial no eixo X
+    // Adiciona a pata com posicionamento no centro
+    this.pata = this.add.image(this.centroX, this.centroY, "pata").setScale(this.tamanhoPata);
     this.pata.setInteractive();
 
     // Adiciona o botão de continuar com posicionamento responsivo
@@ -216,7 +247,11 @@ class Nivel4 extends Phaser.Scene {
 
     // Evento de clique para o botão continuar
     this.botaoContinuar.on("pointerdown", () => {
-      this.botaoSom.play();
+      // Verifica se está mutado antes de tocar o som
+      if (!this.mutado) {
+        this.botaoSom.play();
+      }
+      
       if (!this.isPaused && this.contadorClique < 5) {
         // Volta a movimentar a pata e esconde o círculo/botão
         this.pataMovendo = true;
@@ -225,7 +260,9 @@ class Nivel4 extends Phaser.Scene {
         this.circuloRecompensa.setAlpha(0);
         this.botaoContinuar.setAlpha(0);
         this.botaoContinuar.disableInteractive();
-        if (!this.chocalho.isPlaying) {
+        
+        // Toca o som do chocalho apenas se não estiver mutado
+        if (!this.mutado && !this.chocalho.isPlaying) {
           this.chocalho.play();
         }
 
@@ -234,10 +271,8 @@ class Nivel4 extends Phaser.Scene {
           this.textoTutorial.destroy();
         }
 
-        // Se o contador for menor que 1, exibe o texto tutorial
-        if (this.contadorClique < 1) {
-          this.textoTutorial1();
-        }
+        // Exibe o texto tutorial
+        this.textoTutorial1();
       } else if (!this.isPaused && this.contadorClique >= 5) {
         // Remove os event listeners antes de sair da cena
         window.removeEventListener("resize", this.handleResize.bind(this));
@@ -260,6 +295,11 @@ class Nivel4 extends Phaser.Scene {
         this.pataClicavel = false;
         this.pata.disableInteractive();
 
+        // Parar o som do chocalho
+        if (this.chocalho.isPlaying) {
+          this.chocalho.stop();
+        }
+
         // Posiciona e mostra o círculo de recompensa
         this.circuloRecompensa.x = this.pata.x;
         this.circuloRecompensa.y = this.pata.y;
@@ -269,7 +309,13 @@ class Nivel4 extends Phaser.Scene {
         this.botaoContinuar.setAlpha(1);
         this.botaoContinuar.setInteractive();
 
-        this.tim.play();
+        // Verifica se está mutado antes de tocar o som
+        if (!this.mutado) {
+          this.tim.play();
+        }
+        
+        // Envia comando para girar o motor do ESP32
+        this.enviarComandoRotacao();
 
         // Atualiza o texto tutorial
         if (this.textoTutorial) {
@@ -300,9 +346,50 @@ class Nivel4 extends Phaser.Scene {
         padding: { x: 5, y: 3 },
       }
     );
+    
+    // Adiciona texto para status do BLE
+    const tamanhoFonteBT = Math.max(16, Math.floor(28 * this.escalaTexto));
+    this.btStatusText = this.add.text(
+      Math.max(10, this.largura * 0.02), 
+      this.altura - Math.max(50, this.altura * 0.1), // Posicionado na parte inferior
+      "BT: Não conectado", 
+      {
+        fontFamily: 'Planes_ValMore',
+        fontSize: tamanhoFonteBT + 'px',
+        fill: "#ffffff",
+        backgroundColor: "#333333",
+        padding: { x: 5, y: 3 }
+      }
+    );
+
+    // Adiciona botão para conectar ao BLE
+    const btnBLEX = Math.max(this.largura * 0.02, 10);
+    const btnBLEY = this.altura - Math.max(90, this.altura * 0.15); // Posicionado acima do status
+    
+    const btnBLE = this.add.text(
+      btnBLEX, 
+      btnBLEY,
+      "Conectar BT", 
+      {
+        fontFamily: 'Planes_ValMore',
+        fontSize: tamanhoFonteBT + 'px',
+        fill: "#ffffff",
+        backgroundColor: "#0066cc",
+        padding: { x: 10, y: 5 }
+      }
+    ).setInteractive();
+    
+    btnBLE.on('pointerdown', () => {
+      this.inicializarBLE();
+    });
 
     // Adiciona o texto tutorial inicial
     this.textoTutorial1();
+
+    // Inicia o som do chocalho se não estiver mutado
+    if (!this.mutado) {
+      this.chocalho.play();
+    }
 
     // Criar overlay e aviso de orientação
     this.criarOverlayOrientacao();
@@ -331,7 +418,7 @@ class Nivel4 extends Phaser.Scene {
     this.textoTutorial = this.add.text(
       this.centroX,
       this.altura * 0.1, // Posicionamento responsivo
-      "Nível 4: Tente fazer seu gato clicar na pata em movimento! (5 cliques)",
+      "Nível 4: Tutorial bluetooth - Clique na pata após conectar o bluetooth e o dispensador automático de petiscos liberará a recompensa!",
       {
         fontFamily: "Planes_ValMore",
         fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
@@ -349,7 +436,7 @@ class Nivel4 extends Phaser.Scene {
     this.textoTutorial = this.add.text(
       this.centroX,
       this.altura * 0.1, // Posicionamento responsivo
-      "Coloque a recompensa no círculo e depois clique no botão para continuar.",
+      "Ótimo! A recompensa foi dispensada automaticamente pelo dispositivo BLE. Clique no botão para continuar.",
       {
         fontFamily: "Planes_ValMore",
         fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
@@ -367,7 +454,7 @@ class Nivel4 extends Phaser.Scene {
     this.textoTutorial = this.add.text(
       this.centroX,
       this.altura * 0.1, // Posicionamento responsivo
-      "Parabéns! Você completou o nível 4!\nColoque a recompensa no círculo e depois clique no botão para continuar.",
+      "Parabéns! Você completou o tutorial BLE! Agora você já sabe como usar o dispensador automático de petiscos! Clique no botão para continuar.",
       {
         fontFamily: "Planes_ValMore",
         fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
@@ -433,21 +520,8 @@ class Nivel4 extends Phaser.Scene {
     this.circuloRecompensa.setScale(this.tamanhoPata + 0.01);
     this.circuloRecompensa.setAlpha(alphaAtual);
 
-    // Ajustar a pata
+    // Ajustar a pata (somente escala, posição é controlada pelo movimento)
     this.pata.setScale(this.tamanhoPata);
-
-    // Se a pata estiver fora dos limites da tela após redimensionamento, ajustar posição
-    if (this.pata.x < this.marginX) {
-      this.pata.x = this.marginX;
-    } else if (this.pata.x > this.largura - this.marginX) {
-      this.pata.x = this.largura - this.marginX;
-    }
-
-    if (this.pata.y < this.marginY) {
-      this.pata.y = this.marginY;
-    } else if (this.pata.y > this.altura - this.marginY) {
-      this.pata.y = this.altura - this.marginY;
-    }
 
     // Atualizar o botão continuar
     const btnX = this.largura - Math.min(100, this.largura * 0.1);
@@ -463,13 +537,33 @@ class Nivel4 extends Phaser.Scene {
       Math.max(10, this.altura * 0.02)
     );
     this.textoContador.setFontSize(tamanhoFonte + "px");
+    
+    // Atualizar o status do BT e o botão BT
+    const tamanhoFonteBT = Math.max(16, Math.floor(28 * this.escalaTexto));
+    this.btStatusText.setPosition(
+      Math.max(10, this.largura * 0.02),
+      this.altura - Math.max(50, this.altura * 0.1) // Posicionado na parte inferior
+    );
+    this.btStatusText.setFontSize(tamanhoFonteBT + "px");
+
+    // Também precisamos atualizar a posição do botão BT, se ele existir
+    // Encontrando e atualizando o botão BT (busca por todos os elementos de texto)
+    this.children.list.forEach(child => {
+      if (child.type === "Text" && child.text === "Conectar BT") {
+        child.setPosition(
+          Math.max(10, this.largura * 0.02),
+          this.altura - Math.max(90, this.altura * 0.15) // Posicionado acima do status
+        );
+        child.setFontSize(tamanhoFonteBT + "px");
+      }
+    });
 
     // Recriar o texto tutorial
     if (this.textoTutorial) {
       this.textoTutorial.destroy();
       if (this.contadorClique === 5) {
         this.textoTutorial3();
-      } else if (this.pataMovendo && this.contadorClique < 1) {
+      } else if (this.pataMovendo) {
         this.textoTutorial1();
       } else if (!this.pataMovendo) {
         this.textoTutorial2();
@@ -477,9 +571,33 @@ class Nivel4 extends Phaser.Scene {
     }
   }
 
+  // Método para movimentar a pata em zigue-zague
+  moverZigueZague() {
+    // Incrementa contadores
+    this.contX += this.velocidadeMovimento;
+    this.contY += this.velocidadeMovimento * 1.3; // Velocidade Y um pouco diferente
+
+    // Calcula posição usando funções seno e cosseno
+    const xOffset = Math.sin(this.contX) * this.amplitudeX;
+    const yOffset = Math.sin(this.contY) * this.amplitudeY;
+
+    // Aplica posição à pata
+    this.pata.x = this.centroX + xOffset;
+    this.pata.y = this.centroY + yOffset;
+
+    // Limita a posição dentro dos limites da tela
+    if (this.pata.x < this.marginX) this.pata.x = this.marginX;
+    if (this.pata.x > this.largura - this.marginX) this.pata.x = this.largura - this.marginX;
+    if (this.pata.y < this.marginY) this.pata.y = this.marginY;
+    if (this.pata.y > this.altura - this.marginY) this.pata.y = this.altura - this.marginY;
+  }
+
   update() {
     // Verifica orientação a cada frame
     this.verificarOrientacao();
+    
+    // Verifica o estado de áudio a cada frame para pegar mudanças de outras cenas
+    this.verificarEstadoAudio();
 
     // Se o jogo estiver pausado, não atualiza a lógica do jogo
     if (this.isPaused) {
@@ -488,26 +606,20 @@ class Nivel4 extends Phaser.Scene {
 
     // Se a pata não deve se mover, sai da função
     if (!this.pataMovendo) {
+      // Se o chocalho estiver tocando, pare-o
+      if (this.chocalho && this.chocalho.isPlaying) {
+        this.chocalho.stop();
+      }
       return;
     }
 
-    // Movimentação da pata no eixo X com if ternário e limites responsivos
-    this.pata.ida =
-      this.pata.x <= this.marginX
-        ? true
-        : this.pata.x >= this.largura - this.marginX
-        ? false
-        : this.pata.ida;
-    this.pata.x += this.pata.ida ? this.vel : -this.vel;
+    // Se a pata estiver em movimento e o som não estiver tocando, inicie-o (apenas se não estiver mutado)
+    if (this.pataMovendo && this.chocalho && !this.chocalho.isPlaying && !this.mutado) {
+      this.chocalho.play();
+    }
 
-    // Movimentação da pata no eixo Y com if ternário e limites responsivos
-    this.pata.vertical =
-      this.pata.y <= this.marginY
-        ? true
-        : this.pata.y >= this.altura - this.marginY
-        ? false
-        : this.pata.vertical;
-    this.pata.y += this.pata.vertical ? this.vel : -this.vel;
+    // Aplica o padrão de movimento em zigue-zague
+    this.moverZigueZague();
   }
 
   // Função de evento acionada ao atingir 5 cliques
@@ -532,5 +644,143 @@ class Nivel4 extends Phaser.Scene {
     this.circuloRecompensa.setAlpha(0.5);
     this.botaoContinuar.setAlpha(1);
     this.botaoContinuar.setInteractive();
+  }
+
+  // Adicione o método para verificar e atualizar o estado de áudio
+  verificarEstadoAudio() {
+    // Atualiza o estado de mudo com base no localStorage
+    const novoEstadoMutado = localStorage.getItem('mutado') === 'true';
+    
+    // Se o estado mudou, atualize todos os sons
+    if (novoEstadoMutado !== this.mutado) {
+      this.mutado = novoEstadoMutado;
+      
+      // Atualiza todos os sons
+      if (this.tim) {
+        this.tim.setMute(this.mutado);
+      }
+      
+      if (this.botaoSom) {
+        this.botaoSom.setMute(this.mutado);
+      }
+      
+      if (this.chocalho) {
+        this.chocalho.setMute(this.mutado);
+        
+        // Se estiver mutado e o chocalho estiver tocando, pause-o
+        if (this.mutado && this.chocalho.isPlaying) {
+          this.chocalho.pause();
+        } 
+        // Se não estiver mais mutado, retome o som se a pata estiver em movimento
+        else if (!this.mutado && this.pataMovendo && !this.chocalho.isPlaying) {
+          this.chocalho.play();
+        }
+      }
+    }
+  }
+  
+  // Método para verificar se o navegador suporta BLE
+  verificarSuporteBLE() {
+    if (!navigator.bluetooth) {
+      console.log('Bluetooth não suportado neste navegador.');
+      return false;
+    }
+    return true;
+  }
+
+  // Método para inicializar a conexão BLE
+  async inicializarBLE() {
+    if (!this.verificarSuporteBLE()) {
+      this.atualizarStatusBLE('Bluetooth não suportado');
+      return;
+    }
+
+    try {
+      this.atualizarStatusBLE('Procurando dispositivo...');
+      
+      // Solicitar dispositivo
+      this.device = await navigator.bluetooth.requestDevice({
+        filters: [
+          { name: 'PhaserMotor' } // Nome correto configurado no ESP32
+        ],
+        optionalServices: ['beb5483e-36e1-4688-b7f5-ea07361b26a8'] // SERVICE_UUID do ESP32
+      });
+
+      this.atualizarStatusBLE('Conectando...');
+      
+      // Conectar ao dispositivo
+      this.device.addEventListener('gattserverdisconnected', this.onDisconnected.bind(this));
+      this.server = await this.device.gatt.connect();
+      
+      // Obter serviço - usando o SERVICE_UUID
+      this.service = await this.server.getPrimaryService('beb5483e-36e1-4688-b7f5-ea07361b26a8');
+      
+      // Obter característica - usando o CHARACTERISTIC_UUID
+      this.characteristic = await this.service.getCharacteristic('08590f7e-db05-467e-8757-72f6faeb13d4');
+      
+      this.isConnected = true;
+      this.atualizarStatusBLE('Conectado');
+      console.log('Conectado com sucesso ao ESP32!');
+    } catch (error) {
+      console.error('Erro ao conectar:', error);
+      this.isConnected = false;
+      this.atualizarStatusBLE('Erro ao conectar: ' + error.message);
+    }
+  }
+
+  // Método chamado quando o dispositivo desconecta
+  onDisconnected(event) {
+    console.log('Dispositivo desconectado:', event.target.name);
+    this.isConnected = false;
+    this.atualizarStatusBLE('Desconectado');
+    
+    // Tentar reconectar
+    this.reconnect();
+  }
+
+  // Método para tentar reconectar
+  async reconnect() {
+    this.atualizarStatusBLE('Reconectando...');
+    try {
+      // Tentar reconectar
+      this.server = await this.device.gatt.connect();
+      this.service = await this.server.getPrimaryService('beb5483e-36e1-4688-b7f5-ea07361b26a8');
+      this.characteristic = await this.service.getCharacteristic('08590f7e-db05-467e-8757-72f6faeb13d4');
+      
+      this.isConnected = true;
+      this.atualizarStatusBLE('Reconectado');
+      console.log('Reconectado com sucesso!');
+    } catch (error) {
+      console.error('Erro ao reconectar:', error);
+      this.isConnected = false;
+      this.atualizarStatusBLE('Falha ao reconectar');
+      
+      // Tentar novamente após um tempo
+      setTimeout(() => this.reconnect(), 5000);
+    }
+  }
+
+  // Método para atualizar o texto de status do BLE
+  atualizarStatusBLE(status) {
+    if (this.btStatusText) {
+      this.btStatusText.setText('BT: ' + status);
+    }
+  }
+
+  // Função para enviar comando de rotação ao ESP32
+  enviarComandoRotacao() {
+    if (this.characteristic && this.isConnected) {
+      try {
+        const encoder = new TextEncoder();
+        const commandBuffer = encoder.encode("ROTATE");
+        this.characteristic.writeValue(commandBuffer)
+          .then(() => console.log('Comando enviado com sucesso!'))
+          .catch(error => console.error('Erro ao enviar comando:', error));
+      } catch (error) {
+        console.error('Erro ao preparar comando:', error);
+      }
+    } else {
+      console.log('Não conectado ao ESP32, comando não enviado.');
+    }
   }
 }

@@ -233,10 +233,27 @@ class Nivel1 extends Phaser.Scene {
     // Recalcula as dimensões responsivas
     this.calcularDimensoes();
 
+    // Recupera o estado de mudo do localStorage
+    this.mutado = localStorage.getItem('mutado') === 'true';
+    
+    // Recupera o volume atual do localStorage
+    const volumeAtual = localStorage.getItem('volumeAtual') ? 
+      parseFloat(localStorage.getItem('volumeAtual')) : 0.5;
+
     // cria os sons 
     this.tim = this.sound.add("tim"); 
     this.botaoSom = this.sound.add("botaoSom"); 
     this.chocalho = this.sound.add("chocalho", {rate:1});
+    
+    // Aplica as configurações de volume
+    this.tim.setVolume(volumeAtual);
+    this.botaoSom.setVolume(volumeAtual);
+    this.chocalho.setVolume(volumeAtual);
+    
+    // Aplica o estado de mudo
+    this.tim.setMute(this.mutado);
+    this.botaoSom.setMute(this.mutado);
+    this.chocalho.setMute(this.mutado);
 
     // Inicializa variáveis de estado
     this.pataMovendo = true;
@@ -275,7 +292,11 @@ class Nivel1 extends Phaser.Scene {
 
     // Evento de clique para o botão continuar
     this.botaoContinuar.on("pointerdown", () => {
-      this.botaoSom.play(); 
+      // Verifica se está mutado antes de tocar o som
+      if (!this.mutado) {
+        this.botaoSom.play(); 
+      }
+      
       if (!this.isPaused && this.contadorClique < 10) {
         this.pataMovendo = true;
         // Atualiza o texto do contador
@@ -312,7 +333,11 @@ class Nivel1 extends Phaser.Scene {
         }
         // Atualiza o texto do contador
         this.textoContador.setText(this.contadorClique + "/10");
-        this.tim.play();
+        
+        // Verifica se está mutado antes de tocar o som
+        if (!this.mutado) {
+          this.tim.play();
+        }
   
         // Chama a função de evento quando chega a 10 cliques
         if (this.contadorClique === 10) {
@@ -385,6 +410,9 @@ class Nivel1 extends Phaser.Scene {
     // Verifica orientação a cada frame
     this.verificarOrientacao();
     
+    // Verifica o estado de áudio a cada frame para pegar mudanças de outras cenas
+    this.verificarEstadoAudio();
+    
     // Se o jogo estiver pausado, não atualiza a lógica do jogo
     if (this.isPaused) {
       return;
@@ -393,7 +421,8 @@ class Nivel1 extends Phaser.Scene {
     // Se a pata estiver em movimento
     if (this.pataMovendo) {
       this.iniciarRotacao();
-      if (!this.chocalho.isPlaying) {
+      // Verifica se está mutado antes de tocar o som
+      if (!this.mutado && !this.chocalho.isPlaying) {
         this.chocalho.play();
       }
       this.circuloRecompensa.setAlpha(0);
@@ -406,7 +435,9 @@ class Nivel1 extends Phaser.Scene {
     }
     // Se a pata estiver parada
     else {
-      this.chocalho.stop();
+      if (this.chocalho.isPlaying) {
+        this.chocalho.stop();
+      }
       this.circuloRecompensa.setAlpha(0.5);
       this.botaoContinuar.setAlpha(1);
       // Desabilita a interatividade da pata
@@ -488,6 +519,30 @@ class Nivel1 extends Phaser.Scene {
     localStorage.setItem('nivel1Completo', 'true');
     // Redirecionar para a cena de seleção de níveis
     this.scene.start('SelecaoDeLevel');
+  }
+
+  // Adicione o método para verificar o estado de áudio
+  verificarEstadoAudio() {
+    // Atualiza o estado de mudo com base no localStorage
+    const novoEstadoMutado = localStorage.getItem('mutado') === 'true';
+    
+    // Se o estado mudou, atualize todos os sons
+    if (novoEstadoMutado !== this.mutado) {
+      this.mutado = novoEstadoMutado;
+      
+      // Atualiza todos os sons
+      if (this.tim) {
+        this.tim.setMute(this.mutado);
+      }
+      
+      if (this.botaoSom) {
+        this.botaoSom.setMute(this.mutado);
+      }
+      
+      if (this.chocalho) {
+        this.chocalho.setMute(this.mutado);
+      }
+    }
   }
 }
 

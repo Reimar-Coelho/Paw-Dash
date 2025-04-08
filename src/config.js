@@ -57,15 +57,34 @@ class Configuracoes extends Phaser.Scene {
 
   // Método que inicializa a cena
   create(data) {
+    // Verifica se há configurações salvas no localStorage
+    const mutadoSalvo = localStorage.getItem('mutado');
+    if (mutadoSalvo !== null) {
+      // Converte a string "true" ou "false" para um booleano real
+      this.mutado = mutadoSalvo === 'true';
+    }
+
     // Correção: Use this.sound.add em vez de this.audio.add
-    this.musicaConfig = this.sound.add("musicaConfig");
-    this.musicaConfig.play();
+    this.musicaConfig = this.sound.add("musicaConfig", {
+      loop: true,  // Adiciona a propriedade de loop para que a música toque continuamente
+      volume: this.volumeAtual  // Inicializa com o volume atual configurado
+    });
+
+    // Aplica o estado de mudo à música se necessário
+    if (this.mutado) {
+      this.musicaConfig.setMute(true);
+    } else {
+      this.musicaConfig.play();
+    }
     
     // Salva a música da cena anterior se existir
     if (data && data.musicaAtual) {
       this.musicaAnterior = data.musicaAtual;
       this.volumeAtual = this.musicaAnterior.volume;
-      this.mutado = this.musicaAnterior.mute;
+      // Prioriza o estado de mudo salvo no localStorage sobre o estado da música anterior
+      if (mutadoSalvo === null) {
+        this.mutado = this.musicaAnterior.mute;
+      }
     }
     
     // Cria o som do botão
@@ -97,7 +116,7 @@ class Configuracoes extends Phaser.Scene {
       .setFlipX(true); // Inverte horizontalmente para apontar para a esquerda
     this.btnVoltar.setInteractive();
     
-    // Adiciona o botão de mutar
+    // Adiciona o botão de mutar com o sprite correto baseado no estado atual
     const imagemMutar = this.mutado ? "btnMutarOff" : "btnMutarOn";
     this.btnMutar = this.add.image(this.centroX - 150, this.centroY, imagemMutar)
       .setScale(this.escalaBotoes * 0.7); // Reduzindo para 70% da escala original
@@ -129,9 +148,10 @@ class Configuracoes extends Phaser.Scene {
     
     // Botão voltar
     this.btnVoltar.on('pointerdown', () => {
-      this.botaoSom.play();
-      this.musicaConfig.stop();  
-      // Retorna à cena do menu, passando a música atual
+      if (!this.mutado) {
+        this.botaoSom.play();
+      }
+      this.musicaConfig.stop();
       this.scene.start('Menu', { musicaInicio: this.musicaAnterior });
     });
     
@@ -143,7 +163,18 @@ class Configuracoes extends Phaser.Scene {
       // Atualiza o ícone do botão
       this.btnMutar.setTexture(this.mutado ? "btnMutarOff" : "btnMutarOn");
       
-      // Atualiza o estado de mute na música anterior
+      // Pausa ou retoma todos os sons dependendo do estado do mudo
+      if (this.mutado) {
+        // Para todos os sons no jogo
+        this.sound.pauseAll();
+        // Reproduz apenas o som do botão para feedback imediato
+        this.botaoSom.play();
+      } else {
+        // Retoma todos os sons
+        this.sound.resumeAll();
+      }
+      
+      // Atualiza o estado de mute na música anterior (caso volte para a cena anterior)
       if (this.musicaAnterior) {
         this.musicaAnterior.setMute(this.mutado);
       }
@@ -263,5 +294,10 @@ class Configuracoes extends Phaser.Scene {
   shutdown() {
     // Remove os event listeners
     window.removeEventListener("resize", this.handleResize.bind(this));
+    
+    // Garante que a música pare ao sair da cena
+    if (this.musicaConfig) {
+      this.musicaConfig.stop();
+    }
   }
 }

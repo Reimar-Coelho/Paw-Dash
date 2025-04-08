@@ -29,7 +29,7 @@ class Nivel2 extends Phaser.Scene {
     this.largura = window.innerWidth;
     this.altura = window.innerHeight;
     this.tamanhoPata = Math.min(0.0001673 * this.largura + 0.1, 0.25); // Limita o tamanho máximo
-    this.vel = Math.min(5, Math.max(3, this.largura / 400)); // Velocidade responsiva
+    this.vel = Math.min(10, Math.max(7, this.largura / 130)); // Velocidade responsiva
     this.centroX = this.largura / 2; // Centro da tela no eixo X
     this.centroY = this.altura / 2; // Centro da tela no eixo Y
     this.marginX = Math.min(100, this.largura * 0.1); // Margem horizontal para movimento
@@ -163,12 +163,27 @@ class Nivel2 extends Phaser.Scene {
   }
 
   create() {
+    // Recupera o estado de mudo do localStorage
+    this.mutado = localStorage.getItem('mutado') === 'true';
+    
+    // Recupera o volume atual do localStorage
+    const volumeAtual = localStorage.getItem('volumeAtual') ? 
+      parseFloat(localStorage.getItem('volumeAtual')) : 0.5;
 
     // Adiciona os sons
     this.tim = this.sound.add("tim");
     this.botaoSom = this.sound.add("botaoSom");
     this.chocalho = this.sound.add("chocalho", {rate:1});
-
+    
+    // Aplica as configurações de volume
+    this.tim.setVolume(volumeAtual);
+    this.botaoSom.setVolume(volumeAtual);
+    this.chocalho.setVolume(volumeAtual);
+    
+    // Aplica o estado de mudo
+    this.tim.setMute(this.mutado);
+    this.botaoSom.setMute(this.mutado);
+    this.chocalho.setMute(this.mutado);
 
     // Recalcula as dimensões responsivas
     this.calcularDimensoes();
@@ -216,7 +231,11 @@ class Nivel2 extends Phaser.Scene {
     
     // Evento de clique para o botão continuar
     this.botaoContinuar.on("pointerdown", () => {
-      this.botaoSom.play();  
+      // Verifica se está mutado antes de tocar o som
+      if (!this.mutado) {
+        this.botaoSom.play();  
+      }
+      
       if (!this.isPaused && this.contadorClique < 3) {
         // Volta a movimentar a pata e esconde o círculo/botão
         this.pataMovendo = true;
@@ -225,7 +244,8 @@ class Nivel2 extends Phaser.Scene {
         this.circuloRecompensa.setAlpha(0);
         this.botaoContinuar.setAlpha(0);
         this.botaoContinuar.disableInteractive();
-        if (!this.chocalho.isPlaying) {
+        
+        if (!this.mutado && !this.chocalho.isPlaying) {
           this.chocalho.play();
         }
         
@@ -269,7 +289,10 @@ class Nivel2 extends Phaser.Scene {
         this.botaoContinuar.setAlpha(1);
         this.botaoContinuar.setInteractive();
         
-        this.tim.play(); 
+        // Verifica se está mutado antes de tocar o som
+        if (!this.mutado) {
+          this.tim.play(); 
+        }
 
         // Atualiza o texto tutorial
         if (this.textoTutorial) {
@@ -476,9 +499,45 @@ class Nivel2 extends Phaser.Scene {
     }
   }
 
+  // Adicione o método para verificar e atualizar o estado de áudio
+  verificarEstadoAudio() {
+    // Atualiza o estado de mudo com base no localStorage
+    const novoEstadoMutado = localStorage.getItem('mutado') === 'true';
+    
+    // Se o estado mudou, atualize todos os sons
+    if (novoEstadoMutado !== this.mutado) {
+      this.mutado = novoEstadoMutado;
+      
+      // Atualiza todos os sons
+      if (this.tim) {
+        this.tim.setMute(this.mutado);
+      }
+      
+      if (this.botaoSom) {
+        this.botaoSom.setMute(this.mutado);
+      }
+      
+      if (this.chocalho) {
+        this.chocalho.setMute(this.mutado);
+        
+        // Se estiver mutado e o chocalho estiver tocando, pause-o
+        if (this.mutado && this.chocalho.isPlaying) {
+          this.chocalho.pause();
+        } 
+        // Se não estiver mais mutado, retome o som se a pata estiver em movimento
+        else if (!this.mutado && this.pataMovendo && !this.chocalho.isPlaying) {
+          this.chocalho.play();
+        }
+      }
+    }
+  }
+
   update() {
     // Verifica orientação a cada frame
     this.verificarOrientacao();
+    
+    // Verifica o estado de áudio a cada frame para pegar mudanças de outras cenas
+    this.verificarEstadoAudio();
     
     // Se o jogo estiver pausado, não atualiza a lógica do jogo
     if (this.isPaused) {
@@ -487,7 +546,16 @@ class Nivel2 extends Phaser.Scene {
     
     // Se a pata não deve se mover, sai da função
     if (!this.pataMovendo) {
+      // Se o chocalho estiver tocando, pare-o
+      if (this.chocalho && this.chocalho.isPlaying) {
+        this.chocalho.stop();
+      }
       return;
+    }
+
+    // Se a pata estiver em movimento e o som não estiver tocando, inicie-o (apenas se não estiver mutado)
+    if (this.pataMovendo && this.chocalho && !this.chocalho.isPlaying && !this.mutado) {
+      this.chocalho.play();
     }
 
     // Movimentação da pata no eixo X com if ternário e limites responsivos

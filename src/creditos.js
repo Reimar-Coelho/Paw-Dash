@@ -139,16 +139,21 @@ class Creditos extends Phaser.Scene {
       
       // Recupera as configurações de volume do armazenamento local
       const volumeAtual = localStorage.getItem('volumeAtual') ? parseFloat(localStorage.getItem('volumeAtual')) : 0.5;
-      const mutado = localStorage.getItem('mutado') === 'true';
+      this.mutado = localStorage.getItem('mutado') === 'true';
       
       // Aplica as configurações de volume
       this.musicaCreditos.setVolume(volumeAtual);
-      this.musicaCreditos.setMute(mutado);
+      this.musicaCreditos.setMute(this.mutado);
       this.botaoSom.setVolume(volumeAtual);
-      this.botaoSom.setMute(mutado);
+      this.botaoSom.setMute(this.mutado);
       
-      this.musicaCreditos.play(); 
-      console.log('Música de fundo iniciada, volume:', volumeAtual, 'mutado:', mutado);
+      // Só toca a música se não estiver mutado
+      if (!this.mutado) {
+        this.musicaCreditos.play();
+        console.log('Música de fundo iniciada, volume:', volumeAtual, 'mutado:', this.mutado);
+      } else {
+        console.log('Som está mutado, música não será tocada');
+      }
   
       // Recalcula as dimensões responsivas
       this.calcularDimensoes();
@@ -156,22 +161,25 @@ class Creditos extends Phaser.Scene {
       // Adiciona o fundo
       this.fundo = this.add.image(this.centroX, this.centroY, "fundoC").setScale(this.escalaFundo);
       
-
-
-  
-      // Adiciona o botão de voltar no canto inferior direito
+      // Adiciona o botão de voltar no canto superior esquerdo
       this.btnSeta = this.add.image(
-        this.largura - 100 * this.escalaBotoes, // Posição X: afastado da borda direita
-        this.altura - 100 * this.escalaBotoes,   // Posição Y: afastado da borda inferior
+        100 * this.escalaBotoes, // Posição X: afastado da borda esquerda
+        80 * this.escalaBotoes,   // Posição Y: afastado da borda superior
         "btnSeta"
-      ).setScale(this.escalaBotoes * 0.5); // Reduzindo em 30% o tamanho da seta
+      )
+      .setScale(this.escalaBotoes * 0.5) // Reduzindo em 50% o tamanho da seta
+      .setFlipX(true); // Espelha a imagem horizontalmente para que a seta aponte para a esquerda
   
       // Configura a interatividade dos botões
       this.btnSeta.setInteractive();
   
       // Configura os eventos de clique
       this.btnSeta.on('pointerdown', () => {
-        this.botaoSom.play();  
+        // Toca o som do botão apenas se não estiver mutado
+        if (!this.mutado) {
+          this.botaoSom.play();
+        }
+        
         this.musicaCreditos.stop();
         if (!this.isPaused) {
           console.log('voltar');
@@ -243,17 +251,21 @@ class Creditos extends Phaser.Scene {
       this.fundo.setPosition(this.centroX, this.centroY);
       this.fundo.setScale(this.escalaFundo);
 
-      // Atualizar botão seta para o canto inferior direito
+      // Atualizar botão seta para o canto superior esquerdo
       this.btnSeta.setPosition(
-        this.largura - 100 * this.escalaBotoes,
-        this.altura - 80 * this.escalaBotoes
+        100 * this.escalaBotoes,  // Posição X à esquerda
+        80 * this.escalaBotoes    // Posição Y no topo
       );
-      this.btnSeta.setScale(this.escalaBotoes * 0.5); // Mantendo a redução de 30%
+      this.btnSeta.setScale(this.escalaBotoes * 0.5);
+      this.btnSeta.setFlipX(true); // Garantir que a seta continue espelhada após redimensionamento
     }
   
     update() {
       // Verifica orientação a cada frame
       this.verificarOrientacao();
+      
+      // Verifica o estado de áudio a cada frame para pegar mudanças de outras cenas
+      this.verificarEstadoAudio();
     }
    
     // Método para limpar ao sair da cena
@@ -265,6 +277,27 @@ class Creditos extends Phaser.Scene {
       // Para a música se estiver tocando
       if (this.musicaCreditos) {
         this.musicaCreditos.stop();
+      }
+    }
+
+    // Método para verificar e atualizar o estado de áudio
+    verificarEstadoAudio() {
+      // Atualiza o estado de mudo com base no localStorage
+      this.mutado = localStorage.getItem('mutado') === 'true';
+      
+      if (this.musicaCreditos) {
+        this.musicaCreditos.setMute(this.mutado);
+        
+        // Pausa ou reinicia a música dependendo do estado
+        if (this.mutado && this.musicaCreditos.isPlaying) {
+          this.musicaCreditos.pause();
+        } else if (!this.mutado && !this.musicaCreditos.isPlaying) {
+          this.musicaCreditos.resume();
+        }
+      }
+      
+      if (this.botaoSom) {
+        this.botaoSom.setMute(this.mutado);
       }
     }
   }

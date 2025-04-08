@@ -42,11 +42,11 @@
 ## 1.1. Plano Estratégico do Projeto
 
 ### 1.1.1. Contexto da indústria 
-&nbsp;&nbsp;&nbsp;&nbsp;O mercado de comportamento e adestramento animal tem crescido com a alta demanda por métodos positivos. Os principais players incluem influenciadores, como Dr. Pet, Cesar Millan e Ian Dunbar, além de plataformas educacionais e empresas de produtos para pets. Os modelos de negócio variam entre consultorias, cursos online e assinaturas. Já as tendências no setor de cuidado de pets abrem margens para a gamificação e tecnologia. Alexandre Rossi busca inovação e diferenciação da concorrência ao abranger áreas de atuação como a mídia tradicional e as redes sociais, bem como a possível entrada no mercado de jogos digitais para animais domésticos [1], [2].
+&nbsp;&nbsp;&nbsp;&nbsp;O mercado de comportamento e adestramento animal tem crescido com a alta demanda por métodos positivos. Os principais players incluem influenciadores, como Dr. Pet, Cesar Millan e Ian Dunbar, além de plataformas educacionais e empresas de produtos para pets. Os modelos de negócio variam entre consultorias, cursos online e assinaturas. Já as tendências no setor de cuidado de pets abrem margens para a gamificação e tecnologia. Alexandre Rossi busca inovação e diferenciação da concorrência ao abranger áreas de atuação como a mídia tradicional e as redes sociais, bem como a possível entrada no mercado de jogos digitais para animais domésticos [8], [9].
 
 #### 1.1.1.1. Modelo de 5 Forças de Porter 
 
-&nbsp;&nbsp;&nbsp;&nbsp;As 5 Forças de Porter são um modelo estratégico desenvolvido por Michael Porter, professor da Harvard Business School, na década de 1970. Este framework é amplamente utilizado para analisar a competitividade em um setor de negócios, identificando as principais forças que influenciam o ambiente competitivo de uma empresa. Ao analisar essas forças, é possível desenvolver estratégias eficazes para melhorar a posição competitiva da empresa no mercado. Sendo assim, a imagem a seguir apresenta a análise da indústria de comportamento e bem-estar de animais, a fim de averiguar como a marca Dr Pet se posiciona nesse setor [3], [4], [6].
+&nbsp;&nbsp;&nbsp;&nbsp;As 5 Forças de Porter são um modelo estratégico desenvolvido por Michael Porter, professor da Harvard Business School, na década de 1970. Este framework é amplamente utilizado para analisar a competitividade em um setor de negócios, identificando as principais forças que influenciam o ambiente competitivo de uma empresa. Ao analisar essas forças, é possível desenvolver estratégias eficazes para melhorar a posição competitiva da empresa no mercado. Sendo assim, a imagem a seguir apresenta a análise da indústria de comportamento e bem-estar de animais, a fim de averiguar como a marca Dr Pet se posiciona nesse setor [3], [6], [10].
 
 <div align="center">
 <sub> Figura X - 5 Forças de Porter</sub>
@@ -57,7 +57,7 @@
 
 ### 1.1.2. Análise SWOT
 
-&nbsp;&nbsp;&nbsp;&nbsp;A análise SWOT é uma ferramenta estratégica que avalia o cenário interno e externo de uma empresa, identificando forças e fraquezas internas, além de oportunidades e ameaças externas. Isso inclui análises de mercado, concorrentes, fornecedores e contextos políticos, econômicos, sociais e culturais. Na figura 1, apresentamos a análise SWOT centrada na marca Dr Pet [3], [4], [5].
+&nbsp;&nbsp;&nbsp;&nbsp;A análise SWOT é uma ferramenta estratégica que avalia o cenário interno e externo de uma empresa, identificando forças e fraquezas internas, além de oportunidades e ameaças externas. Isso inclui análises de mercado, concorrentes, fornecedores e contextos políticos, econômicos, sociais e culturais. Na figura 1, apresentamos a análise SWOT centrada na marca Dr Pet [3], [6], [7].
 
 <div align="center">
 <sub>Figura 1 - Análise SWOT</sub>
@@ -69,7 +69,7 @@
 
 ### 1.1.3. Missão / Visão / Valores 
 
-&nbsp;&nbsp;&nbsp;&nbsp;A análise de Missão, Visão e Valores é uma ferramenta estratégica fundamental para qualquer empresa, pois ajuda a definir sua identidade e propósito. A Missão descreve o que a empresa faz atualmente, para quem ela trabalha e qual é seu objetivo principal. Ela serve como um guia para as operações diárias e define o papel da empresa no mercado. A Visão, por outro lado, estabelece o objetivo futuro, indicando onde a empresa deseja chegar a longo prazo. Ela inspira e motiva os funcionários a trabalhar em direção a um objetivo comum, ajudando a direcionar as estratégias e decisões da empresa. Os Valores representam os princípios éticos e morais que guiam as ações e decisões da empresa [7]. Eles influenciam a cultura organizacional e são essenciais para construir confiança com clientes, funcionários e parceiros. Essa análise é crucial para que as empresas mantenham uma direção clara e coerente, alinhando suas operações com seus objetivos e princípios. Dessa forma, esses fundamentos podem ser descritos para a marca Dr Pet da seguinte forma:
+&nbsp;&nbsp;&nbsp;&nbsp;A análise de Missão, Visão e Valores é uma ferramenta estratégica fundamental para qualquer empresa, pois ajuda a definir sua identidade e propósito. A Missão descreve o que a empresa faz atualmente, para quem ela trabalha e qual é seu objetivo principal. Ela serve como um guia para as operações diárias e define o papel da empresa no mercado. A Visão, por outro lado, estabelece o objetivo futuro, indicando onde a empresa deseja chegar a longo prazo. Ela inspira e motiva os funcionários a trabalhar em direção a um objetivo comum, ajudando a direcionar as estratégias e decisões da empresa. Os Valores representam os princípios éticos e morais que guiam as ações e decisões da empresa [5]. Eles influenciam a cultura organizacional e são essenciais para construir confiança com clientes, funcionários e parceiros. Essa análise é crucial para que as empresas mantenham uma direção clara e coerente, alinhando suas operações com seus objetivos e princípios. Dessa forma, esses fundamentos podem ser descritos para a marca Dr Pet da seguinte forma:
 
 - Missão: democratizar o acesso aos serviços veterinários e de adestramentos para que os pets desfrutem do direito a uma vida tranquila e saudável;
 
@@ -79,7 +79,7 @@
 
 ### 1.1.4. Proposta de Valor 
 
-&nbsp;&nbsp;&nbsp;&nbsp;O Canvas de Proposta de Valor é uma ferramenta estratégica amplamente utilizada para entender as necessidades do público-alvo e alinhar essas necessidades com a oferta de produtos ou serviços. Sua principal função é mapear as "dores", "ganhos" e "tarefas" dos consumidores, proporcionando uma visão clara sobre como uma solução pode resolver problemas ou atender às expectativas. Ao conectar as necessidades dos clientes às ofertas de valor, o canvas facilita a criação de soluções mais eficazes e personalizadas, sendo essencial para o desenvolvimento de produtos e serviços que realmente atendem às demandas do mercado. Aa figura 2 apresenta a análise Canvas Proposta de Valor centrada na solução proposta.
+&nbsp;&nbsp;&nbsp;&nbsp;O Canvas de Proposta de Valor é uma ferramenta estratégica amplamente utilizada para entender as necessidades do público-alvo e alinhar essas necessidades com a oferta de produtos ou serviços. Sua principal função é mapear as "dores", "ganhos" e "tarefas" dos consumidores, proporcionando uma visão clara sobre como uma solução pode resolver problemas ou atender às expectativas. Ao conectar as necessidades dos clientes às ofertas de valor, o canvas facilita a criação de soluções mais eficazes e personalizadas, sendo essencial para o desenvolvimento de produtos e serviços que realmente atendem às demandas do mercado. Aa figura 2 apresenta a análise Canvas Proposta de Valor centrada na solução proposta [11]. 
 
 <div align="center">
 <sub>Figura 2 - Canvas Proposta de Valor</sub>
@@ -104,7 +104,7 @@
 ### 1.1.6. Matriz de Riscos
 
 
-&nbsp;&nbsp;&nbsp;A matriz de riscos é uma ferramenta essencial para a gestão de projetos, pois permite identificar, classificar e avaliar os riscos envolvidos em seu desenvolvimento. Seu principal objetivo é mensurar a probabilidade de ocorrência e o impacto que cada risco pode causar, seja positivo ou negativo. Dessa forma, a matriz auxilia na criação de estratégias eficazes para mitigar ameaças e potencializar oportunidades, garantindo maior controle sobre os desafios enfrentados ao longo do projeto. A figura 3 representa a análise de risco do projeto Paw Dash [8].
+&nbsp;&nbsp;&nbsp;A matriz de riscos é uma ferramenta essencial para a gestão de projetos, pois permite identificar, classificar e avaliar os riscos envolvidos em seu desenvolvimento. Seu principal objetivo é mensurar a probabilidade de ocorrência e o impacto que cada risco pode causar, seja positivo ou negativo. Dessa forma, a matriz auxilia na criação de estratégias eficazes para mitigar ameaças e potencializar oportunidades, garantindo maior controle sobre os desafios enfrentados ao longo do projeto. A figura 3 representa a análise de risco do projeto Paw Dash [4].
 
 <div align="center">
 <sub>Figura 3 - Matriz de Riscos</sub>
@@ -334,21 +334,9 @@ Baixar documentação e dependências antecipadamente e configurar um ambiente l
 
 ### 3.2.2. Non-Playable Characters (NPC)
 
-&nbsp;&nbsp;&nbsp;&nbsp;Nosso personagem auxiliar se chama Canela, um gatinho que instrui o tutor sobre como jogar. Ele terá as seguintes funções:
+&nbsp;&nbsp;&nbsp;&nbsp;NPC (Non-Playable Character, ou Personagem Não Jogável) é qualquer personagem em um jogo que não é controlado diretamente pelos jogadores. Eles geralmente são programados para desempenhar funções específicas, como interagir com os jogadores, fornecer informações, vender itens, ou contribuir para o enredo e a ambientação do jogo.
 
-- Tutorial: Ensinará ao tutor as mecânicas básicas do jogo;
-
-- Acompanhamento: Estará presente na tela de níveis e explicará as diferentes fases do jogo;
-
-- Auxílio visual: Fornecerá dicas para facilitar a jogabilidade.
-
-<div align="center">
-  <sub>Concept Art do Canela</sub>  
-  <br>
-  <img src="../assets/canela.png" width="30%">
-  <br><br>
-  <sub>Fonte: Material produzido pelos autores (2025)</sub>
-</div>
+&nbsp;&nbsp;&nbsp;&nbsp;O jogo Paw Dash não possui NPCs porque sua proposta central é focada exclusivamente na interação entre os jogadores, tutor e gato, e elementos despersonalizados, os alvos. A ausência de NPCs reforça a dinâmica de um ambiente colaborativo e competitivo, promovendo uma experiência mais imersiva e imprevisível. Essa abordagem também simplifica o design do jogo, permitindo que o jogo tenha mais ênfase na jogabilidade e nas mecânicas centradas nos jogadores.
 
 ### 3.2.3. Diversidade e Representatividade dos Personagens
 
@@ -365,8 +353,6 @@ Baixar documentação e dependências antecipadamente e configurar um ambiente l
 &nbsp;&nbsp;&nbsp;&nbsp;Acessibilidade para Surdos:
 
 - Sinais visuais de reforço positivo (brilhos, pequenas vibrações na tela, mudanças de cor ao acertar a pata);
-
-- Ícones e expressões do Miau-trutor para substituir comandos sonoros e tornar as instruções mais claras.
 
 ## 3.3. Mundo do jogo 
 
@@ -423,9 +409,9 @@ Baixar documentação e dependências antecipadamente e configurar um ambiente l
 
 ### 3.4.2. Bestiário
 
-Um bestiário em jogos é um compêndio que reúne informações sobre as criaturas encontradas ao longo da gameplay. Ele pode incluir descrições, imagens, fraquezas, habilidades e contexto dentro da história, ajudando o jogador a entender melhor os inimigos ou seres presentes no mundo do jogo. Muitas vezes, o bestiário é desbloqueado progressivamente, conforme o jogador enfrenta ou derrota novas criaturas.  
+&nbsp;&nbsp;&nbsp;&nbsp;Um bestiário em jogos é um compêndio que reúne informações sobre as criaturas encontradas ao longo da gameplay. Ele pode incluir descrições, imagens, fraquezas, habilidades e contexto dentro da história, ajudando o jogador a entender melhor os inimigos ou seres presentes no mundo do jogo. Muitas vezes, o bestiário é desbloqueado progressivamente, conforme o jogador enfrenta ou derrota novas criaturas.  
 
-Nosso jogo não possui um sistema de bestiário porque seu foco está em uma dinâmica simples de interação entre o gato e um elemento despersonalizado na tela, portanto, não utiliza do artifício de introduzir criaturas antogonistas ao jogador para gerar desafio.
+&nbsp;&nbsp;&nbsp;&nbsp;Nosso jogo não possui um sistema de bestiário porque seu foco está em uma dinâmica simples de interação entre o gato e um elemento despersonalizado na tela, portanto, não utiliza do artifício de introduzir criaturas antogonistas ao jogador para gerar desafio.
 
 ## 3.5. Gameflow (Diagrama de cenas) 
 
@@ -459,73 +445,79 @@ Nosso jogo não possui um sistema de bestiário porque seu foco está em uma din
 
 # 3.8. Implementação Matemática de Animação/Movimento
 
-A movimentação dos elementos gráficos no jogo é implementada a partir de uma modelagem matemática que considera o tempo, a aceleração e a velocidade no movimento de um personagem ou objeto. A seguir, detalhamos as funções que descrevem a animação de um elemento gráfico, com base nas equações de **Movimento Uniforme (MU)** e **Movimento Uniformemente Variado (MUV)**.
+A movimentação dos elementos gráficos no jogo é implementada a partir de uma modelagem matemática que considera o tempo, a aceleração e a velocidade no movimento de um personagem ou objeto. A seguir, detalhamos as funções que descrevem a animação de um elemento gráfico, com base nas equações de Movimento Uniforme (MU) e Movimento Uniformemente Variado (MUV).
 
 ## 3.8.1. Parâmetros Iniciais
 
 Antes de definir as funções matemáticas para o movimento, definimos alguns parâmetros iniciais que serão usados em todos os cálculos:
 
-- **\( t_{total} \)**: O tempo total da animação. Esse parâmetro define a duração do movimento do elemento gráfico, desde o início até a posição final.
-- **\( (x_i, y_i) \)**: As posições iniciais do elemento gráfico. Este ponto corresponde à posição inicial em que o objeto começa a se mover.
+- **t_total**: O tempo total da animação, medido em segundos. Esse parâmetro define a duração do movimento do elemento gráfico, desde o início até a posição final.
+- **(x_i, y_i)**: As posições iniciais do elemento gráfico. Este ponto corresponde à posição inicial em que o objeto começa a se mover.
+- **(x_f, y_f)**: As posições finais do elemento gráfico. Corresponde ao destino final do movimento.
 
 Esses parâmetros são fundamentais para a modelagem do movimento, pois eles determinam o comportamento do objeto ao longo do tempo.
 
 ## 3.8.2. Movimento Uniforme (MU)
 
-O **Movimento Uniforme (MU)** ocorre quando a velocidade do objeto é constante ao longo de todo o movimento. A fórmula para calcular a **velocidade no eixo \( y \)** e a **posição no eixo \( y \)**, considerando o movimento uniforme, é descrita abaixo.
+O Movimento Uniforme (MU) ocorre quando a velocidade do objeto é constante ao longo de todo o movimento. A fórmula para calcular a velocidade no eixo y e a posição no eixo y, considerando o movimento uniforme, é descrita abaixo.
 
-### 3.8.2.1. Função de Velocidade no eixo \( y \) (MU)
+### 3.8.2.1. Função de Velocidade no eixo y (MU)
 
-A velocidade no movimento uniforme é constante, e pode ser calculada como a **diferença das posições iniciais e finais** dividida pelo tempo total \( t_{total} \).
-- v = yi - yf / t
+A velocidade no movimento uniforme é constante, e pode ser calculada como a diferença das posições final e inicial dividida pelo tempo total t_total:
 
-### 3.8.2.2. Função de Posição no eixo \( x \) (MU)
+- **v_y = (y_f - y_i) / t_total**
 
-A posição no eixo \( y \) em um determinado instante \( t \) durante o movimento é dada pela equação do movimento uniforme:
-- yf = yi + v * t
+### 3.8.2.2. Função de Posição no eixo y (MU)
+
+A posição no eixo y em um determinado instante t durante o movimento é dada por:
+
+- **y(t) = y_i + v_y . t**
 
 ## 3.8.3. Movimento Uniformemente Variado (MUV)
 
-O **Movimento Uniformemente Variado (MUV)** ocorre quando a aceleração do objeto é constante ao longo do movimento. A aceleração, neste caso, pode ser positiva ou negativa, resultando em um aumento ou diminuição da velocidade ao longo do tempo. A seguir, apresentamos as fórmulas para calcular a **aceleração**, a **velocidade** e a **posição** no movimento uniformemente variado.
+O Movimento Uniformemente Variado (MUV) ocorre quando a aceleração do objeto é constante ao longo do movimento. A aceleração, neste caso, pode ser positiva ou negativa, resultando em um aumento ou diminuição da velocidade ao longo do tempo. A seguir, apresentamos as fórmulas para calcular a aceleração, a velocidade e a posição no movimento uniformemente variado.
 
-### 3.8.3.1. Função de Aceleração no eixo \( x \) (MUV)
+### 3.8.3.1. Função de Aceleração no eixo x (MUV)
 
-A aceleração no eixo \( x \) pode ser calculada a partir da diferença de velocidades inicial e final dividida pelo tempo total:
-- a = vf - vi / t
+A aceleração no eixo x, considerando as posições inicial e final e o tempo total de animação, é dada por:
 
-### 3.8.3.2. Função de Velocidade no eixo \( x \) (MUV)
+- **a_x = 2 . (x_f - x_i - vix . t_total) / (t_total^2)**
 
-A velocidade no eixo \( x \) em um determinado instante \( t \) durante o movimento uniformemente variado é dada pela equação:
-- vf = vi + a * t
+Se **vix = 0**, temos:
 
-### 3.8.3.3. Função de Posição no eixo \( x \) (MUV)
+- **a_x = 2 . (x_f - x_i) / (t_total^2)**
 
-A posição no eixo \( x \) em um determinado instante \( t \) durante o movimento uniformemente variado é dada pela equação:
-- xf = xi + v * t + a * t²
+### 3.8.3.2. Função de Velocidade no eixo x (MUV)
+
+A velocidade no eixo x em um determinado instante t é dada por:
+
+- **v_x(t) = vix + a_x . t**
+
+### 3.8.3.3. Função de Posição no eixo x (MUV)
+
+A posição no eixo x em um determinado instante t é dada por:
+
+- **x(t) = x_i + vix . t + (a_x . t^2) / 2**
 
 ## 3.8.4. Implementação no Jogo
 
-No jogo, a movimentação do bigode até a logo é calculada usando uma combinação de **Movimento Uniformemente Variado (MUV)** para o eixo \( x \) e **Movimento Uniforme (MU)** para o eixo \( y \). A posição e a velocidade no eixo \( x \) do bigode são ajustadas de acordo com a aceleração, enquanto no eixo \( y \), o movimento é feito de maneira uniforme.
+No jogo, a movimentação do bigode até a logo é calculada usando uma combinação de Movimento Uniformemente Variado (MUV) para o eixo x e Movimento Uniforme (MU) para o eixo y.
 
 As equações de movimento para o bigode, conforme implementadas no código do jogo, são as seguintes:
 
-- A posição no eixo \( x \) é determinada com uma equação de movimento uniformemente variado:
+- Posição no eixo x:
 
-\[
-xf = xi + v * t + a * t²
-\]
+  **x(t) = x_i + vix . t + (a_x . t^2) / 2**
 
-- A posição no eixo \( y \) é determinada com uma equação de movimento uniforme:
+- Posição no eixo y:
 
-\[
-yf = yi + v * t
-\]
+  **y(t) = y_i + v_y . t**
 
-Essas equações são usadas para calcular as coordenadas \( x(t) \) e \( y(t) \) a cada quadro, atualizando a posição do bigode de acordo com a animação.
+Essas equações são usadas para calcular as coordenadas x(t) e y(t) a cada quadro, atualizando a posição do bigode de acordo com a animação.
 
 ## 3.8.5. Implementação no Código
 
-A implementação do movimento descrito nesta seção está contida no arquivo **`menu.js`**. Você pode encontrar o código que executa a animação a partir da linha 266 até a 309.
+A implementação do movimento descrito nesta seção está contida no arquivo `menu.js`. Você pode encontrar o código que executa a animação a partir da linha 266 até a 309.
 
 ```javascript
 // Define a posição final do bigode, ajustada conforme o tamanho da tela do dispositivo
@@ -534,11 +526,11 @@ this.bigodeYFinal = this.logo.y + 35 * this.escalaLogo;
 
 // Chama a função de deslocamento acelerado horizontal do bigode até que ele esteja na posição final
 if (this.bigodeX <= this.bigodeXFinal) {
-  // Movimento horizontal progressivo: v * t + a * t²
+  // Movimento horizontal progressivo: v * t + (1/2) * a * t²
   this.bigodeX += 2 * this.t + 0.5 * this.t * this.t; 
   // Calcula a velocidade a cada frame
-  this.velocidadeX = 0.5 + 0.5 * this.t;
-  // Mostra no console a acelaração, a velocidade em cada frame e a posição no eixo X do bigode
+  this.velocidadeX = 2 + 0.5 * this.t;
+  // Mostra no console a aceleração, a velocidade em cada frame e a posição no eixo X do bigode
   console.log("Aceleração: " + 0.5, "| Velocidade: " + this.velocidadeX.toFixed(2), "| Posição: " + this.bigodeX.toFixed(2), "(MUV)");
 }
 
@@ -546,7 +538,7 @@ if (this.bigodeX <= this.bigodeXFinal) {
 if (this.bigodeY >= this.bigodeYFinal) {
   this.bigodeY -= 0.8 * this.t; // Movimento vertical regressivo: -v * t
   // Mostra no console a velocidade e a posição no eixo Y do bigode
-  console.log("Velocidade: " + -0.75, "| Posição: " + this.bigodeY.toFixed(2), "(MU)");
+  console.log("Velocidade: " + (-0.8 * this.t).toFixed(2), "| Posição: " + this.bigodeY.toFixed(2), "(MU)");
 }
 
 if (this.bigodeY >= this.bigodeYFinal || this.bigodeX <= this.bigodeXFinal) {
@@ -556,8 +548,8 @@ if (this.bigodeY >= this.bigodeYFinal || this.bigodeX <= this.bigodeXFinal) {
   // Registra e mostra no console o tempo total que durou o movimento
   if (!this.tFinal) {
     this.tFinal = this.time.now;
-    this.tTotal = (this.tFinal - this.inicioMovimento) / 1000
-    console.log("Tempo total: " + this.tTotal);
+    this.tTotal = (this.tFinal - this.inicioMovimento) / 1000;
+    console.log("Tempo total: " + this.tTotal.toFixed(2));
   } 
 }
 ```
@@ -628,7 +620,7 @@ if (this.bigodeY >= this.bigodeYFinal || this.bigodeX <= this.bigodeXFinal) {
   <br>
   <img src="../assets/background.jpg" width="30%">
   <br><br>
-  <sub>Fonte: Freepik [AA]</sub>
+  <sub>Fonte: Freepik [2]</sub>
 </div>
 
 <div align="center">
@@ -699,7 +691,7 @@ if (this.bigodeY >= this.bigodeYFinal || this.bigodeX <= this.bigodeXFinal) {
   <br>
   <img src="../assets/backgroundTelaNiveis.png" width="30%">
   <br><br>
-  <sub>Fonte: 2D Game Assets (2024) [AB]</sub>
+  <sub>Fonte: 2D Game Assets (2024) [1]</sub>
 </div>
 
 <div align="center">
@@ -707,7 +699,7 @@ if (this.bigodeY >= this.bigodeYFinal || this.bigodeX <= this.bigodeXFinal) {
   <br>
   <img src="../assets/backgroundMenu.png" width="30%">
   <br><br>
-  <sub>Fonte: (A definir)</sub>
+  <sub>Fonte: 2D Game Assets (2024) [1]</sub>
 </div>
 
 ### **4.3.2. Mecânicas**
@@ -858,19 +850,94 @@ if (this.bigodeY >= this.bigodeYFinal || this.bigodeX <= this.bigodeXFinal) {
 <sub>Quadro X - Registro de Testes</sub>
 </div>
 
-Nome | Nome fictício
+Nome | Bruno
 --- | ---
-Já possuía experiência prévia com games? | ...
-Conseguiu iniciar o jogo? | ...
-Entendeu as regras e mecânicas de cada fase? | ...
-Entendeu a mecânica de recompensa? | ...
-Gostou dos efeitos sonoros e da trilha sonora? | ...
-Apresentou dificuldades? | ...
-Que nota deu ao jogo? | ...
-O que gostou no jogo? | ...
-O que poderia melhorar no jogo? | ...
-Possui um gato de estimação? | ...
-Se sim, gostaria de jogar o game com seu gato? | ...
+O usuário possui um gato de estimação? | Sim
+Qual modelo de dispositivo foi utilizado para o teste?  | Notebook
+O jogo apresentou uma responsividade adequada ao dispositivo utilizado? | Sim
+O usuário já possuía experiência com games? | Experiência com games para gatos
+Como o usuário navegou pelo jogo? | Navegou com facilidade.
+Conseguiu iniciar o jogo e acessar a tela de níveis? | Sim
+Conseguiu acessar os níveis e jogá-los? | Sim
+Como o usuário interagiu com os textos explicativos de cada fase? | Nao esta lendo
+Como foi a experiência na fase 1? | Excelente
+Como foi a experiência na fase 2? | Leu os textos e concluiu.
+Como foi a experiência na fase 3? | Boa
+Como foi a experiência na fase 4? | Muito boa
+Como foi a experiência na fase 5? | Achou bonito.
+Apresentou dificuldade em alguma das fases? | Não
+Caso tenha apresentado dificuldades, quais foram? | Não apresentou
+O usuário acha que o jogo pode ser desafiador demais ou fácil demais para um gato? | Achou bom.
+Não gostou de alguma das fases? | Fase 3
+O que o usuário acha que poderia melhorar no jogo? | Botão de voltar muito chamativo para o gato.
+Como foi a experiência com a mecânica de recompensa do jogo? | Boa
+Gostou da trilha sonora e dos efeitos sonoros do jogo? | Gostou muito
+Gostou do visual do jogo? | Sim, achou fofo
+O que mais gostou no jogo? | Trilha sonora.
+Que nota o usuário dá ao jogo? | 9
+Jogaria o jogo com seu gato? (Caso tenha um gato) | Sim
+
+
+
+Nome | João
+--- | ---
+O usuário possui um gato de estimação? | Sim
+Qual modelo de dispositivo foi utilizado para o teste?  | Notebook
+O jogo apresentou uma responsividade adequada ao dispositivo utilizado? | Sim
+O usuário já possuía experiência com games? | Experiência com games no geral
+Como o usuário navegou pelo jogo? | Com facilidade, foi direto para as fases
+Conseguiu iniciar o jogo e acessar a tela de níveis? | Sim
+Conseguiu acessar os níveis e jogá-los? | Sim
+Como o usuário interagiu com os textos explicativos de cada fase? | Não leu as explicacoes
+Como foi a experiência na fase 1? | Excelente
+Como foi a experiência na fase 2? | Ótima
+Como foi a experiência na fase 3? | Repetitiva
+Como foi a experiência na fase 4? | Leu os textos e concluiu.
+Como foi a experiência na fase 5? | Mais ou menos repetitivo
+Apresentou dificuldade em alguma das fases? | Não
+Caso tenha apresentado dificuldades, quais foram? | Não apresentou
+O usuário acha que o jogo pode ser desafiador demais ou fácil demais para um gato? | Normal
+Não gostou de alguma das fases? | Fase 4
+O que o usuário acha que poderia melhorar no jogo? | Botão de voltar para o menu. Achou repetitivo.
+Como foi a experiência com a mecânica de recompensa do jogo? | Ok
+Gostou da trilha sonora e dos efeitos sonoros do jogo? | Gostou
+Gostou do visual do jogo? | Gostou, mas falta refinamento.
+O que mais gostou no jogo? | Do design do jogo
+Que nota o usuário dá ao jogo? | 9
+Jogaria o jogo com seu gato? (Caso tenha um gato) | Sim
+
+
+
+
+Nome | Carlos
+--- | ---
+O usuário possui um gato de estimação? | Não
+Qual modelo de dispositivo foi utilizado para o teste?  | Notebook
+O jogo apresentou uma responsividade adequada ao dispositivo utilizado? | Sim
+O usuário já possuía experiência com games? | Experiência com games no geral
+Como o usuário navegou pelo jogo? | Foi direto para as fases. Depois abriu o menu.
+Conseguiu iniciar o jogo e acessar a tela de níveis? | Sim
+Conseguiu acessar os níveis e jogá-los? | Sim
+Como o usuário interagiu com os textos explicativos de cada fase? | Leu todos os textos explicativos.
+Como foi a experiência na fase 1? | Achou muito demorada
+Como foi a experiência na fase 2? | Amou
+Como foi a experiência na fase 3? | Som dessincronizado.
+Como foi a experiência na fase 4? | Repetitiva
+Como foi a experiência na fase 5? | Gostou muito
+Apresentou dificuldade em alguma das fases? | Não
+Caso tenha apresentado dificuldades, quais foram? | Não apresentou
+O usuário acha que o jogo pode ser desafiador demais ou fácil demais para um gato? | Achou fácil
+Não gostou de alguma das fases? | Fase 4
+O que o usuário acha que poderia melhorar no jogo? | Contador muito pequeno e escondido. Tela de fim. Sincronizar som. Fases repetitivas. Indicar as mudanças nas fases. Botão de voltar para o menu.
+Como foi a experiência com a mecânica de recompensa do jogo? | Entendeu
+Gostou da trilha sonora e dos efeitos sonoros do jogo? | Gostou muito
+Gostou do visual do jogo? | Gostou, mas muito parecido
+O que mais gostou no jogo? | Trilha sonora.
+Que nota o usuário dá ao jogo? | 8
+Jogaria o jogo com seu gato? (Caso tenha um gato) | Sim
+
+
+
 
 
 <div align="center">
@@ -891,27 +958,27 @@ Se sim, gostaria de jogar o game com seu gato? | ...
 
 # <a name="c7"></a>7. Referências 
 
-[1] ROSSI, Alexandre. Sobre nós. Disponível em: https://doutorpet.com/sobre-nos/. Acesso em: 12 fev. 2025.
+[1] 2D GAME ASSETS. Forest and Trees - Free Pixel Backgrounds. Dribbble, 2024. Disponível em: https://dribbble.com/shots/24653940-Forest-and-Trees-Free-Pixel-Backgrounds. Acesso em: 14 mar. 2025.
 
-[2] ROSSI, Alexandre. Instagram oficial. Disponível em: https://www.instagram.com/alexandrerossi_oficial/?hl=en. Acesso em: 12 fev. 2025.
+[2] BRONWENSTUDIO. Fundo de paisagem rural de pixel art. 2024. Disponível em: https://br.freepik.com/vetores-gratis/fundo-de-paisagem-rural-de-pixel-art_49685499.htm. Acesso em: 23 fev. 2025.
 
-[3] O GLOBO. Petz compra franquia do Dr. Pet e projeta 50 novas lojas para 2022. Disponível em: https://oglobo.globo.com/economia/negocios/petz-compra-franquia-do-dr-pet-projeta-50-novas-lojas-para-2022-25270397. Acesso em: 27 fev. 2025.
+[3] DOOGS PET. Como funciona o mercado de adestramento de cães no Brasil. Disponível em: https://doogspet.com/dicas/como-funciona-o-mercado-de-adestramento-de-caes-no-brasil/. Acesso em: 27 fev. 2025.
 
-[4] DOOGS PET. Como funciona o mercado de adestramento de cães no Brasil. Disponível em: https://doogspet.com/dicas/como-funciona-o-mercado-de-adestramento-de-caes-no-brasil/. Acesso em: 27 fev. 2025.
+[4] FERRAMENTAS DE QUALIDADE. Matriz de Riscos (Matriz de Probabilidade e Impacto). Disponível em: https://ferramentasdaqualidade.org/matriz-de-riscos-matriz-de-probabilidade-e-impacto/. Acesso em: 21 mar. 2025.
 
-[5] ROCK CONTENT. Como fazer uma análise SWOT. Disponível em: https://rockcontent.com/br/blog/como-fazer-uma-analise-swot/. Acesso em: 27 fev. 2025.
+[5] MEREO. Missão, visão e valores: o que é, como definir e exemplos. Disponível em: https://mereo.com/blog/missao-visao-e-valores/. Acesso em: 25 fev. 2025.
 
-[6] SALESFORCE. As 5 forças de Porter: o que são e como usá-las? Disponível em: https://www.salesforce.com/br/blog/5-forcas-de-porter/. Acesso em: 25 fev. de 2025.
+[6] O GLOBO. Petz compra franquia do Dr. Pet e projeta 50 novas lojas para 2022. Disponível em: https://oglobo.globo.com/economia/negocios/petz-compra-franquia-do-dr-pet-projeta-50-novas-lojas-para-2022-25270397. Acesso em: 27 fev. 2025.
 
-[7] MEREO. Missão, visão e valores: o que é, como definir e exemplos. Disponível em: https://mereo.com/blog/missao-visao-e-valores/. Acesso em: 25 fev. de 2025.
+[7] ROCK CONTENT. Como fazer uma análise SWOT. Disponível em: https://rockcontent.com/br/blog/como-fazer-uma-analise-swot/. Acesso em: 27 fev. 2025.
 
-[8] FERRAMENTAS DE QUALIDADE. Matriz de Riscos (Matriz de Probabilidade e Impacto). Disponível em: https://ferramentasdaqualidade.org/matriz-de-riscos-matriz-de-probabilidade-e-impacto/. Acesso em: 21 mar. de 2025.
+[8] ROSSI, Alexandre. Instagram oficial. Disponível em: https://www.instagram.com/alexandrerossi_oficial/?hl=en. Acesso em: 12 fev. 2025.
 
-[9] TERABLOG. Canvas Proposta de Valor : Para que serve e como preencher. Disponível em: https://blog.somostera.com/product-management/canvas-de-proposta-de-valor. Acesso em: 13 mar. de 2025.
+[9] ROSSI, Alexandre. Sobre nós. Disponível em: https://doutorpet.com/sobre-nos/. Acesso em: 12 fev. 2025.
 
-[AA] BRONWENSTUDIO. Fundo de paisagem rural de pixel art. 2024. Disponível em: https://br.freepik.com/vetores-gratis/fundo-de-paisagem-rural-de-pixel-art_49685499.htm. Acesso em: 23 fev. 2025.
+[10] SALESFORCE. As 5 forças de Porter: o que são e como usá-las? Disponível em: https://www.salesforce.com/br/blog/5-forcas-de-porter/. Acesso em: 25 fev. 2025.
 
-[AB] 2D GAME ASSETS. Forest and Trees - Free Pixel Backgrounds. Dribbble, 2024. Disponível em: https://dribbble.com/shots/24653940-Forest-and-Trees-Free-Pixel-Backgrounds. Acesso em: 14 mar. 2025.
+[11] TERABLOG. Canvas Proposta de Valor: Para que serve e como preencher. Disponível em: https://blog.somostera.com/product-management/canvas-de-proposta-de-valor. Acesso em: 13 mar. 2025.
 
 # <a name="c8"></a>Anexos
 

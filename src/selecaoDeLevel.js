@@ -12,6 +12,7 @@ class SelecaoDeLevel extends Phaser.Scene {
     this.botaoSom; // Som do botão 
     this.musicaInicio; // Música de fundo
     this.nivelSom; // Som de prato para os níveis
+    this.btnSeta; // Botão de voltar
   }
 
   init(data) {
@@ -27,6 +28,7 @@ class SelecaoDeLevel extends Phaser.Scene {
     this.escalaFundo = Math.max(0.4, Math.min(0.6, this.largura / 2000)); // Escala responsiva para o fundo
     this.escalaNiveis = Math.max(0.08, Math.min(0.15, this.largura / 1200)); // Escala responsiva para os ícones
     this.escalaTexto = Math.min(this.largura / 1280, 1); // Escala para textos
+    this.escalaBotoes = Math.max(0.5, Math.min(0.7, this.largura / 2000)); // Escala responsiva para botões
     // Calcular espaçamento horizontal entre potes
     this.espacamentoNiveis = Math.min(200, this.largura * 0.15);
   }
@@ -43,6 +45,7 @@ class SelecaoDeLevel extends Phaser.Scene {
     this.load.image('nivel3T', '../assets/PoteCheio3T.png');
     this.load.image('nivel4T', '../assets/PoteCheio4T.png');
     this.load.image('nivel5T', '../assets/PoteCheio5T.png');
+    this.load.image('btnSeta', '../assets/btnSeta.png'); // Carrega a imagem da seta
     // Carrega a fonte personalizada
     this.load.font('Planes_ValMore', '../fonts/Planes_ValMore.ttf', 'truetype');
     // Carrega o som do botão 
@@ -154,9 +157,24 @@ class SelecaoDeLevel extends Phaser.Scene {
   }
 
   create() {
+    // Recupera o estado de mudo do localStorage
+    this.mutado = localStorage.getItem('mutado') === 'true';
+    
+    // Recupera o volume atual do localStorage
+    const volumeAtual = localStorage.getItem('volumeAtual') ? 
+      parseFloat(localStorage.getItem('volumeAtual')) : 0.5;
+
     // cria os sons 
     this.botaoSom = this.sound.add("botaoSom"); 
     this.nivelSom = this.sound.add("nivelSom");
+    
+    // Aplica as configurações de volume
+    this.botaoSom.setVolume(volumeAtual);
+    this.nivelSom.setVolume(volumeAtual);
+    
+    // Aplica o estado de mudo
+    this.botaoSom.setMute(this.mutado);
+    this.nivelSom.setMute(this.mutado);
 
     // Recalcula as dimensões responsivas
     this.calcularDimensoes();
@@ -164,6 +182,36 @@ class SelecaoDeLevel extends Phaser.Scene {
     // Adiciona o background responsivo
     this.fundo = this.add.image(this.centroX, this.centroY, 'fundoL')
       .setScale(this.escalaFundo);
+      
+    // Adiciona o botão de voltar no canto superior esquerdo
+    this.btnSeta = this.add.image(
+      100 * this.escalaBotoes, // Posição X: afastado da borda esquerda
+      80 * this.escalaBotoes,   // Posição Y: afastado da borda superior
+      "btnSeta"
+    )
+    .setScale(this.escalaBotoes * 0.5) // Reduzindo em 50% o tamanho da seta
+    .setFlipX(true); // Espelha a imagem horizontalmente para que a seta aponte para a esquerda
+
+    // Configura a interatividade do botão de voltar
+    this.btnSeta.setInteractive();
+
+    // Configura o evento de clique na seta
+    this.btnSeta.on('pointerdown', () => {
+      // Toca o som do botão apenas se não estiver mutado
+      if (!this.mutado) {
+        this.botaoSom.play();
+      }
+      
+      if (!this.isPaused) {
+        console.log('voltar para o menu');
+        // Para a música se estiver tocando
+        if (this.musicaInicio && this.musicaInicio.isPlaying) {
+          this.musicaInicio.stop();
+        }
+        this.scene.stop('SelecaoDeLevel');
+        this.scene.start('Menu');
+      }
+    });
     
     // Cria os botões dos níveis e os posiciona em uma curva tipo "arco" na base da tela
     const nomeNiveis = ['nivel1', 'nivel2', 'nivel3', 'nivel4', 'nivel5'];
@@ -228,8 +276,11 @@ class SelecaoDeLevel extends Phaser.Scene {
           console.log(`Nível ${i+1} bloqueado`);
           // Espaço reservado para som de nível bloqueado
         } else {
-          // Nível desbloqueado - tocar som e ir para a cena
-          this.nivelSom.play();
+          // Nível desbloqueado - tocar som apenas se não estiver mutado
+          if (!this.mutado) {
+            this.nivelSom.play();
+          }
+          
           if (this.musicaInicio && this.musicaInicio.isPlaying) {
             this.musicaInicio.stop(); // ou fadeOut se quiser
           }
@@ -316,6 +367,16 @@ class SelecaoDeLevel extends Phaser.Scene {
     this.fundo.setPosition(this.centroX, this.centroY);
     this.fundo.setScale(this.escalaFundo);
     
+    // Atualizar botão seta para o canto superior esquerdo
+    if (this.btnSeta) {
+      this.btnSeta.setPosition(
+        100 * this.escalaBotoes,  // Posição X à esquerda
+        80 * this.escalaBotoes    // Posição Y no topo
+      );
+      this.btnSeta.setScale(this.escalaBotoes * 0.5);
+      this.btnSeta.setFlipX(true); // Garantir que a seta continue espelhada após redimensionamento
+    }
+    
     // Posição inicial (à esquerda) e final dos níveis
     const offsetX = this.centroX - (this.espacamentoNiveis * 2);
     const basePosY = this.altura * 0.75; // Base Y é 75% da altura da tela
@@ -341,6 +402,9 @@ class SelecaoDeLevel extends Phaser.Scene {
   update() {
     // Verifica orientação a cada frame
     this.verificarOrientacao();
+    
+    // Verifica o estado de áudio a cada frame para pegar mudanças de outras cenas
+    this.verificarEstadoAudio();
   }
   
   // Método para limpar ao sair da cena
@@ -348,5 +412,39 @@ class SelecaoDeLevel extends Phaser.Scene {
     // Remove os event listeners
     window.removeEventListener('resize', this.handleResize.bind(this));
     window.removeEventListener('orientationchange', () => {});
+  }
+
+  // Adicione o método para verificar e atualizar o estado de áudio
+  verificarEstadoAudio() {
+    // Atualiza o estado de mudo com base no localStorage
+    const novoEstadoMutado = localStorage.getItem('mutado') === 'true';
+    
+    // Se o estado mudou, atualize todos os sons
+    if (novoEstadoMutado !== this.mutado) {
+      this.mutado = novoEstadoMutado;
+      
+      // Atualiza todos os sons
+      if (this.botaoSom) {
+        this.botaoSom.setMute(this.mutado);
+      }
+      
+      if (this.nivelSom) {
+        this.nivelSom.setMute(this.mutado);
+      }
+      
+      // Se a música de fundo ainda estiver disponível
+      if (this.musicaInicio) {
+        this.musicaInicio.setMute(this.mutado);
+        
+        // Se estiver mutado e a música estiver tocando, pause-a
+        if (this.mutado && this.musicaInicio.isPlaying) {
+          this.musicaInicio.pause();
+        } 
+        // Se não estiver mais mutado, retome a música
+        else if (!this.mutado && !this.musicaInicio.isPlaying && this.musicaInicio.seek > 0) {
+          this.musicaInicio.resume();
+        }
+      }
+    }
   }
 }

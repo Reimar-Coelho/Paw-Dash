@@ -69,7 +69,7 @@ class Menu extends Phaser.Scene {
     this.load.audio("botaomenu", "../assets/botaomenu.mp3");
     
     // Carrega o novo som para o botão de créditos
-    this.load.audio("botaocreditos", "../assets/sombigode.mp3");
+    this.load.audio("botaocreditos", "../assets/somBigode.mp3");
     
     // Tratando o carregamento do som com tratamento de erro
     this.load.on('loaderror', (fileObj) => {
@@ -174,6 +174,19 @@ class Menu extends Phaser.Scene {
     // cria os sons
     this.botaoSom = this.sound.add("botaoSom", {volume: 3}); 
     this.musicaInicio = this.sound.add('musicaInicio', {volume: 0.5});
+    
+    // Recupera o estado de mudo do localStorage
+    this.mutado = localStorage.getItem('mutado') === 'true';
+    
+    // Recupera o volume atual do localStorage
+    const volumeAtual = localStorage.getItem('volumeAtual') ? 
+      parseFloat(localStorage.getItem('volumeAtual')) : 0.5;
+    
+    // Aplica as configurações de volume
+    this.musicaInicio.setVolume(volumeAtual);
+    this.musicaInicio.setMute(this.mutado);
+    this.botaoSom.setVolume(volumeAtual);
+    this.botaoSom.setMute(this.mutado);
 
     // define as variáveis de controle para saber se o player passou qual fase
     // localStorage.setItem('nivel1Completo', 'false');
@@ -184,23 +197,32 @@ class Menu extends Phaser.Scene {
     
     // Adiciona o novo som do botão de menu
     try {
-        this.botaomenuSom = this.sound.add("botaomenu", {volume: 3});
+      this.botaomenuSom = this.sound.add("botaomenu", {volume: 3});
+      this.botaomenuSom.setMute(this.mutado);
+      this.botaomenuSom.setVolume(volumeAtual);
     } catch (error) {
-        console.error("Erro ao criar o som botaomenu:", error);
-        this.botaomenuSom = this.botaoSom; // Usa o som padrão como fallback
+      console.error("Erro ao criar o som botaomenu:", error);
+      this.botaomenuSom = this.botaoSom; // Usa o som padrão como fallback
     }
     
     // Adiciona o novo som do botão de créditos
     try {
-        this.botaocreditosSom = this.sound.add("botaocreditos", {volume: 3});
-        console.log("Som de créditos criado com sucesso");
+      this.botaocreditosSom = this.sound.add("botaocreditos", {volume: 3});
+      this.botaocreditosSom.setMute(this.mutado);
+      this.botaocreditosSom.setVolume(volumeAtual);
+      console.log("Som de créditos criado com sucesso");
     } catch (error) {
-        console.error("Erro ao criar o som botaocreditos:", error);
-        this.botaocreditosSom = this.botaoSom; // Usa o som padrão como fallback
+      console.error("Erro ao criar o som botaocreditos:", error);
+      this.botaocreditosSom = this.botaoSom; // Usa o som padrão como fallback
     }
     
-    this.musicaInicio.play(); 
-    console.log('Música de fundo iniciada'); 
+    // Toca a música de fundo apenas se não estiver mutado
+    if (!this.mutado) {
+      this.musicaInicio.play(); 
+      console.log('Música de fundo iniciada'); 
+    } else {
+      console.log('Som está mutado, música não será tocada');
+    }
 
     // Recalcula as dimensões responsivas
     this.calcularDimensoes();
@@ -252,50 +274,64 @@ class Menu extends Phaser.Scene {
     
     // Evento do botão de configurações atualizado com o novo som
     this.btnConfig.on('pointerdown', () => {
-        if (!this.isPaused) {
-            try {
-                this.botaomenuSom.play();
-            } catch (error) {
-                console.error("Erro ao tocar som:", error);
-                this.botaoSom.play(); // Fallback para o som padrão
-            }
-            
-            // Adiciona um pequeno atraso para permitir que o som seja reproduzido
-            this.time.delayedCall(200, () => {
-                this.musicaInicio.stop();
-                this.scene.start('Configuracoes', { musicaAtual: this.musicaInicio });
-            });
+      if (!this.isPaused) {
+        try {
+          // Toca o som apenas se não estiver mutado
+          if (!this.mutado) {
+            this.botaomenuSom.play();
+          }
+        } catch (error) {
+          console.error("Erro ao tocar som:", error);
+          // Toca o som padrão apenas se não estiver mutado
+          if (!this.mutado) {
+            this.botaoSom.play();
+          }
         }
+        
+        // Adiciona um pequeno atraso para permitir que o som seja reproduzido
+        this.time.delayedCall(200, () => {
+          this.musicaInicio.stop();
+          this.scene.start('Configuracoes', { musicaAtual: this.musicaInicio });
+        });
+      }
     });
 
     // Configura os eventos de clique
     this.btnJogar.on('pointerdown', () => {
-      this.botaoSom.play();  
+      // Toca o som apenas se não estiver mutado
+      if (!this.mutado) {
+        this.botaoSom.play();
+      }
+        
       if (!this.isPaused) {
         console.log('Jogar');
         this.scene.start('SelecaoDeLevel', { musicaInicio: this.musicaInicio });
       }
     });
     this.btnCreditos.on('pointerdown', () => {
-        if (!this.isPaused) {
-            console.log('Creditos - tentando tocar som personalizado');
-            try {
-                // Toca o som específico para o botão de créditos
-                this.botaocreditosSom.play();
-                console.log('Som de créditos reproduzido');
-            } catch (error) {
-                console.error("Erro ao tocar som de créditos:", error);
-                // Se falhar, toca o som padrão
-                this.botaoSom.play(); 
-                console.log('Usando som padrão como fallback');
-            }
-            
-            // Adiciona um pequeno atraso para permitir que o som seja reproduzido
-            this.time.delayedCall(200, () => {
-                this.musicaInicio.stop();
-                this.scene.start('Creditos', { musicaCreditos: this.musicaCreditos });
-            });
+      if (!this.isPaused) {
+        console.log('Creditos - tentando tocar som personalizado');
+        try {
+          // Toca o som específico para o botão de créditos apenas se não estiver mutado
+          if (!this.mutado) {
+            this.botaocreditosSom.play();
+            console.log('Som de créditos reproduzido');
+          }
+        } catch (error) {
+          console.error("Erro ao tocar som de créditos:", error);
+          // Se falhar, toca o som padrão apenas se não estiver mutado
+          if (!this.mutado) {
+            this.botaoSom.play(); 
+            console.log('Usando som padrão como fallback');
+          }
         }
+        
+        // Adiciona um pequeno atraso para permitir que o som seja reproduzido
+        this.time.delayedCall(200, () => {
+          this.musicaInicio.stop();
+          this.scene.start('Creditos', { musicaCreditos: this.musicaCreditos });
+        });
+      }
     });
     
     // Criar overlay e aviso de orientação
@@ -403,9 +439,47 @@ class Menu extends Phaser.Scene {
     }
   }
 
+  // Adicione um método para verificar e atualizar o estado de áudio
+  verificarEstadoAudio() {
+    // Atualiza o estado de mudo com base no localStorage
+    const novoEstadoMutado = localStorage.getItem('mutado') === 'true';
+    
+    // Se o estado mudou, atualize todos os sons
+    if (novoEstadoMutado !== this.mutado) {
+      this.mutado = novoEstadoMutado;
+      
+      // Atualiza todos os sons
+      if (this.musicaInicio) {
+        this.musicaInicio.setMute(this.mutado);
+        
+        // Pausa ou reinicia a música dependendo do estado
+        if (this.mutado && this.musicaInicio.isPlaying) {
+          this.musicaInicio.pause();
+        } else if (!this.mutado && !this.musicaInicio.isPlaying) {
+          this.musicaInicio.resume();
+        }
+      }
+      
+      if (this.botaoSom) {
+        this.botaoSom.setMute(this.mutado);
+      }
+      
+      if (this.botaomenuSom) {
+        this.botaomenuSom.setMute(this.mutado);
+      }
+      
+      if (this.botaocreditosSom) {
+        this.botaocreditosSom.setMute(this.mutado);
+      }
+    }
+  }
+
   update() {
     // Verifica orientação a cada frame
     this.verificarOrientacao();
+    
+    // Verifica o estado de áudio a cada frame para pegar mudanças de outras cenas
+    this.verificarEstadoAudio();
 
     // Verifica se a animação já foi executada anteriormente
     const bigodeAnimado = localStorage.getItem('bigodeAnimado') === 'true';
