@@ -179,6 +179,7 @@ class Nivel3 extends Phaser.Scene {
   create() {
     // Inicializa variáveis de estado
     this.contadorClique = 0;
+    this.alvosParaVencer = 5; // Define o número de alvos necessários para vencer
     this.pataMovendo = true;
     this.pataClicavel = true;
 
@@ -321,7 +322,7 @@ class Nivel3 extends Phaser.Scene {
     this.textoContador = this.add.text(
       Math.max(10, this.largura * 0.02),
       Math.max(10, this.altura * 0.02),
-      this.contadorClique + "/5",
+      this.contadorClique + "/" + this.alvosParaVencer,
       {
         fontFamily: "Planes_ValMore",
         fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
@@ -518,6 +519,46 @@ class Nivel3 extends Phaser.Scene {
   }
 
   textoTutorial3() {
+    this.textoTutorial = this.add.text(
+      this.centroX,
+      this.altura * 0.1,
+      "Parabéns! Você completou o nível 3!\nClique no botão para continuar.",
+      {
+        fontFamily: "Planes_ValMore",
+        fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
+        fill: "#ffffff",
+        backgroundColor: "#FFA500",
+        padding: { x: 10, y: 5 },
+        wordWrap: { width: this.largura * 0.8 },
+        align: "center",
+        stroke: "#000000",
+        strokeThickness: 2,
+      }
+    );
+    this.textoTutorial.setOrigin(0.5);
+  }
+
+  textoTutorialContinuar() {
+    this.textoTutorial = this.add.text(
+      this.centroX,
+      this.altura * 0.1,
+      "Coloque a recompensa no círculo e depois clique no botão para continuar.",
+      {
+        fontFamily: "Planes_ValMore",
+        fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
+        fill: "#ffffff",
+        backgroundColor: "#FFA500",
+        padding: { x: 10, y: 5 },
+        wordWrap: { width: this.largura * 0.8 },
+        align: "center",
+        stroke: "#000000",
+        strokeThickness: 2,
+      }
+    );
+    this.textoTutorial.setOrigin(0.5);
+  }
+
+  textoTutorialFinal() {
     this.textoTutorial = this.add.text(
       this.centroX,
       this.altura * 0.1,
