@@ -5,7 +5,7 @@ class Creditos extends Phaser.Scene {
 
     preload() {
       // Carregando as imagens necessárias
-      this.load.image('logoInteli', 'assets/logoInteli.png');
+      this.load.image('logoInteli', 'assets/logointeli.png');
       this.load.image('logoDrPet', 'assets/logoDrPet.png');
       this.load.image('btnSeta', 'assets/btnSeta.png');
     }
