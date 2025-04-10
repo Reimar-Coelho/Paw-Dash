@@ -23,7 +23,6 @@ class Menu extends Phaser.Scene {
     // Variáveis para controlar o tempo do movimento
     this.inicioMovimento = null; // Tempo quando o movimento começa
     this.tempoTotal = 0; // Tempo total que o bigode leva para se mover
-    this.btnconfigsom;
     
     // Reseta a animação do bigode sempre que a classe é instanciada (página é carregada)
     this.resetarAnimacaoBigode();
@@ -63,10 +62,12 @@ class Menu extends Phaser.Scene {
 
     // Carrega a imagem do bigode
     this.load.image("bigode", "../assets/bigode.png");
-    this.load.image("btnConfig", "../assets/btnMenu.png");
-    
-    // Carrega o novo som para o botão de configurações
+
     this.load.audio("botaomenu", "../assets/botaomenu.mp3");
+    
+    // Carrega as imagens para o botão de mutar
+    this.load.image("btnMutarOn", "../assets/btnVolume.png");
+    this.load.image("btnMutarOff", "../assets/btnVolume2.png");
     
     // Carrega o novo som para o botão de créditos
     this.load.audio("botaocreditos", "../assets/somBigode.mp3");
@@ -242,17 +243,20 @@ class Menu extends Phaser.Scene {
     const btnCreditosX = Math.min(this.largura - 150, this.largura - this.largura * 0.15);
     const btnCreditosY = Math.min(this.altura - 80, this.altura - this.altura * 0.1);
     
-    // Posiciona o botão de configurações 80 pixels acima do botão de créditos (aumentado de 60 para 80)
-    const btnConfigY = btnCreditosY - 80;
+
     
-    // Adiciona o botão de configurações
-    this.btnConfig = this.add.image(btnCreditosX, btnConfigY, "btnConfig")
-        .setScale(this.escalaBotoes * 0.3)
-        .setInteractive();
 
     // Adiciona o botão de créditos com posicionamento responsivo (já existente)
     this.btnCreditos = this.add.image(btnCreditosX, btnCreditosY, "btnCreditos").setScale(this.escalaBotoes);
 
+    // Adiciona o botão de mutar no canto superior direito
+    const btnMutarX = this.largura - 50;
+    const btnMutarY = 50;
+    const imagemMutar = this.mutado ? "btnMutarOff" : "btnMutarOn";
+    this.btnMutar = this.add.image(btnMutarX, btnMutarY, imagemMutar)
+        .setScale(this.escalaBotoes * 0.5)
+        .setInteractive();
+    
     // Adiciona o bigode
     this.bigode = this.add.image(this.bigodeX, this.bigodeY, "bigode").setScale(0.1 * this.escalaLogo);
 
@@ -271,29 +275,28 @@ class Menu extends Phaser.Scene {
     // Configura a interatividade dos botões
     this.btnJogar.setInteractive();
     this.btnCreditos.setInteractive();
-    
-    // Evento do botão de configurações atualizado com o novo som
-    this.btnConfig.on('pointerdown', () => {
-      if (!this.isPaused) {
-        try {
-          // Toca o som apenas se não estiver mutado
-          if (!this.mutado) {
-            this.botaomenuSom.play();
-          }
-        } catch (error) {
-          console.error("Erro ao tocar som:", error);
-          // Toca o som padrão apenas se não estiver mutado
-          if (!this.mutado) {
-            this.botaoSom.play();
-          }
-        }
-        
-        // Adiciona um pequeno atraso para permitir que o som seja reproduzido
-        this.time.delayedCall(200, () => {
-          this.musicaInicio.stop();
-          this.scene.start('Configuracoes', { musicaAtual: this.musicaInicio });
-        });
+
+    // Adiciona evento de clique para o botão de mutar
+    this.btnMutar.on('pointerdown', () => {
+      // Inverte o estado de mudo
+      this.mutado = !this.mutado;
+      
+      // Atualiza o ícone do botão
+      this.btnMutar.setTexture(this.mutado ? "btnMutarOff" : "btnMutarOn");
+      
+      // Pausa ou retoma todos os sons dependendo do estado
+      if (this.mutado) {
+        // Para todos os sons no jogo
+        this.sound.pauseAll();
+        // Reproduz apenas o som do botão para feedback imediato
+        this.botaoSom.play();
+      } else {
+        // Retoma todos os sons
+        this.sound.resumeAll();
       }
+      
+      // Salva as configurações no localStorage
+      localStorage.setItem('mutado', this.mutado);
     });
 
     // Configura os eventos de clique
@@ -396,12 +399,19 @@ class Menu extends Phaser.Scene {
     this.btnCreditos.setScale(this.escalaBotoes);
     
     // Atualizar botão configurações
-    const btnConfigY = btnCreditosY - 80; // Atualizado de 60 para 80 pixels
-    this.btnConfig.setPosition(btnCreditosX, btnConfigY);
-    this.btnConfig.setScale(this.escalaBotoes * 0.3);
+
+
     if (this.txtConfig) {
         this.txtConfig.setPosition(btnCreditosX, btnConfigY);
         this.txtConfig.setFontSize(Math.floor(16 * this.escalaTexto) + "px");
+    }
+
+    // Atualizar posição do botão de mutar
+    if (this.btnMutar) {
+      const btnMutarX = this.largura - 50;
+      const btnMutarY = 50;
+      this.btnMutar.setPosition(btnMutarX, btnMutarY);
+      this.btnMutar.setScale(this.escalaBotoes * 0.5);
     }
   }
 
@@ -431,11 +441,16 @@ class Menu extends Phaser.Scene {
     this.btnCreditos.setScale(this.escalaBotoes);
     
     // Atualizar botão configurações
-    const btnConfigY = btnCreditosY - 80; // Atualizado de 60 para 80 pixels
-    this.btnConfig.setPosition(btnCreditosX, btnConfigY);
-    this.btnConfig.setScale(this.escalaBotoes * 0.3);
     if (this.txtConfig) {
         this.txtConfig.setPosition(btnCreditosX, btnConfigY);
+    }
+
+    // Atualizar botão de mutar
+    if (this.btnMutar) {
+      const btnMutarX = this.largura - 50;
+      const btnMutarY = 50;
+      this.btnMutar.setPosition(btnMutarX, btnMutarY);
+      this.btnMutar.setScale(this.escalaBotoes * 0.5);
     }
   }
 

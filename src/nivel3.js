@@ -29,7 +29,7 @@ class Nivel3 extends Phaser.Scene {
     this.largura = window.innerWidth;
     this.altura = window.innerHeight;
     this.tamanhoPata = Math.min(0.0001673 * this.largura + 0.1, 0.25); // Limita o tamanho máximo
-    this.vel = Math.min(5, Math.max(3, this.largura / 400)); // Velocidade responsiva
+    this.vel = Math.min(8, Math.max(6, this.largura / 100)); // Velocidade responsiva
     this.centroX = this.largura / 2; // Centro da tela no eixo X
     this.centroY = this.altura / 2; // Centro da tela no eixo Y
     this.marginX = Math.min(100, this.largura * 0.1); // Margem horizontal para movimento
@@ -59,6 +59,8 @@ class Nivel3 extends Phaser.Scene {
     this.load.audio("chocalho", "../assets/chocalho.mp3");
     // carrega som obstáculos clicáveis
     this.load.audio("obstaculoClicavelsom", "../assets/folhas.mp3");
+    // Carrega a imagem da tela de vitória
+    this.load.image("telaVitoria", "../assets/telaVitoria.png");
   }
 
   // Criar o overlay escuro e mensagem de orientação
@@ -181,11 +183,12 @@ class Nivel3 extends Phaser.Scene {
     this.pataClicavel = true;
 
     // Recupera o estado de mudo do localStorage
-    this.mutado = localStorage.getItem('mutado') === 'true';
-    
+    this.mutado = localStorage.getItem("mutado") === "true";
+
     // Recupera o volume atual do localStorage
-    const volumeAtual = localStorage.getItem('volumeAtual') ? 
-      parseFloat(localStorage.getItem('volumeAtual')) : 0.5;
+    const volumeAtual = localStorage.getItem("volumeAtual")
+      ? parseFloat(localStorage.getItem("volumeAtual"))
+      : 0.5;
 
     // Recalcula as dimensões responsivas
     this.calcularDimensoes();
@@ -195,13 +198,13 @@ class Nivel3 extends Phaser.Scene {
     this.botaoSom = this.sound.add("botaoSom");
     this.chocalho = this.sound.add("chocalho");
     this.obstaculosClicaveissom = this.sound.add("obstaculoClicavelsom");
-    
+
     // Aplica as configurações de volume
     this.tim.setVolume(volumeAtual);
     this.botaoSom.setVolume(volumeAtual);
     this.chocalho.setVolume(volumeAtual);
     this.obstaculosClicaveissom.setVolume(volumeAtual);
-    
+
     // Aplica o estado de mudo
     this.tim.setMute(this.mutado);
     this.botaoSom.setMute(this.mutado);
@@ -228,6 +231,48 @@ class Nivel3 extends Phaser.Scene {
     this.pata.vertical = true;
     this.pata.ida = true; // Direção inicial no eixo X
 
+    // Evento de clique para a pata
+    this.pata.on("pointerdown", () => {
+      if (!this.isPaused && this.pataClicavel) {
+        this.contadorClique++;
+
+        // Atualiza o texto do contador
+        this.textoContador.setText(this.contadorClique + "/" + this.alvosParaVencer);
+
+        // Parar a pata e mostrar recompensa
+        this.pataMovendo = false;
+        this.pataClicavel = false;
+        this.pata.disableInteractive();
+
+        // Posiciona e mostra o círculo de recompensa
+        this.circuloRecompensa.x = this.pata.x;
+        this.circuloRecompensa.y = this.pata.y;
+        this.circuloRecompensa.setAlpha(0.5);
+
+        // Mostra o botão de continuar e o habilita
+        this.botaoContinuar.setAlpha(1);
+        this.botaoContinuar.setInteractive();
+
+        // Verifica se está mutado antes de tocar o som
+        if (!this.mutado) {
+          this.tim.play();
+        }
+
+        // Atualiza os textos tutoriais baseado no progresso do jogador
+        if (this.textoTutorial) {
+          this.textoTutorial.destroy();
+        }
+
+        // Se completou o nível, mostra mensagem final
+        if (this.contadorClique >= this.alvosParaVencer) {
+          this.textoTutorialFinal();
+        } else {
+          // Se ainda não completou, mostra instrução para recompensar
+          this.textoTutorialContinuar();
+        }
+      }
+    });
+
     // Adiciona o botão de continuar com posicionamento responsivo
     const btnX = this.largura - Math.min(100, this.largura * 0.1);
     const btnY = this.altura - Math.min(100, this.altura * 0.1);
@@ -249,27 +294,25 @@ class Nivel3 extends Phaser.Scene {
       if (!this.mutado) {
         this.botaoSom.play();
       }
-      
-      if (!this.isPaused && this.contadorClique < 5) {
-        // Volta a movimentar a pata e esconde o círculo/botão
-        this.pataMovendo = true;
-        this.pataClicavel = true;
-        this.circuloRecompensa.setAlpha(0);
-        this.botaoContinuar.setAlpha(0);
-        this.botaoContinuar.disableInteractive();
 
-        // Atualiza o texto tutorial
-        if (this.textoTutorial) {
-          this.textoTutorial.destroy();
+      if (!this.isPaused) {
+        // Verifica se o contador já atingiu o máximo
+        if (this.contadorClique >= this.alvosParaVencer) {
+          // Chama a função para mostrar a tela de vitória
+          this.pontuacaoMaxima();
+        } else {
+          // Se não completou, volta a movimentar a pata e esconde o círculo/botão
+          this.pataMovendo = true;
+          this.pataClicavel = true;
+          this.pata.setInteractive();
+          this.circuloRecompensa.setAlpha(0);
+          this.botaoContinuar.setAlpha(0);
+          this.botaoContinuar.disableInteractive();
+
+          if (!this.mutado && !this.chocalho.isPlaying) {
+            this.chocalho.play();
+          }
         }
-        this.textoTutorial1();
-      } else if (!this.isPaused && this.contadorClique >= 5) {
-        // Remove os event listeners antes de sair da cena
-        window.removeEventListener("resize", this.handleResize.bind(this));
-        window.removeEventListener("orientationchange", () => {});
-        localStorage.setItem('nivel3Completo', 'true');
-        this.scene.start("SelecaoDeLevel");
-        
       }
     });
 
@@ -281,10 +324,12 @@ class Nivel3 extends Phaser.Scene {
       this.contadorClique + "/5",
       {
         fontFamily: "Planes_ValMore",
-        fontSize: tamanhoFonte + "px",
+        fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
         fill: "#ffffff",
-        backgroundColor: "#2f996e",
-        padding: { x: 5, y: 3 },
+        backgroundColor: "#FFA500",
+        padding: { x: 8, y: 5 },
+        stroke: "#000000",
+        strokeThickness: 2,
       }
     );
 
@@ -390,7 +435,7 @@ class Nivel3 extends Phaser.Scene {
         // Se o clique não foi bloqueado por nenhum obstáculo
         if (!cliqueBloqueioPorObstaculo) {
           this.contadorClique++;
-          
+
           // Verifica se está mutado antes de tocar o som
           if (!this.mutado) {
             this.tim.play();
@@ -430,58 +475,66 @@ class Nivel3 extends Phaser.Scene {
   }
 
   // Funções para exibir os textos tutoriais com tamanho responsivo
+  // Exemplo de funções para o Nivel3
+
   textoTutorial1() {
     this.textoTutorial = this.add.text(
       this.centroX,
-      this.altura * 0.1, // Posicionamento responsivo
-      "Nível 3: Tente fazer seu gato clicar na pata em movimento entre os obstáculos! (5 cliques)",
+      this.altura * 0.1,
+      "Nível 3: Tente fazer seu gato clicar na pata em movimento!",
       {
         fontFamily: "Planes_ValMore",
         fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
         fill: "#ffffff",
-        backgroundColor: "#2f996e",
+        backgroundColor: "#FFA500",
         padding: { x: 10, y: 5 },
         wordWrap: { width: this.largura * 0.8 },
+        align: "center",
+        stroke: "#000000",
+        strokeThickness: 2,
       }
     );
     this.textoTutorial.setOrigin(0.5);
-    this.textoTutorial.setDepth(1);
   }
 
   textoTutorial2() {
     this.textoTutorial = this.add.text(
       this.centroX,
-      this.altura * 0.1, // Posicionamento responsivo
+      this.altura * 0.1,
       "Coloque a recompensa no círculo e depois clique no botão para continuar.",
       {
         fontFamily: "Planes_ValMore",
         fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
         fill: "#ffffff",
-        backgroundColor: "#2f996e",
+        backgroundColor: "#FFA500",
         padding: { x: 10, y: 5 },
         wordWrap: { width: this.largura * 0.8 },
+        align: "center",
+        stroke: "#000000",
+        strokeThickness: 2,
       }
     );
     this.textoTutorial.setOrigin(0.5);
-    this.textoTutorial.setDepth(1);
   }
 
   textoTutorial3() {
     this.textoTutorial = this.add.text(
       this.centroX,
-      this.altura * 0.1, // Posicionamento responsivo
-      "Parabéns! Você completou o nível 3!\nColoque a recompensa no círculo e depois clique no botão para continuar.",
+      this.altura * 0.1,
+      "Parabéns! Você completou o nível 3!\nClique no botão para continuar.",
       {
         fontFamily: "Planes_ValMore",
         fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
         fill: "#ffffff",
-        backgroundColor: "#2f996e",
+        backgroundColor: "#FFA500",
         padding: { x: 10, y: 5 },
         wordWrap: { width: this.largura * 0.8 },
+        align: "center",
+        stroke: "#000000",
+        strokeThickness: 2,
       }
     );
     this.textoTutorial.setOrigin(0.5);
-    this.textoTutorial.setDepth(1);
   }
 
   // Método para lidar com o redimensionamento da tela
@@ -586,10 +639,10 @@ class Nivel3 extends Phaser.Scene {
   update() {
     // Verifica orientação a cada frame
     this.verificarOrientacao();
-    
+
     // Verifica o estado de áudio a cada frame para pegar mudanças de outras cenas
     this.verificarEstadoAudio();
-    
+
     if (this.pataMovendo) {
       // Verifica se está mutado antes de tocar o som do chocalho
       if (!this.mutado && !this.chocalho.isPlaying) {
@@ -634,58 +687,116 @@ class Nivel3 extends Phaser.Scene {
 
   // Função de evento acionada ao atingir 5 cliques
   pontuacaoMaxima() {
-    // Desativa os cliques na pata
-    this.pataClicavel = false;
+    // Pausar o jogo
+    this.pauseGame();
 
-    // Remove o texto tutorial se existir
-    if (this.textoTutorial) {
-      this.textoTutorial.destroy();
+    // Toca o som de vitória
+    if (!this.mutado) {
+      this.botaoSom.play();
     }
 
-    // Exibe a mensagem de conclusão
-    this.textoTutorial3();
+    // Cria um overlay preto que cobre toda a tela
+    const overlay = this.add
+      .rectangle(0, 0, this.largura, this.altura, 0x000000)
+      .setOrigin(0, 0)
+      .setAlpha(0);
+    overlay.setDepth(20);
 
-    // Posiciona o círculo de recompensa na última posição da pata
-    this.circuloRecompensa.x = this.pata.x;
-    this.circuloRecompensa.y = this.pata.y;
+    // Tween para escurecer o fundo
+    this.tweens.add({
+      targets: overlay,
+      alpha: 0.8, // valor final do alpha
+      duration: 1000, // duração em milissegundos para escurecer
+      // Dentro do método pontuacaoMaxima, no onComplete do tween do overlay:
+      onComplete: () => {
+        localStorage.setItem("nivel3Completo", true); // Marca o nível como completo no localStorage
+        // Após o background escurecer, exibe a tela de vitória com fade-in
+        // Calcula a escala baseada no tamanho da tela
+        const escalaVitoria = Math.min(
+          (this.largura * 0.8) / 1024, // Assumindo que a imagem tenha 1024px de largura
+          (this.altura * 0.8) / 768,   // Assumindo que a imagem tenha 768px de altura
+          0.7 // Limita a escala máxima
+        );
+        
+        const telaVitoria = this.add
+          .image(this.centroX, this.centroY, "telaVitoria")
+          .setScale(escalaVitoria)
+          .setAlpha(0);
+        telaVitoria.setDepth(21);
+        this.tweens.add({
+          targets: telaVitoria,
+          alpha: 1,
+          duration: 500, // tempo de fade-in da imagem
+        });
 
-    // Mostra o círculo de recompensa e o botão continuar
-    this.circuloRecompensa.setAlpha(0.5);
-    this.botaoContinuar.setAlpha(1);
-    this.botaoContinuar.setInteractive();
+        // Adiciona um botão para avançar para o próximo nível ou reiniciar (canto inferior direito)
+        const margin = 20; // margem do botão em relação à borda
+        const btnProximoNivel = this.add.text(
+          this.largura - margin,
+          this.altura - margin,
+          "Próximo Nível",
+          {
+            fontFamily: "Planes_ValMore",
+            fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
+            fill: "#ffffff",
+            backgroundColor: "#FFA500",
+            padding: { x: 10, y: 5 },
+            stroke: "#000000",
+            strokeThickness: 2,
+          }
+        );
+        btnProximoNivel.setOrigin(1, 1); // alinha o botão para o canto inferior direito
+        btnProximoNivel.setInteractive();
+        btnProximoNivel.setDepth(21);
+        btnProximoNivel.on("pointerdown", () => {
+          this.scene.start("Nivel4"); // Mude para o nome da próxima cena
+        });
+
+        // Implementa o btnSeta.png na parte superior esquerda da transição
+        const btnSeta = this.add
+          .image(margin, margin, "continuar")
+          .setOrigin(0, 0)
+          .setScale(0.5) // ajuste o scale conforme necessário
+          .setDepth(21)
+          .setFlipX(true); // inverte horizontalmente para apontar para a esquerda
+        btnSeta.setInteractive();
+        btnSeta.on("pointerdown", () => {
+          this.scene.start("SelecaoDeLevel"); // Direciona para a tela de níveis
+        });
+      },
+    });
   }
-
   // Adicione o método para verificar e atualizar o estado de áudio
   verificarEstadoAudio() {
     // Atualiza o estado de mudo com base no localStorage
-    const novoEstadoMutado = localStorage.getItem('mutado') === 'true';
-    
+    const novoEstadoMutado = localStorage.getItem("mutado") === "true";
+
     // Se o estado mudou, atualize todos os sons
     if (novoEstadoMutado !== this.mutado) {
       this.mutado = novoEstadoMutado;
-      
+
       // Atualiza todos os sons
       if (this.tim) {
         this.tim.setMute(this.mutado);
       }
-      
+
       if (this.botaoSom) {
         this.botaoSom.setMute(this.mutado);
       }
-      
+
       if (this.chocalho) {
         this.chocalho.setMute(this.mutado);
-        
+
         // Se estiver mutado e o chocalho estiver tocando, pause-o
         if (this.mutado && this.chocalho.isPlaying) {
           this.chocalho.pause();
-        } 
+        }
         // Se não estiver mais mutado, retome o som se a pata estiver em movimento
         else if (!this.mutado && this.pataMovendo && !this.chocalho.isPlaying) {
           this.chocalho.play();
         }
       }
-      
+
       if (this.obstaculosClicaveissom) {
         this.obstaculosClicaveissom.setMute(this.mutado);
       }

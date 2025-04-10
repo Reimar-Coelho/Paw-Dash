@@ -68,6 +68,8 @@ class Nivel4 extends Phaser.Scene {
     this.load.audio("botaoSom", "../assets/botaosom.mp3");
     // Carrega o som da pata se mechendo
     this.load.audio("chocalho", "../assets/chocalho.mp3");
+    // Carrega a imagem da tela de vitória
+    this.load.image("telaVitoria", "../assets/telaVitoria.png");
   }
 
   // Criar o overlay escuro e mensagem de orientação
@@ -252,33 +254,33 @@ class Nivel4 extends Phaser.Scene {
         this.botaoSom.play();
       }
       
-      if (!this.isPaused && this.contadorClique < 5) {
-        // Volta a movimentar a pata e esconde o círculo/botão
-        this.pataMovendo = true;
-        this.pataClicavel = true;
-        this.pata.setInteractive();
-        this.circuloRecompensa.setAlpha(0);
-        this.botaoContinuar.setAlpha(0);
-        this.botaoContinuar.disableInteractive();
-        
-        // Toca o som do chocalho apenas se não estiver mutado
-        if (!this.mutado && !this.chocalho.isPlaying) {
-          this.chocalho.play();
-        }
+      if (!this.isPaused) {
+        // Verifica se o contador já atingiu 5
+        if (this.contadorClique >= 5) {
+          // Chama a função para mostrar a tela de vitória
+          this.pontuacaoMaxima();
+        } else {
+          // Se ainda não completou, volta a movimentar a pata
+          this.pataMovendo = true;
+          this.pataClicavel = true;
+          this.pata.setInteractive();
+          this.circuloRecompensa.setAlpha(0);
+          this.botaoContinuar.setAlpha(0);
+          this.botaoContinuar.disableInteractive();
+          
+          // Toca o som do chocalho apenas se não estiver mutado
+          if (!this.mutado && !this.chocalho.isPlaying) {
+            this.chocalho.play();
+          }
 
-        // Atualiza o texto tutorial
-        if (this.textoTutorial) {
-          this.textoTutorial.destroy();
-        }
+          // Atualiza o texto tutorial
+          if (this.textoTutorial) {
+            this.textoTutorial.destroy();
+          }
 
-        // Exibe o texto tutorial
-        this.textoTutorial1();
-      } else if (!this.isPaused && this.contadorClique >= 5) {
-        // Remove os event listeners antes de sair da cena
-        window.removeEventListener("resize", this.handleResize.bind(this));
-        window.removeEventListener("orientationchange", () => {});
-        localStorage.setItem('nivel4Completo', 'true');
-        this.scene.start("SelecaoDeLevel");
+          // Exibe o texto tutorial
+          this.textoTutorial1();
+        }
       }
     });
 
@@ -322,9 +324,9 @@ class Nivel4 extends Phaser.Scene {
           this.textoTutorial.destroy();
         }
 
-        if (this.contadorClique === 5) {
-          // Se completou o nível, mostra mensagem final
-          this.pontuacaoMaxima();
+        // Se completou o nível, mostra mensagem final
+        if (this.contadorClique >= 5) {
+          this.textoTutorial3();
         } else {
           // Se ainda não completou, mostra instrução para recompensar
           this.textoTutorial2();
@@ -339,13 +341,15 @@ class Nivel4 extends Phaser.Scene {
       Math.max(10, this.altura * 0.02),
       this.contadorClique + "/5",
       {
-        fontFamily: "Planes_ValMore",
-        fontSize: tamanhoFonte + "px",
-        fill: "#ffffff",
-        backgroundColor: "#2f996e",
-        padding: { x: 5, y: 3 },
+          fontFamily: "Planes_ValMore",
+          fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
+          fill: "#ffffff",
+          backgroundColor: "#FFA500",
+          padding: { x: 8, y: 5 },
+          stroke: "#000000",
+          strokeThickness: 2,
       }
-    );
+  );
     
     // Adiciona texto para status do BLE
     const tamanhoFonteBT = Math.max(16, Math.floor(28 * this.escalaTexto));
@@ -416,57 +420,63 @@ class Nivel4 extends Phaser.Scene {
   // Funções para exibir os textos tutoriais com tamanho responsivo
   textoTutorial1() {
     this.textoTutorial = this.add.text(
-      this.centroX,
-      this.altura * 0.1, // Posicionamento responsivo
-      "Nível 4: Tutorial bluetooth - Clique na pata após conectar o bluetooth e o dispensador automático de petiscos liberará a recompensa!",
-      {
-        fontFamily: "Planes_ValMore",
-        fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
-        fill: "#ffffff",
-        backgroundColor: "#2f996e",
-        padding: { x: 10, y: 5 },
-        wordWrap: { width: this.largura * 0.8 },
-      }
+        this.centroX,
+        this.altura * 0.1,
+        "Nível 4: Aja rápido para marcar pontos com a pata!",
+        {
+            fontFamily: "Planes_ValMore",
+            fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
+            fill: "#ffffff",
+            backgroundColor: "#FFA500",
+            padding: { x: 10, y: 5 },
+            wordWrap: { width: this.largura * 0.8 },
+            align: "center",
+            stroke: "#000000",
+            strokeThickness: 2,
+        }
     );
     this.textoTutorial.setOrigin(0.5);
-    this.textoTutorial.setDepth(1);
-  }
+}
 
-  textoTutorial2() {
+textoTutorial2() {
     this.textoTutorial = this.add.text(
-      this.centroX,
-      this.altura * 0.1, // Posicionamento responsivo
-      "Ótimo! A recompensa foi dispensada automaticamente pelo dispositivo BLE. Clique no botão para continuar.",
-      {
-        fontFamily: "Planes_ValMore",
-        fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
-        fill: "#ffffff",
-        backgroundColor: "#2f996e",
-        padding: { x: 10, y: 5 },
-        wordWrap: { width: this.largura * 0.8 },
-      }
+        this.centroX,
+        this.altura * 0.1,
+        "Acertou! Agora, coloque a recompensa e clique no botão para continuar.",
+        {
+            fontFamily: "Planes_ValMore",
+            fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
+            fill: "#ffffff",
+            backgroundColor: "#FFA500",
+            padding: { x: 10, y: 5 },
+            wordWrap: { width: this.largura * 0.8 },
+            align: "center",
+            stroke: "#000000",
+            strokeThickness: 2,
+        }
     );
     this.textoTutorial.setOrigin(0.5);
-    this.textoTutorial.setDepth(1);
-  }
+}
 
-  textoTutorial3() {
+textoTutorial3() {
     this.textoTutorial = this.add.text(
-      this.centroX,
-      this.altura * 0.1, // Posicionamento responsivo
-      "Parabéns! Você completou o tutorial BLE! Agora você já sabe como usar o dispensador automático de petiscos! Clique no botão para continuar.",
-      {
-        fontFamily: "Planes_ValMore",
-        fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
-        fill: "#ffffff",
-        backgroundColor: "#2f996e",
-        padding: { x: 10, y: 5 },
-        wordWrap: { width: this.largura * 0.8 },
-      }
+        this.centroX,
+        this.altura * 0.1,
+        "Parabéns! Você completou o nível 4!\nClique no botão para continuar.",
+        {
+            fontFamily: "Planes_ValMore",
+            fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
+            fill: "#ffffff",
+            backgroundColor: "#FFA500",
+            padding: { x: 10, y: 5 },
+            wordWrap: { width: this.largura * 0.8 },
+            align: "center",
+            stroke: "#000000",
+            strokeThickness: 2,
+        }
     );
     this.textoTutorial.setOrigin(0.5);
-    this.textoTutorial.setDepth(1);
-  }
+}
 
   // Método para lidar com o redimensionamento da tela
   handleResize() {
@@ -624,26 +634,84 @@ class Nivel4 extends Phaser.Scene {
 
   // Função de evento acionada ao atingir 5 cliques
   pontuacaoMaxima() {
-    // Desativa os cliques na pata
-    this.pataClicavel = false;
-    this.pata.disableInteractive();
+    // Pausar o jogo
+    this.pauseGame();
 
-    // Remove o texto tutorial se existir
-    if (this.textoTutorial) {
-      this.textoTutorial.destroy();
+    // Toca o som de vitória
+    if (!this.mutado) {
+      this.botaoSom.play();
     }
 
-    // Exibe a mensagem de conclusão
-    this.textoTutorial3();
+    // Cria um overlay preto que cobre toda a tela
+    const overlay = this.add
+      .rectangle(0, 0, this.largura, this.altura, 0x000000)
+      .setOrigin(0, 0)
+      .setAlpha(0);
+    overlay.setDepth(20);
 
-    // Posiciona o círculo de recompensa na última posição da pata
-    this.circuloRecompensa.x = this.pata.x;
-    this.circuloRecompensa.y = this.pata.y;
+    // Tween para escurecer o fundo
+    this.tweens.add({
+      targets: overlay,
+      alpha: 0.8, // valor final do alpha
+      duration: 1000, // duração em milissegundos para escurecer
+      // Dentro do método pontuacaoMaxima, no onComplete do tween do overlay:
+      onComplete: () => {
+        localStorage.setItem("nivel4Completo", true); // Marca o nível como completo no localStorage
+        // Após o background escurecer, exibe a tela de vitória com fade-in
+        // Calcula a escala baseada no tamanho da tela
+        const escalaVitoria = Math.min(
+          (this.largura * 0.8) / 1024, // Assumindo que a imagem tenha 1024px de largura
+          (this.altura * 0.8) / 768,   // Assumindo que a imagem tenha 768px de altura
+          0.7 // Limita a escala máxima
+        );
+        
+        const telaVitoria = this.add
+          .image(this.centroX, this.centroY, "telaVitoria")
+          .setScale(escalaVitoria)
+          .setAlpha(0);
+        telaVitoria.setDepth(21);
+        this.tweens.add({
+          targets: telaVitoria,
+          alpha: 1,
+          duration: 500, // tempo de fade-in da imagem
+        });
 
-    // Mostra o círculo de recompensa e o botão continuar
-    this.circuloRecompensa.setAlpha(0.5);
-    this.botaoContinuar.setAlpha(1);
-    this.botaoContinuar.setInteractive();
+        // Adiciona um botão para avançar para o próximo nível ou reiniciar (canto inferior direito)
+        const margin = 20; // margem do botão em relação à borda
+        const btnProximoNivel = this.add.text(
+          this.largura - margin,
+          this.altura - margin,
+          "Próximo Nível",
+          {
+            fontFamily: "Planes_ValMore",
+            fontSize: Math.max(20, Math.floor(35 * this.escalaTexto)) + "px",
+            fill: "#ffffff",
+            backgroundColor: "#FFA500",
+            padding: { x: 10, y: 5 },
+            stroke: "#000000",
+            strokeThickness: 2,
+          }
+        );
+        btnProximoNivel.setOrigin(1, 1); // alinha o botão para o canto inferior direito
+        btnProximoNivel.setInteractive();
+        btnProximoNivel.setDepth(21);
+        btnProximoNivel.on("pointerdown", () => {
+          this.scene.start("Nivel5"); // Mude para o nome da próxima cena
+        });
+
+        // Implementa o btnSeta.png na parte superior esquerda da transição
+        const btnSeta = this.add
+          .image(margin, margin, "continuar")
+          .setOrigin(0, 0)
+          .setScale(0.5) // ajuste o scale conforme necessário
+          .setDepth(21)
+          .setFlipX(true); // inverte horizontalmente para apontar para a esquerda
+        btnSeta.setInteractive();
+        btnSeta.on("pointerdown", () => {
+          this.scene.start("SelecaoDeLevel"); // Direciona para a tela de níveis
+        });
+      },
+    });
   }
 
   // Adicione o método para verificar e atualizar o estado de áudio

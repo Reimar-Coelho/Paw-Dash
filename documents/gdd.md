@@ -1,4 +1,4 @@
-<img src="../assets/logointeli.png">
+ <img src="../assets/logointeli.png">
 
 
 # GDD - Game Design Document - Módulo 1 - Inteli
@@ -203,10 +203,10 @@ Baixar documentação e dependências antecipadamente e configurar um ambiente l
 
 ## 1.2. Requisitos do Projeto
 
-&nbsp;&nbsp;&nbsp;&nbsp;Os requisitos do projeto representam as necessidades e expectativas essenciais que orientam seu desenvolvimento e execução. Eles estabelecem o que precisa ser alcançado, de que forma e sob quais condições. Esta seção abrange os requisitos funcionais e não funcionais, além dos aspectos técnicos, de qualidade e conformidade. Fundamentais para assegurar os objetivos, esses requisitos servem como base para o planejamento, implementação e avaliação do projeto.
+&nbsp;&nbsp;&nbsp;&nbsp;Os requisitos do projeto representam as necessidades e expectativas essenciais que orientam seu desenvolvimento e execução. Eles estabelecem o que precisa ser alcançado, de que forma e sob quais condições. O quadro 1 abrange os requisitos funcionais e não funcionais, além dos aspectos técnicos, de qualidade e conformidade. Fundamentais para assegurar os objetivos, esses requisitos servem como base para o planejamento, implementação e avaliação do projeto.
 
 <div align="center">
-<sub>Quadro X - Requisitos Fundamentais do Jogo</sub>
+<sub>Quadro 1 - Requisitos Fundamentais do Jogo</sub>
 </div>
 
 \# | Requisitos Fundamentais do Jogo
@@ -230,36 +230,20 @@ Baixar documentação e dependências antecipadamente e configurar um ambiente l
 17 | O alvo deve ser capaz de estimular os instintos de caça do gato
 18 | O jogo deve apresentar estímulos visuais quando o gato tocar corretamente o alvo
 19 | O jogo deve apresentar estímulos de sons de alta frequência quando o gato tocar corretamente o alvo
-20 | O jogo deve apresentar vibração da tela quando o gato tocar corretamente o alvo
-21 | O jogo deve apresentar opções de ativar ou desativar as mecânicas de som e vibração
-22 | O background do jogo deve ser simples para não confundir o gato
-23 | Os alvos devem ser "destruídos" após uma determinada quantidade pequena de toques 
-24 | A quantidade de toques necessária para destruir o alvo deve progredir lentamente de acordo com as fases
+20 | O background do jogo deve ser simples para não confundir o gato
+21 | Os alvos devem ser "destruídos" após uma determinada quantidade pequena de toques 
+22 | A quantidade de toques necessária para destruir o alvo deve progredir lentamente de acordo com as fases
+23 | O jogo deve apresentar uma mecânica nova para o alvo a cada fase
+24 | As novas mecânicas devem desafiar cada vez mais as habilidades de caça do gato
 25 | O jogo deve mostrar uma tela que indica que é o momento de recompensar o gato após todos os alvos serem destruídos
 26 | O jogo deve fazer o gato associar a destruição dos alvos à recompensa
 27 | O jogo deve indicar que o petisco deve ser posicionado na posição do último alvo destruído
+28 | O jogo deve possibilitar o dispositivo conectar via Bluetooth com um dispositivo de recompensa automática
+29 | O jogo deve ativar o mecanismo de recompensa automática quando o gato acertar o alvo
 
 <div align="center">
 <sup>Fonte: Material produzido pelos autores (2025)</sup>
 </div>
-
-<div align="center">
-<sub>Quadro X - Requisitos Desejáveis do Jogo</sub>
-</div>
-
-\# | Requisitos Desejáveis do Jogo
---- | ---
-1 | O jogo deve apresentar uma mecânica nova para o alvo a cada fase
-2 | As novas mecânicas devem desafiar cada vez mais as habilidades de caça do gato
-3 | A mecâcina opcional do tutor controlar o alvo deve ser introduzida a fim de promover ainda mais interação entre tutor e pet
-4 | O jogo deve apresentar a função de conectar dois dispositivos em uma mesma fase
-5 | O jogo deve apresentar a função de um dispositivo atuar como controle remoto de um alvo que está em outro dispositivo
-
-<div align="center">
-<sup>Fonte: Material produzido pelos autores (2025)</sup>
-</div>
-
-
 
 ## 1.3. Público-alvo do Projeto
 
@@ -423,29 +407,25 @@ Baixar documentação e dependências antecipadamente e configurar um ambiente l
 
 &nbsp;&nbsp;&nbsp;&nbsp;As regras do jogo definem o início, o progresso dos jogadores, as ações possíveis e o desfecho do jogo, sendo fundamentais para garantir que o usuário entenda com clareza a jogabilidade e, assim, tenha uma boa experiência ao jogar. Desse modo, foram estabelecidas as seguintes regras para o jogo "Paw Dash":
 
-1. Regras Gerais
 - O usuário deve concluir as fases de modo que, após ter êxito na primeira, poderá jogar a segunda, e assim por diante;
-- O usário (gato) deve tocar corretamente no alvo para ser recompensado;
-- o usuário (tutor) deve estar preparado para recompensar o gato quando ele obtver êxito no jogo.
 
-2. Fase 1
-- O alvo deve se movimentar através de uma trajetória circular, e o gato deve ser recompensado sempre que tocar corretamente o alvo, de modo a aprender a relação entre o toque e a recompensa.
+- O usuário (gato) deve tocar corretamente no alvo para ser recompensado;
 
-3. Fase 2
-- O alvo deve se mover "rebatendo" nas bordas da tela, e o gato deve ser recompensado após acertar o alvo três vezes.
+- O usuário (tutor) deve estar preparado para recompensar o gato quando ele obtiver êxito no jogo;
 
-4. Fase 3
-- O alvo deve se mover como na fase 2, mas após o gato acertá-lo uma vez, ele deve se dividir em dois alvos menores que poderão ser destruídos após dois toques, e assim o gato poderá ser recompensado. (Fase em revisão)
+- O jogo deve usar de cores contrastantes para facilitar a visualização dos elementos por usuários daltônicos e os gatos, contribuindo para uma experiência mais inclusiva.
 
 &nbsp;&nbsp;&nbsp;&nbsp;A partir dessas regras, os usuários (tutor e gato) poderão aproveitar plenamente a experiência oferecida pelo jogo.
 
 ## 3.7. Mecânicas do jogo 
 
-&nbsp;&nbsp;&nbsp;&nbsp;As mecânicas de um jogo dizem respeito ao conjunto de interações que possibilitam a realização de ações e a progressão dentro da experiência do jogador. O propósito dessas mecânicas é oferecer desafios, entretenimento e uma experiência imersiva, permitindo que os jogadores explorem o que o jogo oferece, atinjam objetivos e superem obstáculos dentro do contexto definido pelas metas do jogo. Com isso em mente, para garantir uma mecânica intuitiva, de fácil uso para os gatos e que apresentasse uma progressão de dificuldade, as interações do jogo ocorrem por meio do toque, ação mais adequada para os felinos interagirem com a tela, ou seja, o gato interaje com os alvos, elementos principais da jogabilidade, tocando-os. Assim, o desafio ao usuário aumenta a medida que os alvos se movem de forma mais complexa, o que torna mais difícil acertá-los. Ademais, as interações feitas pelo tutor também ocorrem pelo toque, como a seleção de níveis.
+&nbsp;&nbsp;&nbsp;&nbsp;As mecânicas de um jogo dizem respeito ao conjunto de interações que possibilitam a realização de ações e a progressão dentro da experiência do jogador. O propósito dessas mecânicas é oferecer desafios, entretenimento e uma experiência imersiva, permitindo que os jogadores explorem o que o jogo oferece, atinjam objetivos e superem obstáculos dentro do contexto definido pelas metas do jogo.
+
+&nbsp;&nbsp;&nbsp;&nbsp;Com isso em mente, para garantir uma mecânica intuitiva, de fácil uso para os gatos e que apresentasse uma progressão de dificuldade, as interações do jogo ocorrem por meio do toque, ação mais adequada para os felinos interagirem com a tela, ou seja, o gato interage com os alvos, elementos principais da jogabilidade, tocando-os. Assim, o desafio ao usuário aumenta à medida que os alvos se movem de forma mais complexa, o que torna mais difícil acertá-los. Ademais, as interações feitas pelo tutor também ocorrem pelo toque, como a seleção de níveis. Outra mecânica do jogo é a responsividade, ou seja, ele se adapta a diferentes tamanhos de tela, garantindo que a experiência seja consistente tanto em tablets quanto em smartphones.
 
 # 3.8. Implementação Matemática de Animação/Movimento
 
-A movimentação dos elementos gráficos no jogo é implementada a partir de uma modelagem matemática que considera o tempo, a aceleração e a velocidade no movimento de um personagem ou objeto. A seguir, detalhamos as funções que descrevem a animação de um elemento gráfico, com base nas equações de Movimento Uniforme (MU) e Movimento Uniformemente Variado (MUV).
+&nbsp;&nbsp;&nbsp;&nbsp;A movimentação dos elementos gráficos no jogo é implementada a partir de uma modelagem matemática que considera o tempo, a aceleração e a velocidade no movimento de um personagem ou objeto. A seguir, detalhamos as funções que descrevem a animação de um elemento gráfico, com base nas equações de Movimento Uniforme (MU) e Movimento Uniformemente Variado (MUV).
 
 ## 3.8.1. Parâmetros Iniciais
 
@@ -810,10 +790,10 @@ if (this.bigodeY >= this.bigodeYFinal || this.bigodeX <= this.bigodeXFinal) {
 
 ## 5.1. Casos de Teste
 
-&nbsp;&nbsp;&nbsp;&nbsp;Os seguintes casos de teste foram elaborados para verificar o funcionamento correto do jogo e a integração de suas partes. Cada teste garante que os requisitos fundamentais sejam atendidos e que a experiência de jogo seja fluida e funcional.
+&nbsp;&nbsp;&nbsp;&nbsp;O quadro 2 apresenta os casos de teste que foram elaborados para verificar o funcionamento correto do jogo e a integração de suas partes. Cada teste garante que os requisitos fundamentais sejam atendidos e que a experiência de jogo seja fluida e funcional.
 
 <div align="center">
-<sub>Quadro X - Casos de Teste</sub>
+<sub>Quadro 2 - Casos de Teste</sub>
 </div>
 
 \# | Pré-condição | Descrição do teste | Pós-condição 
@@ -838,123 +818,188 @@ if (this.bigodeY >= this.bigodeYFinal || this.bigodeX <= this.bigodeXFinal) {
 
 &nbsp;&nbsp;&nbsp;&nbsp;Estes testes garantem que o jogo funcione conforme os requisitos estabelecidos e proporcione uma experiência envolvente tanto para os gatos quanto para seus tutores.
 
+## 5.2. Testes de Jogabilidade (Playtests)
 
+### 5.2.1 Registros de Testes do GDD
 
-## 5.2. Testes de jogabilidade (playtests) 
-
-### 5.2.1 Registros de testes
+#### 5.2.1.1 Registro dos Testes de Guerrilha (Parte 1)
 
 *Descreva nesta seção as sessões de teste/entrevista com diferentes jogadores. Registre cada teste conforme o template a seguir.*
 
 <div align="center">
-<sub>Quadro X - Registro de Testes</sub>
+<sub>Quadro 3 - Testes de Guerrilha</sub>
 </div>
 
-Nome | Bruno
---- | ---
-O usuário possui um gato de estimação? | Sim
-Qual modelo de dispositivo foi utilizado para o teste?  | Notebook
-O jogo apresentou uma responsividade adequada ao dispositivo utilizado? | Sim
-O usuário já possuía experiência com games? | Experiência com games para gatos
-Como o usuário navegou pelo jogo? | Navegou com facilidade.
-Conseguiu iniciar o jogo e acessar a tela de níveis? | Sim
-Conseguiu acessar os níveis e jogá-los? | Sim
-Como o usuário interagiu com os textos explicativos de cada fase? | Nao esta lendo
-Como foi a experiência na fase 1? | Excelente
-Como foi a experiência na fase 2? | Leu os textos e concluiu.
-Como foi a experiência na fase 3? | Boa
-Como foi a experiência na fase 4? | Muito boa
-Como foi a experiência na fase 5? | Achou bonito.
-Apresentou dificuldade em alguma das fases? | Não
-Caso tenha apresentado dificuldades, quais foram? | Não apresentou
-O usuário acha que o jogo pode ser desafiador demais ou fácil demais para um gato? | Achou bom.
-Não gostou de alguma das fases? | Fase 3
-O que o usuário acha que poderia melhorar no jogo? | Botão de voltar muito chamativo para o gato.
-Como foi a experiência com a mecânica de recompensa do jogo? | Boa
-Gostou da trilha sonora e dos efeitos sonoros do jogo? | Gostou muito
-Gostou do visual do jogo? | Sim, achou fofo
-O que mais gostou no jogo? | Trilha sonora.
-Que nota o usuário dá ao jogo? | 9
-Jogaria o jogo com seu gato? (Caso tenha um gato) | Sim
+| Pergunta | Resposta |
+| --- | --- |
+| O usuário possui um gato de estimação? | Sim |
+| Qual modelo de dispositivo foi utilizado para o teste? | Notebook |
+| O jogo apresentou uma responsividade adequada ao dispositivo utilizado? | Sim |
+| O usuário já possuía experiência com games? | Experiência com games para gatos |
+| Como o usuário navegou pelo jogo? | Navegou com facilidade |
+| Conseguiu iniciar o jogo e acessar a tela de níveis? | Sim |
+| Conseguiu acessar os níveis e jogá-los? | Sim |
+| Como o usuário interagiu com os textos explicativos de cada fase? | Não está lendo |
+| Como foi a experiência na fase 1? | Excelente |
+| Como foi a experiência na fase 2? | Leu os textos e concluiu |
+| Como foi a experiência na fase 3? | Boa |
+| Como foi a experiência na fase 4? | Muito boa |
+| Como foi a experiência na fase 5? | Achou bonito |
+| Apresentou dificuldade em alguma das fases? | Não |
+| Caso tenha apresentado dificuldades, quais foram? | Não apresentou |
+| O jogo é desafiador ou fácil demais para um gato? | Achou bom |
+| Não gostou de alguma das fases? | Fase 3 |
+| O que poderia melhorar? | Botão de voltar muito chamativo para o gato |
+| Experiência com a mecânica de recompensa | Boa |
+| Gostou da trilha sonora e efeitos sonoros? | Gostou muito |
+| Gostou do visual do jogo? | Sim, achou fofo |
+| O que mais gostou? | Trilha sonora |
+| Nota para o jogo | 9 |
+| Jogaria com seu gato? | Sim |
 
+| Pergunta | Resposta |
+| --- | --- |
+| O usuário possui um gato de estimação? | Sim |
+| Qual modelo de dispositivo foi utilizado para o teste? | Notebook |
+| O jogo apresentou uma responsividade adequada ao dispositivo utilizado? | Sim |
+| O usuário já possuía experiência com games? | Experiência com games no geral |
+| Como o usuário navegou pelo jogo? | Com facilidade, foi direto para as fases |
+| Conseguiu iniciar o jogo e acessar a tela de níveis? | Sim |
+| Conseguiu acessar os níveis e jogá-los? | Sim |
+| Como o usuário interagiu com os textos explicativos de cada fase? | Não leu |
+| Como foi a experiência na fase 1? | Excelente |
+| Como foi a experiência na fase 2? | Ótima |
+| Como foi a experiência na fase 3? | Repetitiva |
+| Como foi a experiência na fase 4? | Leu os textos e concluiu |
+| Como foi a experiência na fase 5? | Mais ou menos repetitiva |
+| Apresentou dificuldade em alguma das fases? | Não |
+| Caso tenha apresentado dificuldades, quais foram? | Não apresentou |
+| O jogo é desafiador ou fácil demais para um gato? | Normal |
+| Não gostou de alguma das fases? | Fase 4 |
+| O que poderia melhorar? | Botão de voltar para o menu. Achou repetitivo |
+| Experiência com a mecânica de recompensa | Ok |
+| Gostou da trilha sonora e efeitos sonoros? | Gostou |
+| Gostou do visual do jogo? | Gostou, mas falta refinamento |
+| O que mais gostou? | Do design do jogo |
+| Nota para o jogo | 9 |
+| Jogaria com seu gato? | Sim |
 
-
-Nome | João
---- | ---
-O usuário possui um gato de estimação? | Sim
-Qual modelo de dispositivo foi utilizado para o teste?  | Notebook
-O jogo apresentou uma responsividade adequada ao dispositivo utilizado? | Sim
-O usuário já possuía experiência com games? | Experiência com games no geral
-Como o usuário navegou pelo jogo? | Com facilidade, foi direto para as fases
-Conseguiu iniciar o jogo e acessar a tela de níveis? | Sim
-Conseguiu acessar os níveis e jogá-los? | Sim
-Como o usuário interagiu com os textos explicativos de cada fase? | Não leu as explicacoes
-Como foi a experiência na fase 1? | Excelente
-Como foi a experiência na fase 2? | Ótima
-Como foi a experiência na fase 3? | Repetitiva
-Como foi a experiência na fase 4? | Leu os textos e concluiu.
-Como foi a experiência na fase 5? | Mais ou menos repetitivo
-Apresentou dificuldade em alguma das fases? | Não
-Caso tenha apresentado dificuldades, quais foram? | Não apresentou
-O usuário acha que o jogo pode ser desafiador demais ou fácil demais para um gato? | Normal
-Não gostou de alguma das fases? | Fase 4
-O que o usuário acha que poderia melhorar no jogo? | Botão de voltar para o menu. Achou repetitivo.
-Como foi a experiência com a mecânica de recompensa do jogo? | Ok
-Gostou da trilha sonora e dos efeitos sonoros do jogo? | Gostou
-Gostou do visual do jogo? | Gostou, mas falta refinamento.
-O que mais gostou no jogo? | Do design do jogo
-Que nota o usuário dá ao jogo? | 9
-Jogaria o jogo com seu gato? (Caso tenha um gato) | Sim
-
-
-
-
-Nome | Carlos
---- | ---
-O usuário possui um gato de estimação? | Não
-Qual modelo de dispositivo foi utilizado para o teste?  | Notebook
-O jogo apresentou uma responsividade adequada ao dispositivo utilizado? | Sim
-O usuário já possuía experiência com games? | Experiência com games no geral
-Como o usuário navegou pelo jogo? | Foi direto para as fases. Depois abriu o menu.
-Conseguiu iniciar o jogo e acessar a tela de níveis? | Sim
-Conseguiu acessar os níveis e jogá-los? | Sim
-Como o usuário interagiu com os textos explicativos de cada fase? | Leu todos os textos explicativos.
-Como foi a experiência na fase 1? | Achou muito demorada
-Como foi a experiência na fase 2? | Amou
-Como foi a experiência na fase 3? | Som dessincronizado.
-Como foi a experiência na fase 4? | Repetitiva
-Como foi a experiência na fase 5? | Gostou muito
-Apresentou dificuldade em alguma das fases? | Não
-Caso tenha apresentado dificuldades, quais foram? | Não apresentou
-O usuário acha que o jogo pode ser desafiador demais ou fácil demais para um gato? | Achou fácil
-Não gostou de alguma das fases? | Fase 4
-O que o usuário acha que poderia melhorar no jogo? | Contador muito pequeno e escondido. Tela de fim. Sincronizar som. Fases repetitivas. Indicar as mudanças nas fases. Botão de voltar para o menu.
-Como foi a experiência com a mecânica de recompensa do jogo? | Entendeu
-Gostou da trilha sonora e dos efeitos sonoros do jogo? | Gostou muito
-Gostou do visual do jogo? | Gostou, mas muito parecido
-O que mais gostou no jogo? | Trilha sonora.
-Que nota o usuário dá ao jogo? | 8
-Jogaria o jogo com seu gato? (Caso tenha um gato) | Sim
-
-
-
-
+| Pergunta | Resposta |
+| --- | --- |
+| O usuário possui um gato de estimação? | Não |
+| Qual modelo de dispositivo foi utilizado para o teste? | Notebook |
+| O jogo apresentou uma responsividade adequada ao dispositivo utilizado? | Sim |
+| O usuário já possuía experiência com games? | Experiência com games no geral |
+| Como o usuário navegou pelo jogo? | Foi direto para as fases. Depois abriu o menu |
+| Conseguiu iniciar o jogo e acessar a tela de níveis? | Sim |
+| Conseguiu acessar os níveis e jogá-los? | Sim |
+| Como o usuário interagiu com os textos explicativos de cada fase? | Leu todos |
+| Como foi a experiência na fase 1? | Achou muito demorada |
+| Como foi a experiência na fase 2? | Amou |
+| Como foi a experiência na fase 3? | Som dessincronizado |
+| Como foi a experiência na fase 4? | Repetitiva |
+| Como foi a experiência na fase 5? | Gostou muito |
+| Apresentou dificuldade em alguma das fases? | Não |
+| Caso tenha apresentado dificuldades, quais foram? | Não apresentou |
+| O jogo é desafiador ou fácil demais para um gato? | Achou fácil |
+| Não gostou de alguma das fases? | Fase 4 |
+| O que poderia melhorar? | Contador pequeno e escondido, falta tela de fim, som dessincronizado, indicar mudanças nas fases, botão de voltar para o menu |
+| Experiência com a mecânica de recompensa | Entendeu |
+| Gostou da trilha sonora e efeitos sonoros? | Gostou muito |
+| Gostou do visual do jogo? | Gostou, mas muito parecido |
+| O que mais gostou? | Trilha sonora |
+| Nota para o jogo | 8 |
+| Jogaria com seu gato? | Sim |
 
 <div align="center">
 <sup>Fonte: Material produzido pelos autores (2025)</sup>
 </div>
 
-### 5.2.2 Melhorias
+#### 5.2.1.2 Registro dos Testes com Público-Alvo (Parte 2)
 
-*Descreva nesta seção um plano de melhorias sobre o jogo, com base nos resultados dos testes de jogabilidade*
+*Conteúdo não disponível. Esta seção deve ser preenchida com registros de sessões de teste realizadas com o público-alvo final do jogo (tutores com gatos).*
+
+#### 5.2.1.3 Análise das Respostas e Principais Conclusões
+
+- Todos os usuários conseguiram navegar com facilidade e acessar os níveis.
+- A responsividade foi adequada em todos os dispositivos testados (notebooks).
+- A trilha sonora foi um dos elementos mais elogiados pelos participantes.
+- O botão de "voltar ao menu" chamou atenção indesejada dos gatos ou causou distração.
+- A fase 3 e a fase 4 foram mencionadas como repetitivas por mais de um usuário.
+- A mecânica de recompensa foi compreendida e bem aceita.
+- Algumas sugestões incluíram melhorias na clareza dos elementos visuais e sincronização de áudio.
+- Poucos usuários leram os textos explicativos das fases.
+
+#### 5.2.2 Melhorias
+
+Com base nos testes realizados, foram definidas as seguintes melhorias:
+
+- **Botão de voltar ao menu:** Reduzir o destaque visual ou reposicionar para evitar distrações ao gato.
+- **Textos explicativos:** Reformular ou buscar alternativas visuais (como ícones ou tutoriais animados) para maior engajamento.
+- **Fases repetitivas:** Introduzir maior variação de padrões de movimento e recompensas para evitar monotonia.
+- **Contador e feedback visual:** Aumentar o tamanho e a visibilidade dos elementos informativos na tela.
+- **Trilha sonora e efeitos:** Ajustar sincronização do som com as ações nas fases.
+- **Tela de encerramento:** Adicionar uma tela final clara ao fim do jogo ou das fases.
+- **Responsividade:** Embora o jogo esteja funcional em notebooks, será importante testar e ajustar em tablets, que são o foco do público-alvo.
+
 
 # <a name="c6"></a>6. Conclusões e trabalhos futuros 
 
-*Escreva de que formas a solução do jogo atingiu os objetivos descritos na seção 1 deste documento. Indique pontos fortes e pontos a melhorar de maneira geral.*
+## 6. Conclusões e Trabalhos Futuros
 
-*Relacione os pontos de melhorias evidenciados nos testes com plano de ações para serem implementadas no jogo. O grupo não precisa implementá-las, pode deixar registrado aqui o plano para futuros desenvolvimentos.*
+### 6.1. Conclusões
 
-*Relacione também quaisquer ideias que o grupo tenha para melhorias futuras*
+O projeto **Paw Dash** atingiu com sucesso os objetivos definidos na seção 1. A proposta de criar um jogo interativo para gatos foi realizada por meio de um MVP funcional, com foco em estímulo físico/mental dos felinos e interação com seus tutores.
+
+**Pontos fortes:**
+
+- Jogabilidade adaptada à percepção e comportamento dos gatos.
+- Interface intuitiva para tutores, com instruções claras.
+- Sistema de recompensa bem integrado.
+- Design visual e sonoro elogiado nos testes.
+- Código organizado, facilitando manutenção e expansão.
+
+**Pontos a melhorar:**
+
+- Algumas fases foram percebidas como repetitivas.
+- Textos explicativos ignorados por parte dos usuários.
+- Botão de "voltar" atraiu a atenção dos gatos.
+- Alguns bugs visuais e sonoros pontuais.
+- Ausência de tela de conclusão após a fase.
+
+
+
+### 6.2. Trabalhos Futuros
+
+#### Melhorias baseadas em testes
+
+| Problema identificado | Ação sugerida |
+|-----------------------|----------------|
+| Textos não lidos | Substituir por ícones, sons e animações mais intuitivas |
+| Botão "voltar" chamativo | Reposicionar e aplicar menor destaque visual |
+| Fases repetitivas | Criar novas dinâmicas que mantenham a simplicidade |
+| Sem tela de conclusão | Incluir feedback visual ao fim da fase para guiar a recompensa |
+| Falta de progresso visível | Adicionar indicador de progresso ou mapa de níveis |
+
+#### Funcionalidades futuras
+
+- Customização de alvos (cor, forma, tamanho).
+- Modo noturno com brilho reduzido.
+- Registro de desempenho (tempo de interação, número de toques).
+- Sistema simples de conquistas para os tutores.
+- Integração com dispositivos de recompensa automática.
+- Reexplorar modo controlado pelo tutor.
+
+#### Roadmap sugerido
+
+| Sprint | Objetivo |
+|--------|----------|
+| Sprint 1 | Refatoração de UI/UX e substituição de instruções por elementos visuais |
+| Sprint 2 | Desenvolvimento de novas fases com maior diversidade |
+| Sprint 3 | Ampliação dos testes com mais gatos e coleta estruturada de feedback |
+| Sprint 4 | Prototipação e testes da recompensa automática |
+| Sprint 5 | Publicação em loja de apps para testes beta |
+
 
 # <a name="c7"></a>7. Referências 
 
